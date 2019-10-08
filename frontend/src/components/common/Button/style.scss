@@ -1,0 +1,19 @@
+@import 'src/components/core/advanced';
+
+.button{
+    height: 60px;
+    background: $main_color;
+    border-radius: 10px;
+    color: #ffffff;
+    font-family: $main_font;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 1.5px;
+    border: none;
+    cursor: pointer;
+    transition: all .15s ease;
+    &:hover{
+        background-color: darken($main_color, 10%);
+    }
+}

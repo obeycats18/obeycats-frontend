@@ -1,0 +1,61 @@
+@import 'src/components/core/advanced';
+
+.auth{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login{
+    .login-title{
+        font-family: $main_font;
+        font-weight: normal;
+        font-size: 28px;
+        line-height: 31px;
+        letter-spacing: 0.05em;
+        color: $main_color;
+        text-align: center;
+        padding-bottom: 50px;
+    }
+    .login-form{
+        display: flex;
+        flex-direction: column;
+        &__input{
+            max-width: 455px;
+            width: 455px;   
+            margin-bottom: 20px;
+            transition: all 0.25s ease;
+            &:active, &:focus{
+                background-color: lighten($main_color, 15%);
+                color: #ffffff;
+                &::placeholder{
+                    color: #ffffff;
+                }
+            }
+        }
+        &__button-group{
+            display: flex;
+            justify-content: space-between;
+            .forgive{
+                padding-top: 5%;
+                text-decoration: none;
+                font-size: 14px;
+                line-height: 16px;
+                letter-spacing: 0.05em;
+                color: rgba(#000000, .3);
+            }
+        }
+        .registration{
+            font-size: 16px;
+            line-height: 16px;
+            letter-spacing: 0.05em;
+            color: rgba(#000000, .5);
+            text-align: center;
+            padding-top: 50px;
+        }
+    }
+    .login-block{
+        padding: 100px 95px;
+    }
+}
