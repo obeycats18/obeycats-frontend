@@ -1,5 +1,6 @@
 import React from 'react'
 import { withFormik } from 'formik';
+import {Link} from 'react-router-dom'
 
 import 'components/Auth/style.scss'
 
@@ -43,10 +44,10 @@ const LoginForm = props => {
                     />
                     <div className="login-form__button-group">
                         <Checkbox text='Запомнить меня'/>
-                        <a href="#" className='forgive'>Забыли пароль?</a>
+                        <Link to='/forgive' className='forgive'>Забыли пароль?</Link>
                     </div>
                     <Button type='submit' text='Войти' classname='login-form__button'/>
-                    <a href="#" className='registration'>Зарегистрироваться</a>
+                    <Link to='/registration' className='registration'>Зарегистрироваться</Link>
                 </Form>
             </Block>
         </div>

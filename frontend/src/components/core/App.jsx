@@ -1,11 +1,15 @@
 import React from 'react';
 
-import Authorization from 'pages/Authorization';
+import Autherization from 'pages/Authorization'
+import Test from '../../pages/Test';
 
 const App = () => {
   return (
-    // router
-    <Authorization/>
+    <div className="app">
+      <Autherization/>
+      <Test/>
+    </div>
+    
   );
 }
 
