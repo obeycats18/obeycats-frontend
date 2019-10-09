@@ -3,6 +3,7 @@ import {Switch, Route} from 'react-router-dom'
 
 import Login from './Login'
 import './style.scss'
+import Registration from './Registration';
 
 const Auth = () => {
     return (
@@ -10,7 +11,7 @@ const Auth = () => {
         <div className="auth">
             <Switch>
                 <Route path='/login' component={Login}/>
-                <Route path='/registration' render={ () => 'Registration' }/>
+                <Route path='/registration' component={Registration}/>
             </Switch>
             
         </div>

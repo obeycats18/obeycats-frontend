@@ -47,7 +47,7 @@ const LoginForm = props => {
                         <Link to='/forgive' className='forgive'>Забыли пароль?</Link>
                     </div>
                     <Button type='submit' text='Войти' classname='login-form__button'/>
-                    <Link to='/registration' className='registration'>Зарегистрироваться</Link>
+                    <Link to='/registration' className='registration-link'>Зарегистрироваться</Link>
                 </Form>
             </Block>
         </div>

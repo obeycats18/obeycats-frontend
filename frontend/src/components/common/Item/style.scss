@@ -1,6 +1,6 @@
 @import 'src/components/core/advanced';
 
-.form-item{
+.form-item, .select.select__control, .select.select__control.select__value-container {
     min-height: 50px;
     height: 50px;
     padding: 10px 45px;
@@ -15,5 +15,57 @@
     background-color: transparent;
     &::placeholder{
         color: $main_color;
+    }
+}
+
+.select{
+    
+    &__menu{
+        
+        box-shadow: 0 0 0 0!important;
+        overflow: hidden;
+        border-radius: 10px!important;
+        background-color: $main_color!important;
+        color: #ffffff;
+        &-list{
+
+            .select__option{
+                padding: 15px !important;
+                &:hover{
+                    background-color: rgba(244, 246, 252, 0.15)!important;
+                }
+                
+            }
+            .select__option.select__option--is-focused{
+                background-color: rgba(244, 246, 252, 0.15)!important;
+
+            }
+            .select__option.select__option--is-selected{
+                background-color: rgba(244, 246, 252, 0.5)!important;
+
+            }
+        }
+    }
+    &__control{
+        border-radius: 10px!important;
+        border: 2px solid $main_color!important;  
+    }
+    &__value-container{
+        padding: 10px 45px!important;
+        .select__single-value{
+            color: $main_color!important;
+        }
+    }
+    &__placeholder{
+        color: $main_color!important;
+    } 
+    &__indicators{
+        .select__indicator-separator{
+            background-color: $main_color!important;
+        }
+        .select__indicator.select__dropdown-indicator{
+            color: $main_color!important;
+        }
+        
     }
 }

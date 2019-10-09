@@ -7,8 +7,18 @@
     align-items: center;
 }
 
-.login{
-    .login-title{
+.registration{
+    height: 100%;
+    &-title{
+        padding-top: 50px;
+    }
+    &-block{
+        margin-bottom: 50px;
+    }
+}
+
+.login, .registration{
+    &-title{
         font-family: $main_font;
         font-weight: normal;
         font-size: 28px;
@@ -18,11 +28,10 @@
         text-align: center;
         padding-bottom: 50px;
     }
-    .login-form{
+    &-form{
         display: flex;
         flex-direction: column;
         &__input{
-            max-width: 455px;
             width: 455px;   
             margin-bottom: 20px;
             transition: all 0.25s ease;
@@ -46,7 +55,7 @@
                 color: rgba(#000000, .3);
             }
         }
-        .registration{
+        .registration-link, .login-link{
             font-size: 16px;
             line-height: 16px;
             letter-spacing: 0.05em;
@@ -55,7 +64,11 @@
             padding-top: 50px;
         }
     }
-    .login-block{
+    &-block{
         padding: 100px 95px;
     }
+}
+
+.registration-form__input{
+    width: 590px;
 }
