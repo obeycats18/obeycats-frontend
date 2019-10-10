@@ -13,7 +13,6 @@ import 'components/Auth/style.scss'
 
 const RegistrationForm = props => {
     const{
-        values,
         handleChange,
         handleBlur,
         handleSubmit,
@@ -30,51 +29,46 @@ const RegistrationForm = props => {
         <div className="registration">
             <h3 className='registration-title'>Регистрация</h3>
             <Block classname='registration-block' >
-                <Form handleSubmit={handleSubmit} classname='registration-form'>
+                <Form onSubmit={handleSubmit} classname='registration-form'>
                     <Item 
                         type='text' 
                         name='last_name' 
                         classname='registration-form__input' 
                         placeholder='Имя'
-                        handleChange={handleChange}
-                        handleBlur={handleBlur}
-                        value={values.last_name}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
                     />
                     <Item 
                         type='text' 
                         name='first_name' 
                         classname='registration-form__input' 
                         placeholder='Фамилия'
-                        handleChange={handleChange}
-                        handleBlur={handleBlur}
-                        value={values.first_name}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
                     />
                     <Item 
                         type='email' 
                         name='email' 
                         classname='registration-form__input' 
                         placeholder='E-mail'
-                        handleChange={handleChange}
-                        handleBlur={handleBlur}
-                        value={values.email}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
                     />
                     <Item 
                         type='password' 
                         name='password' 
                         classname='registration-form__input' 
                         placeholder='Пароль'
-                        handleChange={handleChange}
-                        handleBlur={handleBlur}
-                        value={values.password}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
                     />
                     <Item 
                         type='password' 
                         name='confirm_password' 
                         classname='registration-form__input' 
                         placeholder='Подтвердите пароль'
-                        handleChange={handleChange}
-                        handleBlur={handleBlur}
-                        value={values.confirm_password}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
                     />
                     <Select options={options} className="select" classNamePrefix='select'/>
                     <div className="registration-form__button-group">
@@ -89,13 +83,6 @@ const RegistrationForm = props => {
 };
 
 const Registration = withFormik({
-    mapPropsToValues: () => ({
-        last_name: '',
-        first_name: '',
-        email: '',
-        password: '',
-        confirm_password: ''
-    }),
 
     handleSubmit: (value, {setSubmitting}) => {
         console.log(value);

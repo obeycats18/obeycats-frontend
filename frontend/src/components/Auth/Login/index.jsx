@@ -1,5 +1,4 @@
 import React from 'react'
-import { withFormik } from 'formik';
 import {Link} from 'react-router-dom'
 
 import 'components/Auth/style.scss'
@@ -10,60 +9,44 @@ import Button from '../../common/Button';
 import Block from '../../common/Block';
 import Checkbox from '../../common/Checkbox';
 
-const LoginForm = props => {
+export const LoginForm = props => {
 
     const{
-        values,
         handleChange,
         handleBlur,
         handleSubmit,
+        isSubmitting
     } = props;
 
     return (
         <div className="login">
             <h3 className='login-title'>Войти в аккаунт</h3>
             <Block classname='login-block' >
-                <Form handleSubmit={handleSubmit} classname='login-form'>
+                <Form onSubmit={handleSubmit} classname='login-form'>
                     <Item 
                         type='email' 
                         name='email' 
                         classname='login-form__input' 
                         placeholder='E-mail'
-                        handleChange={handleChange}
-                        handleBlur={handleBlur}
-                        value={values.email}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
                     />
                     <Item 
                         type='password' 
                         name='password' 
                         classname='login-form__input' 
                         placeholder='Пароль'
-                        handleChange={handleChange}
-                        handleBlur={handleBlur}
-                        value={values.password}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
                     />
                     <div className="login-form__button-group">
                         <Checkbox text='Запомнить меня'/>
                         <Link to='/forgive' className='forgive'>Забыли пароль?</Link>
                     </div>
-                    <Button type='submit' text='Войти' classname='login-form__button'/>
+                    <Button type='submit' onClick={handleSubmit} isSubmitting={isSubmitting} text='Войти' classname='login-form__button'/>
                     <Link to='/registration' className='registration-link'>Зарегистрироваться</Link>
                 </Form>
             </Block>
         </div>
     )
 }
-
-const Login = withFormik({
-    mapPropsToValues: () => ({
-        email: '',
-        password: ''
-    }),
-
-    handleSubmit: (value, {setSubmitting}) => {
-        console.log(value);
-        setSubmitting(false);
-    }
-})(LoginForm)
-
-export default Login;

@@ -50,6 +50,12 @@
         border-radius: 10px!important;
         border: 2px solid $main_color!important;  
     }
+    .select__value-container--has-value{
+        background: $main_color!important;
+        .select__single-value {
+            color: #ffffff !important;
+        }
+    }
     &__value-container{
         padding: 10px 45px!important;
         .select__single-value{
@@ -62,6 +68,7 @@
     &__indicators{
         .select__indicator-separator{
             background-color: $main_color!important;
+            display: none !important;
         }
         .select__indicator.select__dropdown-indicator{
             color: $main_color!important;

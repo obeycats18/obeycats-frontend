@@ -7,8 +7,8 @@ const Item = ( {
     name, 
     classname, 
     placeholder, 
-    handleChange,
-    handleBlur,
+    onChange,
+    onBlur,
     value} ) => {
     return (
         <input 
@@ -16,8 +16,8 @@ const Item = ( {
             name={name} 
             className={'form-item ' + classname} 
             placeholder={placeholder}
-            onChange={handleChange}
-            onBlur={handleBlur}
+            onChange={onChange}
+            onBlur={onBlur}
             value={value}/>
     );
 };
