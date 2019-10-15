@@ -17,3 +17,7 @@
         background-color: darken($main_color, 10%);
     }
 }
+
+.button:disabled{
+    background-color: darken(#F4F6FC, 30%);
+}

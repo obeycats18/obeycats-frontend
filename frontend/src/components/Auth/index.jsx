@@ -3,7 +3,7 @@ import {Switch, Route} from 'react-router-dom'
 
 import Login from './Login/containers/index'
 import './style.scss'
-import Registration from './Registration';
+import Registration from './Registration/containers';
 
 const Auth = () => {
     return (

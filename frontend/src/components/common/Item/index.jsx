@@ -9,16 +9,23 @@ const Item = ( {
     placeholder, 
     onChange,
     onBlur,
-    value} ) => {
+    value,
+    validateStatus,
+    children} ) => {
     return (
-        <input 
-            type={type} 
-            name={name} 
-            className={'form-item ' + classname} 
-            placeholder={placeholder}
-            onChange={onChange}
-            onBlur={onBlur}
-            value={value}/>
+        <div className="input-block">
+            <input 
+                type={type} 
+                name={name} 
+                className={'form-item ' + classname + ' ' + validateStatus} 
+                placeholder={placeholder}
+                onChange={onChange}
+                onBlur={onBlur}
+                value={value}
+            />
+            {children}
+        </div>
+
     );
 };
 

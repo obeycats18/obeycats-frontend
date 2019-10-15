@@ -31,9 +31,11 @@
     &-form{
         display: flex;
         flex-direction: column;
+        .input-block{
+            margin-bottom: 20px;
+        }
         &__input{
             width: 455px;   
-            margin-bottom: 20px;
             transition: all 0.25s ease;
             &:active, &:focus{
                 background-color: lighten($main_color, 15%);
@@ -43,6 +45,36 @@
                 }
             }
         }
+        .error{
+            border-color: $error_color;
+            color: $error_color;
+            &:active, &:focus{
+                background-color: lighten($error_color, 15%);
+                color: #ffffff;
+                &::placeholder{
+                    color: #ffffff;
+                }
+            }
+            &::placeholder{
+                color: $error_color;
+            }
+        }
+
+        .success{
+            border-color: $success_color;
+            color: $success_color;
+            &:active, &:focus{
+                background-color: lighten($success_color, 15%);
+                color: #ffffff;
+                &::placeholder{
+                    color: #ffffff;
+                }
+            }
+            &::placeholder{
+                color: $success_color;
+            }
+        }
+
         &__button-group{
             display: flex;
             justify-content: space-between;
@@ -72,3 +104,6 @@
 .registration-form__input{
     width: 590px;
 }
+
+
+

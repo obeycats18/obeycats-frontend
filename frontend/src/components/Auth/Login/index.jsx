@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Link} from 'react-router-dom'
 
 import 'components/Auth/style.scss'
@@ -8,10 +8,22 @@ import Item from '../../common/Item';
 import Button from '../../common/Button';
 import Block from '../../common/Block';
 import Checkbox from '../../common/Checkbox';
+import ErrorMessage from '../../common/ErrorMessage';
 
 export const LoginForm = props => {
 
+    let [selected, setSelected] = useState(true);
+
+    let checkHandleChange = (e) => {
+        setSelected(!e.target.checked);
+        setFieldValue('rememberMe', selected);
+    }
+
+    
     const{
+        setFieldValue,
+        errors,
+        touched,
         handleChange,
         handleBlur,
         handleSubmit,
@@ -30,7 +42,17 @@ export const LoginForm = props => {
                         placeholder='E-mail'
                         onChange={handleChange}
                         onBlur={handleBlur}
-                    />
+                        validateStatus={ 
+                            !touched.email 
+                                ? '' 
+                                : errors.email ? 'error' : 'success'
+                                
+                        }
+                    > {
+                        !touched.email 
+                        ? '' 
+                        : errors.email ? <ErrorMessage text={errors.email}/> : ''  
+                    } </Item>
                     <Item 
                         type='password' 
                         name='password' 
@@ -38,12 +60,22 @@ export const LoginForm = props => {
                         placeholder='Пароль'
                         onChange={handleChange}
                         onBlur={handleBlur}
-                    />
+                        validateStatus={ 
+                            !touched.password 
+                                ? '' 
+                                : errors.password ? 'error' : 'success'
+                                
+                        }
+                    >{
+                        !touched.password 
+                        ? '' 
+                        : errors.password ? <ErrorMessage text={errors.password }/> : ''  
+                    } </Item>
                     <div className="login-form__button-group">
-                        <Checkbox text='Запомнить меня'/>
+                        <Checkbox name='rememberMe' text='Запомнить меня' onChange={checkHandleChange}/>
                         <Link to='/forgive' className='forgive'>Забыли пароль?</Link>
                     </div>
-                    <Button type='submit' onClick={handleSubmit} isSubmitting={isSubmitting} text='Войти' classname='login-form__button'/>
+                    <Button type='submit'  isSubmitting={isSubmitting} text='Войти' classname='login-form__button'/>
                     <Link to='/registration' className='registration-link'>Зарегистрироваться</Link>
                 </Form>
             </Block>
