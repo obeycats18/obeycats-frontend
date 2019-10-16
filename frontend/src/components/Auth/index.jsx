@@ -9,7 +9,6 @@ import RegistrationSuccess from './RegistrationSuccess';
 
 const Auth = () => {
     return (
-        // router 
         <div className="auth">
             <Switch>
                 <Route exact path='/login' component={Login}/>

@@ -1,9 +1,9 @@
 import {notification} from 'antd'
 
-export let openNotification = (type, title, text) => {
+export let openNotification = (type, title, text, duration = 3) => {
 
     notification.config({
-        duration: 3,
+        duration,
     });
 
     notification[type]({

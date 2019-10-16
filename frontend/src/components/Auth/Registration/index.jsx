@@ -3,13 +3,15 @@ import {Link} from 'react-router-dom'
 
 import {useState} from 'react'
 
-import Form from 'components/common/Form';
-import Item from 'components/common/Item';
-import Button from 'components/common/Button';
-import Block from 'components/common/Block';
-import Checkbox from 'components/common/Checkbox';
-import ErrorMessage from 'components/common/ErrorMessage';
-import Select from 'components/common/Select';
+import {
+    Block,
+    Button,
+    Item,
+    Form,
+    Checkbox,
+    ErrorMessage,
+    Select
+} from 'components/common';
 
 
 import 'components/Auth/style.scss'

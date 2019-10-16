@@ -3,12 +3,15 @@ import {Link} from 'react-router-dom'
 
 import 'components/Auth/style.scss'
 
-import Form from '../../common/Form';
-import Item from '../../common/Item';
-import Button from '../../common/Button';
-import Block from '../../common/Block';
-import Checkbox from '../../common/Checkbox';
-import ErrorMessage from '../../common/ErrorMessage';
+import {
+    Block,
+    Button,
+    Item,
+    Form,
+    Checkbox,
+    ErrorMessage
+} from 'components/common';
+
 
 export const LoginForm = props => {
 

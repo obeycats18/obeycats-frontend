@@ -1,8 +1,6 @@
 import React from 'react';
 
 import Auth from 'components/Auth'
-
-
 import './style.scss'
 
 const Authorization = () => {

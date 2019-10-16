@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 
 import CheckIcon from 'assets/CheckIcon.svg'
 
-import Block from 'components/common/Block'
+import {Block} from 'components/common'
 
 import './style.scss'
 

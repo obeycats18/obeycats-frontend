@@ -35,7 +35,6 @@ export const setAuth = (isAuth) => ({ type: SET_AUTH, isAuth })
 export let setData = (values) => {
     return dispatch => {
         return userAPI.login( values ).then( (data) => {   
-            console.log(data);
             if(data.status === 201){
                 dispatch(setToken (data.token) );
                 dispatch(setAuth (true) ); 

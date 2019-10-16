@@ -34,14 +34,4 @@ export let registrationSchema = yup.object().shape( {
             .required('Введите пароль')
             .label('password')
             .oneOf([yup.ref('password'), null], 'Пароли не совпадают'),
-    // role: 
-    //     yup.array()
-    //         .min(1, "Нужно выбрать роль в системе")
-    //         .of(
-    //             yup.object().shape({
-    //                 label: yup.string().required(),
-    //                 value: yup.string().required()
-    //             })
-    //         ),
-    
 } )
