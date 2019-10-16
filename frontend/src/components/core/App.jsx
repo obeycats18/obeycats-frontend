@@ -1,16 +1,26 @@
 import React from 'react';
 
-import Autherization from 'pages/Authorization'
-// import Test from '../../pages/Test';
+import {connect} from 'react-redux'
 
-const App = () => {
+import Autherization from 'pages/Authorization'
+
+
+const App = props => {
+
+  const {isAuth} = props;  
+
   return (
     <div className="app">
-      <Autherization/>
-      {/* <Test/> */}
+      
+      {
+        (isAuth) 
+          ? <div>Authorized!</div>
+          : <Autherization/>
+      }
+      
     </div>
     
   );
 }
 
-export default App;
+export default connect( ({ auth }) => ({ isAuth: auth.isAuth }) )(App);

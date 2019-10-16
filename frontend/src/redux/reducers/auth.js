@@ -36,18 +36,9 @@ export let setData = (values) => {
     return dispatch => {
         return userAPI.login( values ).then( (data) => {   
             console.log(data);
-            
             if(data.status === 201){
-                if(data.rememberMe) {
-                    window.localStorage.setItem('token', data.token)
-                    dispatch(setAuth (true) );    
-
-                }else{
-                    dispatch(setToken (data.token) );
-                    dispatch(setAuth (true) );    
-                }
-                
-                
+                dispatch(setToken (data.token) );
+                dispatch(setAuth (true) ); 
             } if(data.status === 404) {
                 openNotification('error', 'Пользователь не найден', 'Проверте правильность введенных данных')
             }
@@ -57,7 +48,7 @@ export let setData = (values) => {
     }  
 }
 
-export let createUser = (values) => {
+export let createUser = (values, history) => {
 
         let postData = reduce(values, ((result, value, key) => {
             if(key != 'confirm_password'){
@@ -69,7 +60,12 @@ export let createUser = (values) => {
         }), {})
 
         return userAPI.registration( postData ).then( (data) => {   
-            console.log(data);
+            if(data.status === 409) {
+                openNotification('error', 'Пользователь уже существует', 'Введите другой e-mail')
+            }else if(data.status === 201) {
+                history.push('/registration/success')
+                
+            }
             
         })
         .catch( err => {console.log(err);

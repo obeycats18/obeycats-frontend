@@ -1,0 +1,43 @@
+@import 'src/components/core/advanced';
+
+.registration-success{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px;
+    &-icon{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 100%;
+        padding: 50px;
+        background-color: $success_color;
+        margin-bottom: 50px;
+        img{
+            width: 30px;
+            height: 30px;
+        }
+    }
+    &-text{
+        h3{
+            color: #000000;
+            letter-spacing: 0.5px;
+        }
+    }
+    &-button{
+        margin-top: 30px;
+        .link-login{
+            color: $main_color;
+            display: block;
+            padding: 15px 30px;
+            border: 2px solid $main_color;
+            border-radius: 10px;
+            transition: all .25s ease;
+            &:hover{
+                background-color: $main_color;
+                color: #ffffff;
+            }
+        }
+    }
+}

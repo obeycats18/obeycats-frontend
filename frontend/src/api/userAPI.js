@@ -8,5 +8,6 @@ export let userAPI = {
 
     registration: ( body ) => {
         return axios().post('/registration', body).then(response => response.data)
+        
     },
 }

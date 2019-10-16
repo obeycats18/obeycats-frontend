@@ -1,13 +1,11 @@
 import {withFormik} from 'formik'
-
-import {reduce} from 'lodash'
-import {userAPI} from 'api/userAPI'
+import {withRouter} from 'react-router'
 
 import {registrationSchema} from 'components/Auth/validation'
 import RegistrationForm from '../index'
 
 import {createUser} from 'redux/reducers/auth'
-import store from 'redux/store'
+
 
 export default withFormik({
     
@@ -22,31 +20,13 @@ export default withFormik({
     
     validationSchema: registrationSchema,
 
-    handleSubmit: ( values, {setSubmitting}) => {
-        // store.dispatch( setData(values))
-        // console.log('here');
-        
-        // console.log(values); 
-        let postData = reduce(values, ((result, value, key) => {
-            if(key != 'confirm_password'){
-                result[key] = value
-            }
-
-            return result
+    handleSubmit: ( values, {setSubmitting, props}) => {
+        // console.log(props);
+        createUser(values, props.history).then(() => {
+            setSubmitting(false)
             
-        }), {})
 
-        return userAPI.registration( postData ).then( (data) => {   
-            if(data.status === 201) {
-                console.log(data);
-                setSubmitting(false)
-            }else{
-                setSubmitting(false)
-            }
-            
         })
-        .catch( err => {console.log(err) ; setSubmitting(false) ;
-        } )
         
     }
 }) (RegistrationForm)
