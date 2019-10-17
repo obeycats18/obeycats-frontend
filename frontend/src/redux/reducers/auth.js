@@ -50,7 +50,7 @@ export let setData = (values) => {
 export let createUser = (values, history) => {
 
         let postData = reduce(values, ((result, value, key) => {
-            if(key != 'confirm_password'){
+            if(key !== 'confirm_password'){
                 result[key] = value
             }
 

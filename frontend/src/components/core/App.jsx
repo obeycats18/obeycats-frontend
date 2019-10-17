@@ -2,19 +2,20 @@ import React from 'react';
 
 import {connect} from 'react-redux'
 
-import Autherization from 'pages/Authorization'
+import {Autherization} from 'pages'
+import {Main} from 'pages';
 
 
 const App = props => {
 
-  const {isAuth} = props;  
+  // const {isAuth} = props;  
 
   return (
     <div className="app">
       
       {
-        (isAuth) 
-          ? <div>Authorized!</div>
+        (true) 
+          ? <Main/>
           : <Autherization/>
       }
       

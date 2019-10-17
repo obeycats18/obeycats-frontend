@@ -1,0 +1,95 @@
+@import 'src/components/core/advanced';
+
+
+.sidebar{
+    width: 12.5%;
+    height: 100vh;
+    &-menu{
+        display: flex;
+        flex-direction: column;
+        width: 5%;
+        padding: 66px 25px !important;
+        height: 100%;
+        &-item{
+            &-link{
+                svg:hover{
+                    stroke: $main_color;
+                    fill: $main_color;
+                }
+                &:hover{
+                    
+                    color: $main_color;
+                }
+                span{
+                    padding-left: 15px;     
+                }
+            }
+        }
+    }
+}
+
+.burger-icon{
+    .main_span{
+   
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 1px;
+        width: 25px;
+        background-color: $main_color;
+        transition: all .25s ease;
+        &:before, &:after{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 1px;
+            transition: all .25s ease;
+            background-color: $main_color;
+        }
+        &:before{
+            width: 15px;
+            top: 5px;
+            transition: transform 0.5s ease;
+        }
+        &:after{
+            width: 25px;
+            top: -5px;
+        }
+    }
+}
+
+#burger-active{
+    .main_span{
+        &::before{
+            transition: transform 0.01s ease!important;
+            transform: translateX(-1000px);
+        }
+
+        &:after{
+            top: 0;
+            transform: rotate(-90deg);
+        }
+        top: 0;
+        transform: rotate(45deg);
+
+    }
+    
+}
+
+
+.ant-menu-inline-collapsed {
+    width: 150px!important;
+    .ant-menu-item{
+        a{
+            padding-left: 15px;
+            span{
+                padding-left: 150px;
+            }
+        }
+        
+    }
+}
+

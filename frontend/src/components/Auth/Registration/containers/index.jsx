@@ -1,5 +1,4 @@
 import {withFormik} from 'formik'
-import {withRouter} from 'react-router'
 
 import {registrationSchema} from 'components/Auth/validation'
 import RegistrationForm from '../index'

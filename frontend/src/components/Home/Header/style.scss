@@ -1,0 +1,57 @@
+@import 'src/components/core/advanced';
+
+.header{
+    width: 100%;
+    height: 130px;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    .sidebar-burger-icon{
+        position: relative;
+        top: 15px;
+        left: 0;
+        bottom: 0;  
+        right: 0;
+        height: 25px;
+        width: 25px;
+    }
+    &-logo{
+        width: 20%;
+        margin-right: 40%;
+        // padding-left: 210px;
+        a{
+            color: #000000;
+            letter-spacing: 0.7px;            
+        }
+        img {
+            padding-right: 10px;
+        }
+    }
+    &-control-bar{
+        display: flex;
+        // padding-right: 200px;
+        justify-content: space-between;
+        align-items: center;
+        .header-notify-bar{
+            display: flex;
+            padding: 0 130px 0 50px;
+            .header-messages{
+                padding-right: 20px;
+            }
+        }
+        .user{
+            &-avatar{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: #ffffff;
+                font-weight: bold;
+                border-radius: 100%;
+                width: 50px;
+                height: 50px;
+                background-color: $main_color;
+            }
+        }
+    }
+}
