@@ -12,14 +12,9 @@ import {
     Logout
 } from 'assets/header-icons'
 
-import {Burger} from 'assets/menu-icons'
-
-
-
-
 const Header = () => {
 
-    let [collapsed, setCollapsed] = useState(false)
+    let [collapsed, setCollapsed] = useState(true)
 
     let toggleCollapsed = () => {
         setCollapsed(!collapsed)
@@ -29,11 +24,12 @@ const Header = () => {
         <>
         <header className='header'>
             <Link 
+                to=''
                 onClick={toggleCollapsed} 
                 className='sidebar-burger-icon' 
             > 
 
-                <div className="burger-icon" id={collapsed ? "burger-active" : ' '}>
+                <div className="burger-icon" id={!collapsed ? "burger-active" : ' '}>
                     <span className='main_span'></span>
                 </div>
 
@@ -64,8 +60,8 @@ const Header = () => {
                 </div>
             </div>
         </header>
-           <Sidebar collapsed={collapsed}/>
-           </>
+        <Sidebar collapsed={collapsed}/>
+        </>
     );
 };
 

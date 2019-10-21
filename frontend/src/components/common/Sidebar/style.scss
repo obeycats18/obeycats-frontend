@@ -2,20 +2,18 @@
 
 
 .sidebar{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
     width: 12.5%;
     height: 100vh;
     &-menu{
-        display: flex;
-        flex-direction: column;
         width: 5%;
         padding: 66px 25px !important;
         height: 100%;
         &-item{
             &-link{
-                svg:hover{
-                    stroke: $main_color;
-                    fill: $main_color;
-                }
+                
                 &:hover{
                     
                     color: $main_color;
@@ -52,7 +50,7 @@
         &:before{
             width: 15px;
             top: 5px;
-            transition: transform 0.5s ease;
+            transition: transform 0.25s ease;
         }
         &:after{
             width: 25px;
@@ -93,3 +91,6 @@
     }
 }
 
+.ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left{
+    border-right: none!important;
+}
