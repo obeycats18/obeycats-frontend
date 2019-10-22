@@ -17,7 +17,7 @@ const ProjectItem = props => {
 
     const {
         name,
-        isDeveloping,
+        isDeveloped,
         totalCount,
         perDay,
         image
@@ -26,15 +26,17 @@ const ProjectItem = props => {
     return (
         <Link to="#">
             <div className='project-item'>
-                <div className="project-item-image" style={
-                        (image)
-                            ? {backgroundImage: `url(${image})`}
-                            : {backgroundImage: `url(${NoImage})`, backgroundSize: "70px 70px"}
-                    }>
+                <div className="project-item-image">
+                    
                     {
-                        (isDeveloping)
-                            ? <span className = {classnames( 'developing-status', 'developed' )}>В разработке</span>
-                            : <span className = {classnames( 'developing-status', 'not-developed' )}>Используеться</span>
+                        (image)
+                            ? <img src={image} alt={name}/>
+                            : <img className='no-image' src={NoImage} alt={name}/>
+                    }
+                    {
+                        (isDeveloped)
+                            ? <span className = {classnames( 'developing-status', 'not-developed' )}>Используеться</span>
+                            : <span className = {classnames( 'developing-status', 'developed' )}>В разработке</span>
                     }
                     
                 </div>

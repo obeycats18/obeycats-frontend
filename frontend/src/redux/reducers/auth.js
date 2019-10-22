@@ -37,6 +37,7 @@ export let setData = (values) => {
         return userAPI.login( values ).then( (data) => {   
             if(data.status === 201){
                 dispatch(setToken (data.token) );
+                window.localStorage.setItem('token', data.token)
                 dispatch(setAuth (true) ); 
             } if(data.status === 404) {
                 openNotification('error', 'Пользователь не найден', 'Проверте правильность введенных данных')

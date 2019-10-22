@@ -25,11 +25,19 @@
         border-top-right-radius: 10px;
         height: 55%;
         width: 100%;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
         position: relative;
         z-index: 0;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+            width: 100%;
+        }
+        .no-image{
+            width: 30%;
+            height: 30%;
+        }
         &::before{
             content: '';
             border-top-left-radius: 10px;

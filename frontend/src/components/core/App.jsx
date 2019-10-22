@@ -14,7 +14,7 @@ const App = props => {
     <div className="app">
       
       {
-        (true) 
+        (window.localStorage.getItem('token')) 
           ? <Main/>
           : <Autherization/>
       }
