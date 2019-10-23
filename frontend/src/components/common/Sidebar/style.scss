@@ -7,7 +7,9 @@
     flex-grow: 2;
     width: 12.5%;
     height: 100vh;
+    transition: all .25s ease;
     &-menu{
+        transition: all .25s ease;
         width: 5%;
         padding: 66px 25px !important;
         height: 100%;
@@ -28,7 +30,6 @@
 
 .burger-icon{
     .main_span{
-   
         position: absolute;
         top: 0;
         left: 0;
@@ -79,9 +80,12 @@
 
 
 .ant-menu-inline-collapsed {
+    transition: all .25s ease;
     width: 150px!important;
     .ant-menu-item{
+        transition: all .25s ease;
         a{
+            transition: all .25s ease;
             padding-left: 15px;
             span{
                 padding-left: 150px;

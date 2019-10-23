@@ -2,6 +2,6 @@ import axios from './settings'
 
 export let projectAPI = {
     getAllProjects: ( ) => {
-        return axios.get('/projects').then(response => response.data)
+        return axios(window.localStorage.getItem('token')).get('/projects').then(response => response.data)
     }
 }

@@ -17,10 +17,8 @@ export default withFormik({
 
     validationSchema: loginSchema,
 
-    handleSubmit: ( values, {setSubmitting}) => {
-        console.log(values);
-        
-        store.dispatch( setData(values) )
+    handleSubmit: ( values, {setSubmitting, props}) => {        
+        store.dispatch( setData(values, props.history) )
             .then(() => {setSubmitting(false)})
     }
 }) (LoginForm)

@@ -3,10 +3,9 @@ import { openNotification } from 'helpers/openNotifcation';
 import {reduce} from 'lodash'
 
 const SET_TOKEN = "SET_TOKEN";
-const SET_AUTH = "SET_AUTH";
 
 let initialState = {
-    token: '',
+    token: null,
     isAuth: false
 }
 
@@ -15,30 +14,25 @@ const authReducer = (state = initialState, action = {}) => {
         case SET_TOKEN : 
             return {
                 ...state,
-                token: action.token
-            }
-        case SET_AUTH : 
-            return {
-                ...state,
-                isAuth: action.isAuth
+                token: action.token,
+                isAuth: window.localStorage.isAuth
             }
         default: 
             return state
     }
 }
 
-
 export const setToken = (token) => ({ type: SET_TOKEN, token })
-export const setAuth = (isAuth) => ({ type: SET_AUTH, isAuth })
 
 
-export let setData = (values) => {
+export let setData = (values, history) => {
     return dispatch => {
         return userAPI.login( values ).then( (data) => {   
             if(data.status === 201){
-                dispatch(setToken (data.token) );
                 window.localStorage.setItem('token', data.token)
-                dispatch(setAuth (true) ); 
+                window.localStorage.setItem('isAuth', true)
+                dispatch(setToken (window.localStorage.token) );
+                history.push('/')
             } if(data.status === 404) {
                 openNotification('error', 'Пользователь не найден', 'Проверте правильность введенных данных')
             }

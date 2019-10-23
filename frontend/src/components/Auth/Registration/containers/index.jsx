@@ -20,7 +20,6 @@ export default withFormik({
     validationSchema: registrationSchema,
 
     handleSubmit: ( values, {setSubmitting, props}) => {
-        // console.log(props);
         createUser(values, props.history).then(() => {
             setSubmitting(false)
             

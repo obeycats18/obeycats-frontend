@@ -4,20 +4,17 @@ import Home from '../index';
 import {connect} from 'react-redux'
 import {getProjects} from 'redux/reducers/projects'
 
-const HomeContainer = props => {
+class HomeContainer extends React.Component{
 
-    const {getProjects, projects} = props;
+    componentDidMount(){
+        this.props.getProjects();
+    }
 
-    useEffect( () => {
-        
-        getProjects()
-    }, [])
-    
-    
-    return (
-        <Home data={projects}/>
-    );
-};
+    render() {
+        return <Home data={this.props.projects}/>
+    }
+
+}
 
 const mapStateToProps = (state) => {
     return {

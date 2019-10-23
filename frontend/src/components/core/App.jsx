@@ -5,23 +5,22 @@ import {connect} from 'react-redux'
 import {Autherization} from 'pages'
 import {Main} from 'pages';
 
+import {Route, Redirect, Switch} from 'react-router-dom'
+
 
 const App = props => {
 
-  // const {isAuth} = props;  
+  const {isAuth} = window.localStorage.token || '';  
 
   return (
     <div className="app">
-      
-      {
-        (window.localStorage.getItem('token')) 
-          ? <Main/>
-          : <Autherization/>
-      }
-      
+      <Switch>
+        <Route exact path='/' render={ () => (window.localStorage.getItem('token')) ? <Main /> : <Redirect to='/login'/>}/>
+        <Route exact path={['/login', '/registration']} render={ () => (window.localStorage.getItem('token')) ? <Redirect to='/'/> : <Autherization/>}/>       
+      </Switch>
     </div>
     
   );
 }
 
-export default connect( ({ auth }) => ({ isAuth: auth.isAuth }) )(App);
+export default connect( (state) => ({ isAuth: state.auth.isAuth }) )(App);
