@@ -2,9 +2,16 @@ import React from 'react';
 
 import './style.scss'
 
-const Button = ( {isSubmitting, classname, type, text} ) => {
+import classnames from 'classnames'
+
+const Button = ( {isSubmitting, classname, type, typeButton, text, handleClick} ) => {
     return (
-        <button type={type} disabled={isSubmitting} className={'button ' + classname}>{text}</button>
+        <button 
+            type={type} 
+            disabled={isSubmitting} 
+            className={classnames('button' , classname, typeButton)}
+            onClick={handleClick}
+        >{text}</button>
     );
 };
 

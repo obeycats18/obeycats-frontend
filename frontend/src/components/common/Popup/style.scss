@@ -1,0 +1,13 @@
+.popup{
+    width: 80%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 10%;
+    left: 0;
+    // right: 0;
+    // bottom: 0;
+    z-index: 9999;   
+}

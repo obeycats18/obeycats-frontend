@@ -1,0 +1,99 @@
+@import 'src/components/core/advanced';
+
+.ant-modal-content{
+    border-radius: 10px!important;
+}
+
+.ant-modal-body{
+    padding-left: 100px!important;
+    padding-top: 60px!important;
+    padding-right: 80px!important;
+    padding-bottom: 200px!important;
+}
+
+.ant-modal-close-x{
+    width: 40px!important;
+    height: 40px!important;
+    background-color: $main_color;
+    display: flex!important;
+    justify-content: center!important;
+    align-items: center!important;
+    margin-top: 50px!important;
+    margin-right: 80px!important;
+    border-radius: 100%;
+
+}
+
+.popup-create{
+    &-wrapper{
+        display: flex;
+        
+    }
+    h3{
+       font-size: 20px;
+       position: relative;
+       
+       &:after{
+            content: '';
+            position: absolute;
+            bottom: -7px;
+            left: 0;
+            width: 4%;
+            height: 1px;
+            background-color: $main_color;
+        }
+   }
+   &-left{
+       padding-top: 95px;
+       max-width: 455px;
+       width: 455px;
+       .description{
+           color: #b2b2b2;
+           font-size: 16px;
+           letter-spacing: 1px;
+       }
+       .popup-create-form{
+            padding-top: 50px;
+            &-input, &-select{
+                width: 100%;
+                margin-bottom: 30px;
+            }
+            .popup-create__button-group{
+                padding-top: 60px;
+                &-link{
+                    padding: 5% 10%;
+                    margin-right: 30px;
+                }
+            }
+       }    
+   }
+
+   &-right{
+       padding-top: 160px;
+       padding-left: 180px;
+       .descripion{
+            color: $main_color;
+            font-size: 18px;
+            letter-spacing: 1px;
+            padding-bottom: 20px;
+       }
+       .drop-image{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 614px;
+            height: 474px;
+            border: 2px dashed #D1D3DA;
+            .drop-button{
+                
+                padding: 18px 75px;
+                box-shadow: 0px 4px 15px rgba(46, 91, 255, 0.25);
+            }
+            p {
+                color: #d1d3da;
+                font-size: 18px;       
+            }
+       }
+   }
+}

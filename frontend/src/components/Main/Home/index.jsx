@@ -4,6 +4,7 @@ import {Content} from 'components/common'
 
 import './style.scss'
 import ProjectItem from './ProjectItem';
+import CreateProject from './CreateProject'
 
 const Home = props => {
 
@@ -12,7 +13,13 @@ const Home = props => {
     return (
         <Content title="Мои проекты">
             <div className="home">
-                {data.map((item, key) => <ProjectItem {...item} key={key} /> )}
+                <div className="home-projects">
+                    {data.map((item, key) => <ProjectItem {...item} key={key} /> )}
+                </div>
+                <div className="home-button">
+                    <CreateProject />
+                </div>
+                
             </div>
         </Content>
     );

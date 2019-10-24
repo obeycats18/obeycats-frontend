@@ -21,3 +21,23 @@
 .button:disabled{
     background-color: darken(#F4F6FC, 30%);
 }
+
+.ok{
+    background: $success_color;
+    box-shadow: 0px 4px 15px rgba($success_color, 0.25);
+    transition: all .25s ease;
+    &:hover{
+        background: $success_color;
+        box-shadow: 0 0 0 0;
+    }
+}
+.cancle{
+    transition: all .25s ease;
+    background: $error_color;
+    box-shadow: 0px 4px 15px rgba($error_color, 0.25);
+    &:hover{
+        background: $error_color;
+        box-shadow: 0 0 0 0;
+    }
+
+}

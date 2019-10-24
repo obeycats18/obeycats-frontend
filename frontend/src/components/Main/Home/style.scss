@@ -1,5 +1,18 @@
 .home{
     width: 100%;
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
+    .home-projects{
+        width: 80%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .home-button{
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 20%;
+        padding-bottom: 5%;
+    }
 }
