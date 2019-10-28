@@ -1,5 +1,7 @@
 import {projectAPI} from 'api/projectAPI'
 
+import { openNotification } from 'helpers/openNotifcation';
+
 const SET_PROJECT = "SET_PROJECT";
 
 let initialState = {
@@ -35,6 +37,20 @@ export let getProjects = () => {
         .catch( err => {console.log(err);
         } )
     }  
+}
+
+
+export let createProject = (values) => {
+    return projectAPI.addProjects(values).then( (data) => {   
+        if(data.status === 200){
+            console.log(data.message)
+        }
+        if(data.status === 409){
+            openNotification('error', 'Такой проект уже существует', 'Введите другое название')
+        }
+    })
+    .catch( err => {console.log(err);
+    } )
 }
 
 

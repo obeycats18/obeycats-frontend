@@ -54,8 +54,13 @@
        }
        .popup-create-form{
             padding-top: 50px;
+            .input-block{
+                margin-bottom: 30px;
+            }
             &-input, &-select{
                 width: 100%;
+            }
+            .select-block{
                 margin-bottom: 30px;
             }
             .popup-create__button-group{
@@ -96,4 +101,46 @@
             }
        }
    }
+}
+
+.ant-calendar{
+    width: 455px!important;
+}
+
+.date-picker{
+    width: 100%;
+    margin-bottom: 30px!important;
+    
+    .ant-calendar-picker-input.ant-input{
+        padding: 10px 45px;
+        font-size: 16px;
+        height: 50px;
+        border-radius: 10px;
+        border: 2px solid $main_color;
+        box-shadow: 0 0 0 0!important;
+        font-family: $main_font!important;
+        color: $main_color!important;
+        &::placeholder{
+            color: $main_color!important;
+        }
+        &:active, &:focus{
+            background-color: lighten($main_color, 15%)!important;
+            color: #ffffff!important;
+            border: 2px solid $main_color!important;
+            &::placeholder{
+                color: #ffffff!important;
+            }
+        } 
+        &:hover{
+            border: 2px solid $main_color!important;
+        }
+    }
+
+    .ant-calendar-picker-icon{
+        color: $main_color!important;
+    }
+
+    .ant-calendar-picker-clear{
+        background:  lighten($main_color, 15%)!important;
+    }
 }

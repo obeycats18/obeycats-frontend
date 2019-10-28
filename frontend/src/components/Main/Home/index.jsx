@@ -3,8 +3,8 @@ import React from 'react';
 import {Content} from 'components/common'
 
 import './style.scss'
-import ProjectItem from './ProjectItem';
-import CreateProject from './CreateProject'
+import ProjectItem from '../ProjectItem';
+import CreateProject from '../CreateProject'
 
 const Home = props => {
 

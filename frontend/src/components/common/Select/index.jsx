@@ -3,9 +3,21 @@ import Select from 'react-select';
 
 import './style.scss'
 
-const SelectBase = ({ options, classname, classnameprefix, value, onChange, onFocus, children, onBlur, type, inputName}) => {
+const SelectBase = ({ 
+    options,
+    classname, 
+    classnameprefix, 
+    value, 
+    onChange, 
+    onFocus, 
+    children, 
+    onBlur, 
+    type, 
+    inputName,
+    handleMenuOpen,
+}) => {
     return (
-        <div>
+        <div className='select-block'>
             <Select 
                 options={options} 
                 className={classname}   /*"select"*/ 

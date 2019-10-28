@@ -13,7 +13,46 @@
     letter-spacing: 0.05em;
     font-weight: normal;
     background-color: transparent;
+    transition: all .25s ease;
     &::placeholder{
         color: $main_color;
     }
+    &:active, &:focus{
+        background-color: lighten($main_color, 15%);
+        color: #ffffff;
+        &::placeholder{
+            color: #ffffff;
+        }
+    }
 }
+
+.error{
+    border-color: $error_color;
+    color: $error_color;
+    &:active, &:focus{
+        background-color: lighten($error_color, 15%);
+        color: #ffffff;
+        &::placeholder{
+            color: #ffffff;
+        }
+    }
+    &::placeholder{
+        color: $error_color;
+    }
+}
+
+.success{
+    border-color: $success_color;
+    color: $success_color;
+    &:active, &:focus{
+        background-color: lighten($success_color, 15%);
+        color: #ffffff;
+        &::placeholder{
+            color: #ffffff;
+        }
+    }
+    &::placeholder{
+        color: $success_color;
+    }
+}
+

@@ -24,7 +24,6 @@ const authReducer = (state = initialState, action = {}) => {
 
 export const setToken = (token) => ({ type: SET_TOKEN, token })
 
-
 export let setData = (values, history) => {
     return dispatch => {
         return userAPI.login( values ).then( (data) => {   
@@ -65,7 +64,6 @@ export let createUser = (values, history) => {
         .catch( err => {console.log(err);
         } )
 }
-
 
 
 export default authReducer

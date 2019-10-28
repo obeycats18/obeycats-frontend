@@ -40,7 +40,7 @@ const CreateProject = () => {
                 onOk={handleOk}
                 closeIcon={<img src={CloseIcon} alt='Close Button'/>}
             >
-                <PopupCreate ok={handleOk} cancle={handleCancle}/>
+                <PopupCreate />
             </Modal>
         </div>
     );

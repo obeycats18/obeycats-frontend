@@ -10,4 +10,9 @@ export let userAPI = {
         return axios().post('/registration', body).then(response => response.data)
         
     },
+
+    getUsers: ( ) => {
+        return axios(window.localStorage.getItem('token')).get('/user').then(response => response.data)
+        
+    },
 }

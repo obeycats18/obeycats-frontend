@@ -22,8 +22,6 @@ export default withFormik({
     handleSubmit: ( values, {setSubmitting, props}) => {
         createUser(values, props.history).then(() => {
             setSubmitting(false)
-            
-
         })
         
     }
