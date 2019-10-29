@@ -40,3 +40,10 @@
 .checkbox input:checked + .checkbox__text:after {
 	opacity: 1;
 }
+
+.light{
+	.checkbox__text:before{
+		border: none;
+		background-color: #ffffff;
+	}
+}

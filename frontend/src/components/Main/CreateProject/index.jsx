@@ -12,8 +12,8 @@ const CreateProject = () => {
 
     const [visible, setVisible] = useState(false);
 
-    const showModal = () => {
-        setVisible(true)
+    const showModal = isVisible => {
+        setVisible(isVisible)
     }
 
     const handleOk = e => {
@@ -26,10 +26,16 @@ const CreateProject = () => {
         setVisible(false)
     }
 
+    const [idModal, setId] = useState(1);
+
+    const switchModal = (id) => {
+        setId(id);
+    }
+
     return (
         <div className='create-project'>
             <div className='button-create'>
-                <Link onClick={showModal} to='#' className='button-create-link'><Icon type="plus" /></Link>
+                <Link onClick={() => {showModal(true)}} to='#' className='button-create-link'><Icon type="plus" /></Link>
             </div>
 
             <Modal
@@ -40,7 +46,7 @@ const CreateProject = () => {
                 onOk={handleOk}
                 closeIcon={<img src={CloseIcon} alt='Close Button'/>}
             >
-                <PopupCreate />
+                <PopupCreate switchModal={switchModal} idModal={idModal} showModal={showModal} />
             </Modal>
         </div>
     );

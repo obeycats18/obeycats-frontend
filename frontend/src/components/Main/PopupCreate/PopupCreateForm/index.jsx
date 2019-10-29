@@ -23,13 +23,14 @@ const PopupCreate = props => {
         handleBlur,
         handleSubmit,
         isSubmitting,
-        ok,
-        cancle,
+        switchModal,
+        showModal,
         users
     } = props;
 
-    const teamLeads = users;
+    let {idModal} = props
 
+    const teamLeads = users;
     const clients = users;
 
     let [teamLeadSelected, teamLeadSetSelected] = useState(null);
@@ -47,9 +48,14 @@ const PopupCreate = props => {
     };
 
     let handleDateChange = (date, dateString) => {
-        console.log(date, dateString)
         setFieldValue('dataToFinish', dateString)
     }
+
+    let handleCancle = () => {
+        //TODO Create cancling method
+        showModal(false);
+    }
+
     return (
         <div className='popup-create'>
             <h3>Cоздание проекта</h3>
@@ -115,6 +121,8 @@ const PopupCreate = props => {
                             onChange={handleTeamLeadChange}
                             onBlur = { () => setFocused(false)}
                             onFocus = {() => setFocused(true)}
+                            placeholderText='Team Lead'
+
                         >
                             {
                                 !focused
@@ -133,6 +141,7 @@ const PopupCreate = props => {
                             onChange={handleClientChange}
                             onBlur = { () => setFocused(false)}
                             onFocus = {() => setFocused(true)}
+                            placeholderText='Заказчик'
                         >
                             {
                                 !focused
@@ -143,22 +152,30 @@ const PopupCreate = props => {
                         </Select>
 
                         <div className="popup-create__button-group">
+                            
                             <Button 
-                                handleClick={cancle}
-                                text='Отмена' 
-                                classname='popup-create__button-group-link' 
-                                typeButton='cancle'
-                            />
-                            <Button 
-                                // handleClick={ok} 
-                                text='Далее' 
-                                classname='popup-create__button-group-link' 
-                                typeButton='ok'
+                                text='Создать' 
+                                classname='popup-create__button-group-link create-button' 
                                 type='submit' 
                                 isSubmitting={isSubmitting}
                             />
                         </div>
                     </Form>
+                    <div className="popup-create__button-group">
+                        <Button 
+                            handleClick={handleCancle}
+                            text='Отмена' 
+                            classname='popup-create__button-group-link' 
+                            typeButton='cancle'
+                        />
+                        <Button 
+                            handleClick={ () => switchModal(++idModal)} 
+                            text='Далее' 
+                            classname='popup-create__button-group-link' 
+                            typeButton='ok'
+                            isSubmitting={isSubmitting}
+                        />
+                    </div>
                 </div>
 
                 <div className="popup-create-right">
@@ -169,7 +186,6 @@ const PopupCreate = props => {
                     </div>
                 </div>
             </div>
-            
         </div>
     );
 };

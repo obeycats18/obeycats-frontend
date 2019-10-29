@@ -1,6 +1,6 @@
 import { withFormik } from 'formik';
 
-import PopupCreate from '../index'
+import PopupCreateMilestone from '../index'
 import {createProject} from 'redux/reducers/projects'
 import {projectSchema} from '../validation'
 
@@ -9,7 +9,7 @@ export default withFormik({
 
     mapPropsToValues: () => ({
         name: '',
-        cost: 0
+        isNoReturt: false
     }),
 
     validationSchema: projectSchema,
@@ -18,4 +18,4 @@ export default withFormik({
         createProject(values).then(() => {setSubmitting(false)})   
             
     }
-}) (PopupCreate)
+}) (PopupCreateMilestone)

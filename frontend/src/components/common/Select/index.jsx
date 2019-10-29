@@ -14,7 +14,7 @@ const SelectBase = ({
     onBlur, 
     type, 
     inputName,
-    handleMenuOpen,
+    placeholderText,
 }) => {
     return (
         <div className='select-block'>
@@ -28,6 +28,7 @@ const SelectBase = ({
                 onFocus={onFocus}
                 type={type}
                 name={inputName}
+                placeholder={placeholderText}
             />
             {children}
         </div>
