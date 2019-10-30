@@ -75,7 +75,7 @@ export const LoginForm = props => {
                         : errors.password ? <ErrorMessage text={errors.password }/> : ''  
                     } </Item>
                     <div className="login-form__button-group">
-                        <Checkbox name='rememberMe' text='Запомнить меня' onChange={checkHandleChange}/>
+                        <Checkbox name='rememberMe' text='Запомнить меня' handleChange={checkHandleChange}/>
                         <Link to='/forgive' className='forgive'>Забыли пароль?</Link>
                     </div>
                     <Button type='submit'  isSubmitting={isSubmitting} text='Войти' classname='login-form__button'/>

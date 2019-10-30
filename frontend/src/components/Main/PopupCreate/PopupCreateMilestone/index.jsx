@@ -12,10 +12,12 @@ import {
 
 import {Link} from 'react-router-dom'
 
-import { DatePicker, Modal } from 'antd';
+import { DatePicker } from 'antd';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faLongArrowAltLeft} from '@fortawesome/free-solid-svg-icons'
+
+import {openInfoModal} from 'helpers/openModal'
 
 import RSC from 'react-scrollbars-custom'
 
@@ -36,14 +38,23 @@ const PopupCreate = props => {
 
     let {idModal} = props
 
+    console.log(props)
 
     let handleDateChange = (date, dateString) => {
-        setFieldValue('dataToFinish', dateString)
+        setFieldValue('milestoneDate', dateString)
     }
 
     let handleCancle = () => {
         //TODO Create cancling method
         showModal(false);
+    }
+
+    let [selected, setSelected] = useState(true);
+
+    let checkHandleChange = (e) => {
+       
+        setSelected(!e.target.checked);
+        setFieldValue('isNoReturn', selected);
     }
 
     let renderUsers = users.map( (item, index) => {
@@ -65,25 +76,19 @@ const PopupCreate = props => {
     })
 
     //TODO добавить возле календаря кнопку "Помощь"
-
-    //TODO вынести создание инфо попапа в отдельный хелпер
-    let openInfoModal = () => {
-        Modal.info({
-            title: 'Точка не возвтрата',
-            content: (
-                <div>
-                  <p>
-                    А можно без правок? 
-                    Можно. Есть такая штука, как точка невозврата. Это когда ты договариваешься с заказчиком, что после определенного этапа вы не вносите правки в эту часть проекта. 
-                    Простой пример. Ты договорился, что сдашь концепт дизайна сайта к 8 апреля. Если заказчик примет этот концепт, то дальше по проекту он не будет вносить изменения в цвета сайта, размеры кнопок и т.д. То есть 8 апреля — это точка невозврата. 
-                    Отдельно можно договориться, что если заказчик все-таки хочет внести правки, они оплачиваются отдельно по часовому тарифу. 
-                    Такая мелочь, а сколько сэкономленных нервов и времени
-                  </p>
-                </div>
-              ),
-              width: 800,
-              className: 'modal-info'
-        })
+    let openModal = () => {
+        openInfoModal(
+            {
+                title: 'Точка не возвтрата',
+                text: ` А можно без правок? 
+                        Можно. Есть такая штука, как точка невозврата. Это когда ты договариваешься с заказчиком, что после определенного этапа вы не вносите правки в эту часть проекта. 
+                        Простой пример. Ты договорился, что сдашь концепт дизайна сайта к 8 апреля. Если заказчик примет этот концепт, то дальше по проекту он не будет вносить изменения в цвета сайта, размеры кнопок и т.д. То есть 8 апреля — это точка невозврата.
+                        Отдельно можно договориться, что если заказчик все-таки хочет внести правки, они оплачиваются отдельно по часовому тарифу. 
+                        Такая мелочь, а сколько сэкономленных нервов и времени  `,
+                width: 800,
+                classname: 'modal-info'
+            }
+        )
     }
 
     return (
@@ -99,7 +104,7 @@ const PopupCreate = props => {
                     <Form onSubmit={handleSubmit} classname='popup-create-form'>
                         <Item 
                             type='text' 
-                            name='name' 
+                            name='milestoneName' 
                             classname='popup-create-form-input' 
                             placeholder='Название'
                             onChange={handleChange}
@@ -127,42 +132,36 @@ const PopupCreate = props => {
                         />
 
                         <div className="block-no-return">
-                            <Checkbox text='Точка невозразата'/>
+                            <Checkbox handleChange={checkHandleChange} text='Точка невозразата'/>
                             <Link 
                                 to="#" 
                                 className='modal-info-link' 
-                                onClick={openInfoModal}
+                                onClick={openModal}
                             >Узнать больше</Link>
                         </div>
 
 
-                        <div className="popup-create__button-group">
+                        <div className="popup-milestone__button-group">
                             <Button 
-                                text='Создать' 
-                                classname='popup-create__button-group-link create-button' 
+                                text='Далее' 
+                                classname='popup-milestone__button-group-link create' 
                                 type='submit' 
                                 isSubmitting={isSubmitting}
                             />
                         </div>
                     </Form>
-                    <div className="popup-create__button-group">
+                    <div className="popup-milestone__button-group">
                         <Button 
                             handleClick={handleCancle}
                             text='Отмена' 
-                            classname='popup-create__button-group-link' 
+                            classname='popup-milestone__button-group-link' 
                             typeButton='cancle'
-                        />
-                        <Button 
-                            handleClick={ () => switchModal(++idModal)} 
-                            text='Далее' 
-                            classname='popup-create__button-group-link' 
-                            typeButton='ok'
-                            isSubmitting={isSubmitting}
                         />
                     </div>
                 </div>
                 
                 <div className="popup-create-right ">
+                    <span className='popup-create-right-description'>Разработчики</span>
                     <RSC style={{ height: 685 }}>
                         <div className="block-developers">
                             {renderUsers}

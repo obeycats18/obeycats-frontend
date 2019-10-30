@@ -3,11 +3,11 @@ import React from 'react';
 import './style.scss'
 import classnames from 'classnames'
 
-const Checkbox = ( {text, onChange, value, name, typeCheckbox} ) => {
+const Checkbox = ( {text, handleChange, value, name, typeCheckbox} ) => {
     return (
         <div className={classnames('checkbox-block', typeCheckbox)}>
             <label className="checkbox">
-                <input name={name} type="checkbox" onChange={onChange} value={value}/>
+                <input name={name} type="checkbox" onChange={handleChange} value={value}/>
                 <div className="checkbox__text">{text}</div>
             </label>
         </div>

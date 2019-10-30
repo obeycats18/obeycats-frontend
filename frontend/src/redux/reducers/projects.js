@@ -3,8 +3,12 @@ import {projectAPI} from 'api/projectAPI'
 import { openNotification } from 'helpers/openNotifcation';
 
 const SET_PROJECT = "SET_PROJECT";
+const SET_PROJECT_ID = "SET_PROJECT_ID";
+
+
 
 let initialState = {
+    idProject: '',
     projects: []
 }
 
@@ -16,12 +20,20 @@ const projectReducer = (state = initialState, action = {}) => {
                 projects : action.projects     
             }
         }
+        case SET_PROJECT_ID: {
+            return {
+                ...state, 
+                idProject: action.id
+            }
+        }
         default: 
             return state
     }
 }
 
 export const setProject = (projects) => ({ type: SET_PROJECT, projects })
+export const setProjectId = (id) => ({ type: SET_PROJECT_ID, id })
+
 
 
 export let getProjects = () => {
@@ -41,16 +53,41 @@ export let getProjects = () => {
 
 
 export let createProject = (values) => {
-    return projectAPI.addProjects(values).then( (data) => {   
-        if(data.status === 200){
-            console.log(data.message)
-        }
-        if(data.status === 409){
-            openNotification('error', 'Такой проект уже существует', 'Введите другое название')
-        }
-    })
-    .catch( err => {console.log(err);
-    } )
+    return dispatch => {
+        return projectAPI.addProjects(values).then( (data) => {   
+            if(data.status === 200){
+                dispatch(setProjectId(data.id))
+            }
+            if(data.status === 409){
+                openNotification('error', 'Такой проект уже существует', 'Введите другое название')
+            }
+        })
+        .catch( err => {console.log(err);
+        } )
+    }
+    
+}
+
+export let createMilestone = (values) => {
+    return dispatch => {
+        return projectAPI.addMilestone(values).then( (data) => {   
+            if(data.status === 200){
+                projectAPI.saveProject( {idProject: values.idProject, idMilestone: data.id} ).then( (data) => {   
+                    if(data.status === 200){
+                        console.log(data.message)
+                    }
+                })
+                .catch( err => {console.log(err);
+                } )
+
+            }
+            if(data.status === 409){
+                openNotification('error', 'Такой этап уже существует', 'Введите другое название')
+            }
+        })
+        .catch( err => {console.log(err);
+        } )
+    } 
 }
 
 
