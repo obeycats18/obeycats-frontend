@@ -2,6 +2,7 @@ import React from 'react'
 
 import PopupCreateForm from './PopupCreateForm'
 import PopupCreateMilestone from './PopupCreateMilestone'
+import Home from 'components/Main/Home/container';
 
 import {connect} from 'react-redux'
 import {compose} from 'redux'
@@ -14,21 +15,18 @@ import {projectSchema} from './validation'
 
 class PopupCreate extends React.Component {
 
-    
-
     componentDidMount(){
         this.props.fetchUsers()
     }
 
     renderModal () {
-        // console.log(this.props)
         switch (this.props.idModal) {
             case 1:
                 return <PopupCreateForm {...this.props}/>
             case 2:
                 return <PopupCreateMilestone {...this.props}/>
-            default:
-                break;
+            default: 
+                return <Home/> 
         }
     }
 
@@ -39,10 +37,20 @@ class PopupCreate extends React.Component {
     }
 }
 
+const mapStateToProps = ({users, projects}) => {
+    return {
+        users: users.users, 
+        idProject: projects.idProject, 
+        statusCreating: projects.statusCreating
+    }
+}
+
 export default compose(
-    connect(({users, projects}) => ({users: users.users, idProject: projects.idProject}), {fetchUsers, createProject, createMilestone}),
+    connect(mapStateToProps, {
+        fetchUsers, 
+        createProject, 
+        createMilestone}),
     withFormik({
-        // enableReinitialize: true,
         mapPropsToValues: (props) => ({
             idProject: props.idProject,
             isNoReturn: false
@@ -51,27 +59,31 @@ export default compose(
         validationSchema: projectSchema,
     
         handleSubmit: ( values, {setSubmitting, props}) => {
-            console.log(props)
             let idModal = props.idModal;
-            switch (props.idModal) {
+            switch (idModal) {
                 // eslint-disable-next-line no-lone-blocks
                 case 1: {
-                    props.createProject(values).then(() => {
+                    props.createProject(values).then( (data) => {
                         setSubmitting(false)
-                        props.switchModal(++idModal)
+                        if(data.status === 200){
+                            props.switchModal(++idModal)
+                        }
+                        
                     })     
                 }
                 break;
                 // eslint-disable-next-line no-lone-blocks
                 case 2:{
                     values.idProject = props.idProject;
-                    props.createMilestone(values).then( () => {
-                        setSubmitting(false)     
+                    props.createMilestone(values).then( (data) => {
+                        setSubmitting(false)
+                        if(data.status === 200){
+                            props.switchModal(idModal)
+                        }
                     })
                     
                 }
                 break;
-                
                 default:
                     break;
             } 

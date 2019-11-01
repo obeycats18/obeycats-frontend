@@ -143,6 +143,13 @@ const PopupCreate = props => {
 
                         <div className="popup-milestone__button-group">
                             <Button 
+                                handleClick={handleCancle}
+                                text='Отмена' 
+                                classname='popup-milestone__button-group-link' 
+                                typeButton='cancle'
+                                type='button' 
+                            />
+                            <Button 
                                 text='Далее' 
                                 classname='popup-milestone__button-group-link create' 
                                 type='submit' 
@@ -150,14 +157,6 @@ const PopupCreate = props => {
                             />
                         </div>
                     </Form>
-                    <div className="popup-milestone__button-group">
-                        <Button 
-                            handleClick={handleCancle}
-                            text='Отмена' 
-                            classname='popup-milestone__button-group-link' 
-                            typeButton='cancle'
-                        />
-                    </div>
                 </div>
                 
                 <div className="popup-create-right ">

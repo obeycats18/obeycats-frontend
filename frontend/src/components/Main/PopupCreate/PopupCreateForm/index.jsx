@@ -23,12 +23,10 @@ const PopupCreate = props => {
         handleBlur,
         handleSubmit,
         isSubmitting,
-        switchModal,
         showModal,
         users
     } = props;
 
-    let {idModal} = props
 
     const teamLeads = users;
     const clients = users;
@@ -153,16 +151,14 @@ const PopupCreate = props => {
 
                         <div className="popup-create__button-group">
                             
-                            <Button 
+                            {/* <Button 
                                 text='Создать' 
                                 classname='popup-create__button-group-link create-button' 
                                 type='submit' 
                                 isSubmitting={isSubmitting}
                                 // handleClick={ () => switchModal(++idModal)} 
-                            />
-                        </div>
-                    </Form>
-                    <div className="popup-create__button-group">
+                            /> */}
+
                         <Button 
                             handleClick={handleCancle}
                             text='Отмена' 
@@ -170,12 +166,16 @@ const PopupCreate = props => {
                             typeButton='cancle'
                         />
                         <Button 
-                            handleClick={ () => switchModal(++idModal)} 
+                            // handleClick={ () => switchModal(++idModal)} 
                             text='Далее' 
                             classname='popup-create__button-group-link' 
                             typeButton='ok'
                             isSubmitting={isSubmitting}
                         />
+                        </div>
+                    </Form>
+                    <div className="popup-create__button-group">
+                        
                     </div>
                 </div>
 
