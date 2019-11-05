@@ -38,7 +38,7 @@ const PopupCreate = props => {
 
     let {idModal} = props
 
-    console.log(props)
+    // console.log(props)
 
     let handleDateChange = (date, dateString) => {
         setFieldValue('milestoneDate', dateString)
@@ -50,11 +50,25 @@ const PopupCreate = props => {
     }
 
     let [selected, setSelected] = useState(true);
-
-    let checkHandleChange = (e) => {
-       
+    let noReturnHandleChange = e => {
         setSelected(!e.target.checked);
         setFieldValue('isNoReturn', selected);
+    }
+
+    let developers = [];
+
+    let developersHandleChange = e => {
+        if(e.target.checked){
+            developers.push(users[e.target.dataset.id].value) 
+            
+        }else{
+            developers.splice( developers.indexOf(users[e.target.dataset.id].value), 1)
+        }
+       
+    }
+
+    let onClickCreateButton = () => {
+        setFieldValue('developers', developers);
     }
 
     let renderUsers = users.map( (item, index) => {
@@ -69,7 +83,7 @@ const PopupCreate = props => {
                     </div>
                 </div>
                 <div className="block-developers__item-checkbox">
-                    <Checkbox typeCheckbox='light'/>
+                    <Checkbox dataId={index} handleChange={developersHandleChange} typeCheckbox='light'/>
                 </div>
             </div>
         )
@@ -132,7 +146,7 @@ const PopupCreate = props => {
                         />
 
                         <div className="block-no-return">
-                            <Checkbox handleChange={checkHandleChange} text='Точка невозразата'/>
+                            <Checkbox handleChange={noReturnHandleChange} text='Точка невозразата'/>
                             <Link 
                                 to="#" 
                                 className='modal-info-link' 
@@ -150,10 +164,11 @@ const PopupCreate = props => {
                                 type='button' 
                             />
                             <Button 
-                                text='Далее' 
+                                text='Завершить' 
                                 classname='popup-milestone__button-group-link create' 
                                 type='submit' 
                                 isSubmitting={isSubmitting}
+                                handleClick={onClickCreateButton}
                             />
                         </div>
                     </Form>

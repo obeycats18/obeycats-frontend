@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = window.location.origin;
+// axios.defaults.baseURL ='https://obeycats.herokuapp.com';
 // axios.defaults.headers.common['token'] = window.localStorage.getItem('token')
 
 const axiosCreate = (token = '') => {
     return axios.create({
-        baseURL: window.location.origin,
+        baseURL:'https://obeycats.herokuapp.com',
         headers: {
             token
         }

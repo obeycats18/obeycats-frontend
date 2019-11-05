@@ -11,13 +11,14 @@ class HomeContainer extends React.Component{
     }
 
     render() {
-        return <Home data={this.props.projects}/>
+        return <Home isFetching={this.props.isFetching} data={this.props.projects}/>
     }
 
 }
 
 const mapStateToProps = (state) => {
     return {
+        isFetching: state.projects.isFetching,
         projects: state.projects.projects
     }
 }

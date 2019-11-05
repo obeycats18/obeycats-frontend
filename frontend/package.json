@@ -78,7 +78,6 @@
     "workbox-webpack-plugin": "4.3.1",
     "yup": "^0.27.0"
   },
-  "proxy": "http://localhost:3003",
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",

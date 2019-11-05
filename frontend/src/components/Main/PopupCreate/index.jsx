@@ -59,6 +59,7 @@ export default compose(
         validationSchema: projectSchema,
     
         handleSubmit: ( values, {setSubmitting, props}) => {
+            console.log(values)
             let idModal = props.idModal;
             switch (idModal) {
                 // eslint-disable-next-line no-lone-blocks
