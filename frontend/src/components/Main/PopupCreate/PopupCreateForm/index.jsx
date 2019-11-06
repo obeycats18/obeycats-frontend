@@ -27,7 +27,6 @@ const PopupCreate = props => {
         users
     } = props;
 
-
     const teamLeads = users;
     const clients = users;
 
@@ -52,6 +51,10 @@ const PopupCreate = props => {
     let handleCancle = () => {
         //TODO Create cancling method
         showModal(false);
+    }
+
+    let handleButtonClick = e => {
+        setFieldValue('buttonName', e.target.dataset.name)
     }
 
     return (
@@ -151,32 +154,33 @@ const PopupCreate = props => {
 
                         <div className="popup-create__button-group">
                             
-                            {/* <Button 
-                                text='Создать' 
+                            <Button 
+                                text='Создать и выйти' 
                                 classname='popup-create__button-group-link create-button' 
                                 type='submit' 
                                 isSubmitting={isSubmitting}
-                                // handleClick={ () => switchModal(++idModal)} 
-                            /> */}
+                                handleClick={handleButtonClick}
+                                dataName='create'
+                            />
 
-                        <Button 
-                            handleClick={handleCancle}
-                            text='Отмена' 
-                            classname='popup-create__button-group-link' 
-                            typeButton='cancle'
-                        />
-                        <Button 
-                            // handleClick={ () => switchModal(++idModal)} 
-                            text='Далее' 
-                            classname='popup-create__button-group-link' 
-                            typeButton='ok'
-                            isSubmitting={isSubmitting}
-                        />
+                            <Button 
+                                handleClick={handleButtonClick}
+                                text='Отмена' 
+                                classname='popup-create__button-group-link' 
+                                typeButton='cancle'
+                                type='button'
+                                dataName='cancle'
+                            />
+                            <Button 
+                                text='Далее' 
+                                classname='popup-create__button-group-link' 
+                                typeButton='ok'
+                                isSubmitting={isSubmitting}
+                                dataName='next'
+                                handleClick={handleButtonClick}
+                            />
                         </div>
                     </Form>
-                    <div className="popup-create__button-group">
-                        
-                    </div>
                 </div>
 
                 <div className="popup-create-right">

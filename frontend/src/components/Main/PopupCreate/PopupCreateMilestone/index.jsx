@@ -67,9 +67,15 @@ const PopupCreate = props => {
        
     }
 
-    let onClickCreateButton = () => {
+    let onClickCreateButton = e => {
+        setFieldValue('buttonName', e.target.dataset.name)
         setFieldValue('developers', developers);
     }
+
+    let handleButtonClick = e => {
+        setFieldValue('buttonName', e.target.dataset.name)
+    }
+
 
     let renderUsers = users.map( (item, index) => {
         return (
@@ -157,11 +163,12 @@ const PopupCreate = props => {
 
                         <div className="popup-milestone__button-group">
                             <Button 
-                                handleClick={handleCancle}
+                                handleClick={handleButtonClick}
                                 text='Отмена' 
                                 classname='popup-milestone__button-group-link' 
                                 typeButton='cancle'
                                 type='button' 
+                                dataName='cancle'
                             />
                             <Button 
                                 text='Завершить' 
@@ -169,7 +176,9 @@ const PopupCreate = props => {
                                 type='submit' 
                                 isSubmitting={isSubmitting}
                                 handleClick={onClickCreateButton}
+                                dataName='finish'
                             />
+                            
                         </div>
                     </Form>
                 </div>

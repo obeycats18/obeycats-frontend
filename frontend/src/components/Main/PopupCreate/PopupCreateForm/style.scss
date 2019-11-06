@@ -67,18 +67,18 @@
        } 
        
        .popup-create__button-group{
-        padding-top: 15px;
-        
+        padding-top: 15px;    
         &-link{
             width: 49%;
             margin-right: 1.9%;
-            &:nth-child(2){
+            &:nth-child(3){
                 margin-right: 0;
             }
         }
         .create-button{
             width: 100%;
             margin-top: 15px;
+            margin-bottom: 15px;
         }
     }
    }

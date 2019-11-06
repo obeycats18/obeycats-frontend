@@ -4,14 +4,12 @@ import { openNotification } from 'helpers/openNotifcation';
 
 const SET_PROJECT = "SET_PROJECT";
 const SET_PROJECT_ID = "SET_PROJECT_ID";
-const SET_PROJECT_STATUS = "SET_PROJECT_STATUS";
 const SET_FETCHING_STATUS = "SET_FETCHING_STATUS";
 
 
 let initialState = {
     idProject: '',
     projects: [],
-    statusCreating: null,
     isFetching: false
 }
 
@@ -29,12 +27,6 @@ const projectReducer = (state = initialState, action = {}) => {
                 idProject: action.id
             }
         }
-        case SET_PROJECT_STATUS: {
-            return {
-                ...state, 
-                statusCreating: action.status
-            }
-        }
         case SET_FETCHING_STATUS: {
             return {
                 ...state, 
@@ -48,7 +40,6 @@ const projectReducer = (state = initialState, action = {}) => {
 
 export const setProject = (projects) => ({ type: SET_PROJECT, projects })
 export const setProjectId = (id) => ({ type: SET_PROJECT_ID, id })
-export const setProjectStatus = (status) => ({ type: SET_PROJECT_STATUS, status })
 export const setFetchingStatus = (status) => ({ type: SET_FETCHING_STATUS, status })
 
 

@@ -2,6 +2,8 @@ import React from 'react'
 
 import PopupCreateForm from './PopupCreateForm'
 import PopupCreateMilestone from './PopupCreateMilestone'
+import PopupCreateSuccess from './PopupCreateSuccess'
+
 import Home from 'components/Main/Home/container';
 
 import {connect} from 'react-redux'
@@ -25,6 +27,8 @@ class PopupCreate extends React.Component {
                 return <PopupCreateForm {...this.props}/>
             case 2:
                 return <PopupCreateMilestone {...this.props}/>
+            case 3:
+                return <PopupCreateSuccess/>
             default: 
                 return <Home/> 
         }
@@ -59,16 +63,25 @@ export default compose(
         validationSchema: projectSchema,
     
         handleSubmit: ( values, {setSubmitting, props}) => {
-            console.log(values)
-            let idModal = props.idModal;
+            let buttonName = values.buttonName
+            let {idModal} = props;
             switch (idModal) {
                 // eslint-disable-next-line no-lone-blocks
                 case 1: {
                     props.createProject(values).then( (data) => {
                         setSubmitting(false)
-                        if(data.status === 200){
-                            props.switchModal(++idModal)
+                        if(buttonName === 'next'){
+                            if(data.status === 200){
+                                props.switchModal(++idModal)
+                            }
                         }
+                        if(buttonName === 'create'){
+                            if(data.status === 200){
+                                props.switchModal(3)
+                                setTimeout( () => props.showModal(false), 4000)
+                            }
+                        }
+                        
                         
                     })     
                 }
@@ -78,9 +91,13 @@ export default compose(
                     values.idProject = props.idProject;
                     props.createMilestone(values).then( (data) => {
                         setSubmitting(false)
-                        if(data.status === 200){
-                            props.switchModal(idModal)
+                        if(buttonName === 'finish'){
+                            if(data.status === 200){
+                                props.switchModal(3)
+                                setTimeout( () => props.showModal(false), 4000)
+                            }
                         }
+                        
                     })
                     
                 }
