@@ -14,6 +14,10 @@ export let projectAPI = {
 
     saveProject: ( values ) => {
         return axios(window.localStorage.getItem('token')).post('/projects/edit', values).then(response => response.data)
+    },
+
+    deleteProject: ( id ) => {
+        return axios(window.localStorage.getItem('token')).delete(`/project?id=${id}`).then(response => response.data)
     }
 
 }

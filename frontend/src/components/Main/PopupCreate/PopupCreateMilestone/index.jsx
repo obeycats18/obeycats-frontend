@@ -68,8 +68,9 @@ const PopupCreate = props => {
     }
 
     let onClickCreateButton = e => {
-        setFieldValue('buttonName', e.target.dataset.name)
         setFieldValue('developers', developers);
+        setFieldValue('buttonName', e.target.dataset.name)
+        
     }
 
     let handleButtonClick = e => {
@@ -167,7 +168,6 @@ const PopupCreate = props => {
                                 text='Отмена' 
                                 classname='popup-milestone__button-group-link' 
                                 typeButton='cancle'
-                                type='button' 
                                 dataName='cancle'
                             />
                             <Button 

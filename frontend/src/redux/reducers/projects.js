@@ -5,6 +5,8 @@ import { openNotification } from 'helpers/openNotifcation';
 const SET_PROJECT = "SET_PROJECT";
 const SET_PROJECT_ID = "SET_PROJECT_ID";
 const SET_FETCHING_STATUS = "SET_FETCHING_STATUS";
+const UPDATE_PROJECTS_ARRAY = "UPDATE_PROJECTS_ARRAY";
+
 
 
 let initialState = {
@@ -33,6 +35,13 @@ const projectReducer = (state = initialState, action = {}) => {
                 isFetching: action.status
             }
         }
+        case UPDATE_PROJECTS_ARRAY: {
+            return {
+                ...state, 
+                projects: state.projects.filter((item) => action.id !== item._id)
+            }
+        }
+        
         default: 
             return state
     }
@@ -41,8 +50,7 @@ const projectReducer = (state = initialState, action = {}) => {
 export const setProject = (projects) => ({ type: SET_PROJECT, projects })
 export const setProjectId = (id) => ({ type: SET_PROJECT_ID, id })
 export const setFetchingStatus = (status) => ({ type: SET_FETCHING_STATUS, status })
-
-
+export const updateProjectsArray = (id) => ({ type: UPDATE_PROJECTS_ARRAY, id })
 
 
 export let getProjects = () => {
@@ -97,6 +105,23 @@ export let createMilestone = (values) => {
             }
             if(data.status === 409){
                 openNotification('error', 'Такой этап уже существует', 'Введите другое название')
+            }
+
+            return data
+        })
+        .catch( err => {console.log(err);
+        } )
+    } 
+}
+
+export let deleteProject = (id) => {
+    return dispatch => {
+        return projectAPI.deleteProject(id).then( (data) => {   
+            if(data.status === 200){
+                dispatch(updateProjectsArray(id))
+            }
+            if(data.status === 404){
+                openNotification('error', 'Проект не найдет', '')
             }
 
             return data

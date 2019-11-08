@@ -11,7 +11,7 @@ import {compose} from 'redux'
 import {withFormik} from 'formik'
 
 import {fetchUsers} from 'redux/reducers/users'
-import {createProject, createMilestone} from 'redux/reducers/projects'
+import {createProject, createMilestone, deleteProject} from 'redux/reducers/projects'
 
 import {projectSchema} from './validation'
 
@@ -53,7 +53,9 @@ export default compose(
     connect(mapStateToProps, {
         fetchUsers, 
         createProject, 
-        createMilestone}),
+        createMilestone,
+        deleteProject
+    }),
     withFormik({
         mapPropsToValues: (props) => ({
             idProject: props.idProject,
@@ -68,38 +70,56 @@ export default compose(
             switch (idModal) {
                 // eslint-disable-next-line no-lone-blocks
                 case 1: {
-                    props.createProject(values).then( (data) => {
-                        setSubmitting(false)
-                        if(buttonName === 'next'){
+                    
+                    if(buttonName === 'next'){
+                        props.createProject(values).then( (data) => {
+                            setSubmitting(false)
                             if(data.status === 200){
                                 props.switchModal(++idModal)
                             }
-                        }
-                        if(buttonName === 'create'){
+                        })
+                    }   
+                        
+                    if(buttonName === 'create'){
+                        props.createProject(values).then( (data) => {
+                        setSubmitting(false)
                             if(data.status === 200){
                                 props.switchModal(3)
                                 setTimeout( () => props.showModal(false), 4000)
                             }
-                        }
+                        })
+                    }
+
+                    if(buttonName === 'cancle'){
                         
-                        
-                    })     
+                        props.showModal(false);
+                    }
+                    
+                     
                 }
                 break;
                 // eslint-disable-next-line no-lone-blocks
                 case 2:{
                     values.idProject = props.idProject;
-                    props.createMilestone(values).then( (data) => {
-                        setSubmitting(false)
-                        if(buttonName === 'finish'){
+                    if(buttonName === 'finish'){
+                        props.createMilestone(values).then( (data) => {
+                            setSubmitting(false)
                             if(data.status === 200){
                                 props.switchModal(3)
                                 setTimeout( () => props.showModal(false), 4000)
                             }
-                        }
-                        
-                    })
-                    
+                        })
+                    }
+                   
+
+                    if(buttonName === 'cancle'){
+                        props.deleteProject( values.idProject).then( (data) => {
+                        if(data.status === 200){
+                            console.log('success')
+                            setTimeout( () => props.showModal(false), 1000)
+                            }
+                        })
+                    }
                 }
                 break;
                 default:

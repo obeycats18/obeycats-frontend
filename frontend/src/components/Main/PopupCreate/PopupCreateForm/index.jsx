@@ -48,11 +48,6 @@ const PopupCreate = props => {
         setFieldValue('dataToFinish', dateString)
     }
 
-    let handleCancle = () => {
-        //TODO Create cancling method
-        showModal(false);
-    }
-
     let handleButtonClick = e => {
         setFieldValue('buttonName', e.target.dataset.name)
     }
@@ -162,14 +157,13 @@ const PopupCreate = props => {
                                 handleClick={handleButtonClick}
                                 dataName='create'
                             />
-
                             <Button 
-                                handleClick={handleButtonClick}
                                 text='Отмена' 
                                 classname='popup-create__button-group-link' 
                                 typeButton='cancle'
                                 type='button'
                                 dataName='cancle'
+                                handleClick={handleButtonClick}
                             />
                             <Button 
                                 text='Далее' 
