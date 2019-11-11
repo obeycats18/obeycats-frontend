@@ -4,8 +4,8 @@ import {Content} from 'components/common'
 import { Spin, Icon } from 'antd';
 
 import './style.scss'
-import ProjectItem from '../ProjectItem';
-import CreateProject from '../CreateProject'
+import ProjectItem from './ProjectItem';
+import CreateProject from './CreateProject'
 
 const Home = props => {
 

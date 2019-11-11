@@ -23,7 +23,6 @@ const PopupCreate = props => {
         handleBlur,
         handleSubmit,
         isSubmitting,
-        showModal,
         users
     } = props;
 

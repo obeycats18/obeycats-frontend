@@ -24,7 +24,7 @@ const Header = () => {
         <>
         <header className='header'>
             <Link 
-                to=''
+                to='#'
                 onClick={toggleCollapsed} 
                 className='sidebar-burger-icon' 
             > 

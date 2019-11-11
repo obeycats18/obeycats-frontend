@@ -16,6 +16,7 @@ import './style.scss'
 const ProjectItem = props => {
 
     const {
+        _id,
         name,
         isDeveloped,
         totalCount,
@@ -24,7 +25,7 @@ const ProjectItem = props => {
     } = props;
 
     return (
-        <Link to="#">
+        <Link to={`/project?id=${_id}`}>
             <div className='project-item'>
                 <div className="project-item-image">
                     
@@ -42,7 +43,7 @@ const ProjectItem = props => {
                 </div>
                 <div className="project-item-bottom">
                     <div className="project-item-bottom-info">
-                        <Link to="#">{name}</Link>
+                        <Link to={`/project?id=${_id}`}>{name}</Link>
                         <div className="project-item-bottom-analitics">
                             <div className="info-icons total-count">
                                 <FontAwesomeIcon className={"users-icon"} icon={faUserFriends}/>
@@ -55,7 +56,9 @@ const ProjectItem = props => {
                         </div>
                     </div>
                     <div className='project-button'>
-                        <Link className="project-button-link" to="#"><FontAwesomeIcon className={"angle-long-icon"} icon={faLongArrowAltRight}/></Link>
+                        <Link className="project-button-link" to={`/project?id=${_id}`}>
+                            <FontAwesomeIcon className={"angle-long-icon"} icon={faLongArrowAltRight}/>
+                        </Link>
                     </div>
                 </div>
             </div>

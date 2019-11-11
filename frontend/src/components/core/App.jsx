@@ -2,8 +2,7 @@ import React from 'react';
 
 import {connect} from 'react-redux'
 
-import {Autherization} from 'pages'
-import {Main} from 'pages';
+import {Autherization, Main } from 'pages'
 
 import {Route, Redirect, Switch} from 'react-router-dom'
 
@@ -15,8 +14,7 @@ const App = props => {
   return (
     <div className="app">
       <Switch>
-        <Route exact path='/projects' render={ () => (window.localStorage.getItem('token')) ? <Main /> : <Redirect to='/login'/>}/>
-        <Route exact path='/' render={ () => (window.localStorage.getItem('token')) ? <Main /> : <Redirect to='/login'/>}/>
+        <Route exact path={['/', '/home', '/project']} render={ () => (window.localStorage.getItem('token')) ? <Main /> : <Redirect to='/login'/>}/>
         <Route exact path={['/login', '/registration', '/registration/success']} render={ () => (window.localStorage.getItem('token')) ? <Redirect to='/'/> : <Autherization/>}/>       
       </Switch>
     </div>

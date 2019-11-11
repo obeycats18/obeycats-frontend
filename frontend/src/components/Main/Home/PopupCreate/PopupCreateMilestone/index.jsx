@@ -32,7 +32,6 @@ const PopupCreate = props => {
         handleSubmit,
         isSubmitting,
         switchModal,
-        showModal,
         users
     } = props;
 
@@ -42,11 +41,6 @@ const PopupCreate = props => {
 
     let handleDateChange = (date, dateString) => {
         setFieldValue('milestoneDate', dateString)
-    }
-
-    let handleCancle = () => {
-        //TODO Create cancling method
-        showModal(false);
     }
 
     let [selected, setSelected] = useState(true);
