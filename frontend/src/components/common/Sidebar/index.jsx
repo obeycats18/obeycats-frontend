@@ -14,7 +14,7 @@ import './style.scss'
 
 const Sidebar = ( {collapsed} ) => {
     return (
-      <Affix>
+      // <Affix>
         <div className='sidebar'>
           <Menu className='sidebar-menu' mode='inline' inlineCollapsed={collapsed}>
             <Menu.Item key="1" className='sidebar-menu-item'>
@@ -37,7 +37,7 @@ const Sidebar = ( {collapsed} ) => {
             </Menu.Item>
           </Menu>
         </div>
-      </Affix>
+      // </Affix>
     );
 };
 

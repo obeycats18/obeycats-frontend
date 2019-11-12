@@ -45,6 +45,7 @@
                     justify-content: center;
                     align-items: center;
                     padding: 60px 100px 70px 100px;
+                    height: 500px;
                     h4{
                         font-size: 14px;
                         letter-spacing: 1px;
@@ -63,7 +64,7 @@
                     display: flex;
                     align-items: center;
                     padding: 80px 300px 66px 100px;
-                    
+                    height: 225px;
                     h4{
                         font-size: 18px;
                         padding-right: 50px;
@@ -78,6 +79,37 @@
                         .hryvnia-icon{
                             font-size: 24px;
                             margin-left: 15px;
+                        }
+                    }
+                }
+                .timer-block{
+                    display: flex;
+                    align-items: center;
+                    .seperator{
+                        display: flex;
+                        align-items: center;
+                        height: 75px;
+                        font-size: 18px;
+                        padding-bottom: 24px;
+                        margin: 0 5px;
+                        color: $main_color;
+                    }
+                    &__day, &__hours, &__month{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 65px;
+                        height: 75px;
+                        background-color: #f4f6fc;
+                        border-radius: 10px;
+                        color: $main_color;
+                        font-size: 24px;
+                    }
+                    &__wrapper{
+                        text-align: center;
+                        .title{
+                            font-size: 11px;
+                            color: #bcc4db;
                         }
                     }
                 }

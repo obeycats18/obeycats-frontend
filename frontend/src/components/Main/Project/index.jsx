@@ -7,13 +7,13 @@ import {faHryvnia} from '@fortawesome/free-solid-svg-icons'
 import { Progress, Statistic } from 'antd';
 import CheckIcon from 'assets/CheckIconGreen.svg'
 
-const {Countdown} = Statistic;
+import Countdown, {zeroPad} from 'react-countdown-now';
 
 const ProjectPage = props => {
 
     let percent = 0.5;
 
-    const deadline = new Date('2020-02-12')
+    const deadline = new Date("Tue Dec 12 2019 00:00:00 GMT+0000 (Coordinated Universal Time)")
 
     let checkStatus = (percent) => {
         let status = '';
@@ -25,7 +25,31 @@ const ProjectPage = props => {
         return status
     }
 
+    const renderer = ({ hours, days, minutes }) => {
+        
+        return (
+            <div className='timer-block'>
+                <div className='timer-block__wrapper'>
+                    <div className='timer-block__day'>{zeroPad(days)} </div> 
+                    <span className='title'>дней</span>
+                </div>
+                <div className="seperator">:</div>
+                <div className='timer-block__wrapper'>
+                    <div className='timer-block__hours'>{zeroPad(hours)}  </div>
+                    <span className='title'>часов</span>
+                </div>
+                <div className="seperator">:</div>
+                <div className='timer-block__wrapper'>
+                    <div className='timer-block__hours'>{zeroPad(minutes)}  </div>
+                    <span className='title'>минут</span>
+                </div>
+            </div>
+        )
+        
+      };
+
     return (
+        
         <div className="project-wrapper">
             <div className="project-wrapper__title"><h3>Lusso Strega</h3></div>
             <div className="project-wrapper__info">
@@ -57,17 +81,19 @@ const ProjectPage = props => {
                         </div>
                         <div className="project-wrapper__block timer">
                             <h4>До сдачи проекта</h4>
-                            <Countdown  
-                                value={deadline} 
-                                format="DD:MM:HH"
-                                valueStyle={{paddingRight: '15px'}}
-                                />
+                            <Countdown
+                                date={deadline}
+                                renderer={renderer}
+                            />
+                            
                         </div>
                     </div>
                 </div>
             </div>
+            
         </div>
     );
 };
+
 
 export default ProjectPage;
