@@ -2,7 +2,9 @@ import {projectAPI} from 'api/projectAPI'
 
 import { openNotification } from 'helpers/openNotifcation';
 
+const SET_PROJECTS = "SET_PROJECTS";
 const SET_PROJECT = "SET_PROJECT";
+
 const SET_PROJECT_ID = "SET_PROJECT_ID";
 const SET_FETCHING_STATUS = "SET_FETCHING_STATUS";
 const UPDATE_PROJECTS_ARRAY = "UPDATE_PROJECTS_ARRAY";
@@ -12,15 +14,22 @@ const UPDATE_PROJECTS_ARRAY = "UPDATE_PROJECTS_ARRAY";
 let initialState = {
     idProject: '',
     projects: [],
+    project: [],
     isFetching: false
 }
 
 const projectReducer = (state = initialState, action = {}) => {
     switch (action.type) {
-        case SET_PROJECT: {
+        case SET_PROJECTS: {
             return {
                 ...state,
                 projects : action.projects     
+            }
+        }
+        case SET_PROJECT: {
+            return {
+                ...state,
+                project : action.project     
             }
         }
         case SET_PROJECT_ID: {
@@ -47,11 +56,24 @@ const projectReducer = (state = initialState, action = {}) => {
     }
 }
 
-export const setProject = (projects) => ({ type: SET_PROJECT, projects })
+export const setProjects = (projects) => ({ type: SET_PROJECTS, projects })
+export const setProject = (project) => ({ type: SET_PROJECT, project })
+
 export const setProjectId = (id) => ({ type: SET_PROJECT_ID, id })
 export const setFetchingStatus = (status) => ({ type: SET_FETCHING_STATUS, status })
 export const updateProjectsArray = (id) => ({ type: UPDATE_PROJECTS_ARRAY, id })
 
+
+export let getProject = (id) => {
+    return dispatch => {
+        dispatch(setFetchingStatus(true))
+        return projectAPI.getProject(id).then( (data) => {
+            dispatch(setProject(data.project));
+            dispatch(setFetchingStatus(false))
+        })
+        
+    }  
+}
 
 export let getProjects = () => {
     return dispatch => {
@@ -59,7 +81,7 @@ export let getProjects = () => {
         return projectAPI.getAllProjects().then( (data) => {   
             if(data.status === 200){
                 dispatch(setFetchingStatus(false));
-                dispatch(setProject (data.project) );
+                dispatch(setProjects (data.project) );
             }
             if(data.status === 404){
                 dispatch(setFetchingStatus(false));

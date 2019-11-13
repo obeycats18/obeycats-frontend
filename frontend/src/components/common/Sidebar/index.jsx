@@ -37,7 +37,7 @@ const Sidebar = ( {collapsed} ) => {
             </Menu.Item>
           </Menu>
         </div>
-      // </Affix>
+      /* </Affix> */
     );
 };
 
