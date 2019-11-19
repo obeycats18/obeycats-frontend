@@ -12,11 +12,14 @@ import {Tabs, Progress} from 'components/common'
 
 const ProjectPage = props => {
 
-    const {project, isFetching} = props
-// 
+    const {
+        project, 
+        milestones,
+        isFetching
+    } = props
     let percent = project.procentComplete; 
 
-    const deadline = new Date(project.dateToFinish)
+    const deadline = new Date(project.dateToFinish);
 
     const renderer = ({ hours, days, minutes }) => {
         
@@ -71,10 +74,8 @@ const ProjectPage = props => {
                         </div>
                     </div>
                     <h3>Этапы разработки</h3>
-                    <Tabs/>
+                    <Tabs milestonesSet={milestones}/>
                 </div>
-
-                
             </div>
     );
 };

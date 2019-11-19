@@ -4,6 +4,8 @@ import { openNotification } from 'helpers/openNotifcation';
 
 const SET_PROJECTS = "SET_PROJECTS";
 const SET_PROJECT = "SET_PROJECT";
+const SET_MILESTONES = "SET_MILESTONES";
+
 
 const SET_PROJECT_ID = "SET_PROJECT_ID";
 const SET_FETCHING_STATUS = "SET_FETCHING_STATUS";
@@ -15,6 +17,7 @@ let initialState = {
     idProject: '',
     projects: [],
     project: [],
+    milestones: [],
     isFetching: false
 }
 
@@ -30,6 +33,12 @@ const projectReducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 project : action.project     
+            }
+        }
+        case SET_MILESTONES: {
+            return {
+                ...state,
+                milestones : action.milestones
             }
         }
         case SET_PROJECT_ID: {
@@ -58,6 +67,7 @@ const projectReducer = (state = initialState, action = {}) => {
 
 export const setProjects = (projects) => ({ type: SET_PROJECTS, projects })
 export const setProject = (project) => ({ type: SET_PROJECT, project })
+export const setMilestones = (milestones) => ({ type: SET_MILESTONES, milestones })
 
 export const setProjectId = (id) => ({ type: SET_PROJECT_ID, id })
 export const setFetchingStatus = (status) => ({ type: SET_FETCHING_STATUS, status })
@@ -68,7 +78,18 @@ export let getProject = (id) => {
     return dispatch => {
         dispatch(setFetchingStatus(true))
         return projectAPI.getProject(id).then( (data) => {
+            
             dispatch(setProject(data.project));
+            if(data.project.milestones === undefined){
+                let milestones = {
+                    milestones: []
+                }
+                dispatch(setMilestones(milestones));
+            }else{
+                dispatch(setMilestones(data.project.milestones));
+            }
+            
+
             dispatch(setFetchingStatus(false))
         })
         

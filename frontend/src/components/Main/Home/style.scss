@@ -18,10 +18,14 @@
     }
 }
 
-.fetching-block{
+.fetching-block, .empty-block{
     width: 80%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.empty-block{
+    flex-direction: column;
 }

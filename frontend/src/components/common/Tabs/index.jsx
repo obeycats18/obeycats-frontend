@@ -2,24 +2,44 @@ import React from 'react';
 
 // import { Tabs } from 'antd';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import classNames from 'classnames'
-
 import {Progress, Button} from 'components/common'
+import { Empty } from 'antd';
+import {map} from 'lodash'
+
+
+import classNames from 'classnames'
 
 import './style.scss'
 import CheckIcon from 'assets/CheckIconGreen.svg'
 
 
-class CommonTabs extends React.Component {
+const CommonTabs = (props) => {
 
-    tabs = [ 
-      {title: 'Проектирование', isNoReturn: false, completed: true, content: {prop: 'Content'} }, 
-      {title: 'Дизайн', isNoReturn: true,  completed: true, content: 'Content' } 
-    ]
+    const {milestonesSet} = props
 
-    renderTabs () {
-       return this.tabs.map((item) => (
+    console.log(milestonesSet)
+
+    let tabs = map(milestonesSet.milestones, (item) => {
+      return {
+        title: item.milestoneName,
+        isDeveloped: item.milestoneIsDeveloped,
+        isNoReturn: item.isNoReturn
+      }
+    })
+
+
+    let tabsContent = map(milestonesSet.milestones, (item) => {
+      return {
+        procentComplete: item.procentComplete,
+        dateToFinish: item.milestoneDate,
+        tasks: map(item.tasks, (task => task))
+      }
+    })
+
+    let renderTabs = () => {
+       return tabs.map((item, index) => (
           <Tab
+            key={index}
             selectedClassName='tab-active' 
             className={classNames(
               'tabs-bar__tab', 
@@ -37,150 +57,114 @@ class CommonTabs extends React.Component {
        ))
     }
 
-    percent = 75
-    task = {complete: false}
-    renderContent(){
-        
-
-        return (
-          <TabPanel className='tabs-pane'>
-            <div className="tabs-pane__left">
-              <h4>
-                {
-                  (this.percent === 100)
-                    ? 'Этап завершен'
-                    : 'Этап завершен на'
-                }
-              </h4>
-              <div className="progress-block">
-                <Progress percent={this.percent} type='small'/>
+    let renderContent = () => {
+      if(tabsContent.length){
+        return tabsContent.map( (item, index) => (
+          <TabPanel key={index} className='tabs-pane'>
+              <div className="tabs-pane__left">
+                <h4>
+                  {
+                    (item.procentComplete === 100)
+                      ? 'Этап завершен'
+                      : 'Этап завершен на'
+                  }
+                </h4>
+                <div className="progress-block">
+                  <Progress percent={item.procentComplete} type='small'/>
+                </div>
+                <div className="button-group">
+                  <Button text='Связаться с разработчиком' classname='button-contact'></Button>
+                </div>
               </div>
-              <div className="button-group">
-                <Button text='Связаться с разработчиком' classname='button-contact'></Button>
+              <div className="tabs-pane__right">
+                <Tabs className='tabs-milestone'>
+                  <TabList className='tabs-milestone__bar'>
+                    <Tab selectedClassName='tabs-milestone__active' className='tabs-milestone__tab'>Цели</Tab>
+                    <Tab selectedClassName='tabs-milestone__active' className='tabs-milestone__tab'>Правки</Tab>
+                    <Tab selectedClassName='tabs-milestone__active' className='tabs-milestone__tab'>История</Tab>
+                  </TabList>
+                    <TabPanel  className='tabs-milestone__pane'>
+                        {
+                          (item.tasks.length)
+                            ? item.tasks.map((task, index) => (
+                              <ul>
+                                <li key={index}>
+                                  {
+                                    (task.complete) 
+                                      ? <span> <img src={CheckIcon} alt={'Icon Success'} width={11}/> </span>
+                                      : <span className='typical-icon'></span>
+                                  }
+                                {task.title}</li>
+                              </ul>
+                            ))
+                            : <div className='empty-tasks-block'> 
+                              <Empty description='Нет задач'/>
+                            </div>
+                        }
+                    </TabPanel>
+                    <TabPanel className='tabs-milestone__pane'>
+                        {
+                          (item.tasks.length)
+                            ? item.tasks.map((task, index) => (
+                              <ul>
+                                <li key={index}>
+                                  {
+                                    (task.complete) 
+                                      ? <span> <img src={CheckIcon} alt={'Icon Success'} width={11}/> </span>
+                                      : <span className='typical-icon'></span>
+                                  }
+                                {task.title}</li>
+                              </ul>
+                            ))
+                            : <div className='empty-tasks-block'> 
+                              <Empty description='Нет задач'/>
+                            </div>
+                        }
+                    </TabPanel>
+                    <TabPanel className='tabs-milestone__pane'>
+                        {
+                          (item.tasks.length)
+                            ? item.tasks.map((task, index) => (
+                              <ul>
+                                <li key={index}>
+                                  {
+                                    (task.complete) 
+                                      ? <span> <img src={CheckIcon} alt={'Icon Success'} width={11}/> </span>
+                                      : <span className='typical-icon'></span>
+                                  }
+                                {task.title}</li>
+                              </ul>
+                            ))
+                            : <div className='empty-tasks-block'> 
+                              <Empty description='Нет задач'/>
+                            </div>
+                        }
+                    </TabPanel>
+                </Tabs>
               </div>
-            </div>
-            <div className="tabs-pane__right">
-              <Tabs className='tabs-milestone'>
-                <TabList className='tabs-milestone__bar'>
-                  <Tab selectedClassName='tabs-milestone__active' className='tabs-milestone__tab'>Цели</Tab>
-                  <Tab selectedClassName='tabs-milestone__active' className='tabs-milestone__tab'>Правки</Tab>
-                  <Tab selectedClassName='tabs-milestone__active' className='tabs-milestone__tab'>История</Tab>
-                </TabList>
-                <TabPanel className='tabs-milestone__pane'>
-                    <ul>
-                      <li>
-                        {
-                          (this.task.complete) 
-                            ? <span> <img src={CheckIcon} alt={'Icon Success'} width={11}/> </span>
-                            : <span className='typical-icon'></span>
-                        }
-                        Сверстать шапку</li>
-                      <li>
-                        {
-                          (this.task.complete) 
-                            ? <span> <img src={CheckIcon} alt={'Icon Success'} width={11}/> </span>
-                            : <span className='typical-icon'></span>
-                        }Написать редьюсер который управляет состоянеем изменения имени профиля</li>
-                      <li>
-                        {
-                          (this.task.complete) 
-                            ? <span> <img src={CheckIcon} alt={'Icon Success'} width={11}/> </span>
-                            : <span className='typical-icon'></span>
-                        }Написать редьюсер который управляет состоянеем изменения имени профиля и добавить возможность изменени роли пользователя ( администратор, гость, модератор )</li>
-                      <li>
-                        {
-                          (this.task.complete) 
-                            ? <span> <img src={CheckIcon} alt={'Icon Success'} width={11}/> </span>
-                            : <span className='typical-icon'></span>
-                        }
-                        Сверстать футер</li>
-                      <li>
-                        {
-                          (this.task.complete) 
-                            ? <span> <img src={CheckIcon} alt={'Icon Success'} width={11}/> </span>
-                            : <span className='typical-icon'></span>
-                        }Написать редьюсер который управляет состоянеем изменения имени профиля и добавить возможность изменени роли пользователя ( администратор, гость, модератор )</li>
-                    </ul> 
-                </TabPanel>
-                <TabPanel className='tabs-milestone__pane'>
-                    <ul>
-                      <li>
-                        {
-                          (this.task.complete) 
-                            ? <span> <img src={CheckIcon} alt={'Icon Success'} width={11}/> </span>
-                            : <span className='typical-icon'></span>
-                        }
-                        Сверстать шапку</li>
-                      <li>
-                        {
-                          (this.task.complete) 
-                            ? <span> <img src={CheckIcon} alt={'Icon Success'} width={11}/> </span>
-                            : <span className='typical-icon'></span>
-                        }Написать редьюсер который управляет состоянеем изменения имени профиля</li>
-                      <li>
-                        {
-                          (this.task.complete) 
-                            ? <span> <img src={CheckIcon} alt={'Icon Success'} width={11}/> </span>
-                            : <span className='typical-icon'></span>
-                        }Написать редьюсер который управляет состоянеем изменения имени профиля и добавить возможность изменени роли пользователя ( администратор, гость, модератор )</li>
-                      <li>
-                        {
-                          (this.task.complete) 
-                            ? <span> <img src={CheckIcon} alt={'Icon Success'} width={11}/> </span>
-                            : <span className='typical-icon'></span>
-                        }
-                        Сверстать футер</li>
-                      <li>
-                        {
-                          (this.task.complete) 
-                            ? <span> <img src={CheckIcon} alt={'Icon Success'} width={11}/> </span>
-                            : <span className='typical-icon'></span>
-                        }Написать редьюсер который управляет состоянеем изменения имени профиля и добавить возможность изменени роли пользователя ( администратор, гость, модератор )</li>
-                    </ul> 
-                </TabPanel>
-                <TabPanel className='tabs-milestone__pane'>
-                    <ul>
-                      <li>
-                        {
-                          (this.task.complete) 
-                            ? <span> <img src={CheckIcon} alt={'Icon Success'} width={11}/> </span>
-                            : <span className='typical-icon'></span>
-                        }
-                        Сверстать шапку</li>
-                      
-                      <li>
-                        {
-                          (this.task.complete) 
-                            ? <span> <img src={CheckIcon} alt={'Icon Success'} width={11}/> </span>
-                            : <span className='typical-icon'></span>
-                        }Написать редьюсер который управляет состоянеем изменения имени профиля и добавить возможность изменени роли пользователя ( администратор, гость, модератор )</li>
-                    
-                      <li>
-                        {
-                          (this.task.complete) 
-                            ? <span> <img src={CheckIcon} alt={'Icon Success'} width={11}/> </span>
-                            : <span className='typical-icon'></span>
-                        }Написать редьюсер который управляет состоянеем изменения имени профиля и добавить возможность изменени роли пользователя ( администратор, гость, модератор )</li>
-                    </ul> 
-                </TabPanel>
-              </Tabs>
-            </div>
           </TabPanel>
+        ))
+      }else{
+        return (
+          <div className='tabs-pane'>
+            <div className='empty-milestones-block'> 
+              <Empty description='Нет этапов'/>
+            </div>
+          </div>   
           
         )
+      }
+      
     }
-
-    render(){
-      return (
-        <Tabs className='tabs-wrapper'>
-          <TabList className='tabs-wrapper__bar'>
-            {this.renderTabs()}
-          </TabList>
-
-          {this.renderContent()}
-        </Tabs>
-      )
-    }
+    return (
+      
+      <Tabs className='tabs-wrapper'>
+        <TabList className='tabs-wrapper__bar'>
+          {renderTabs()}
+        </TabList>
+        {renderContent()}
+      </Tabs>
+    )
   }
 
 export default CommonTabs;

@@ -3,12 +3,14 @@ import React, { useState } from 'react';
 import {Link} from 'react-router-dom'
 import {Icon, Modal} from 'antd'
 
+import {Button} from 'components/common'
+
 import './style.scss'
 import PopupCreate from '../PopupCreate'
 
 import CloseIcon from 'assets/project-item/Close_Icon.svg'
 
-const CreateProject = () => {
+const CreateProject = ({type}) => {
 
     const [visible, setVisible] = useState(false);
 
@@ -35,7 +37,12 @@ const CreateProject = () => {
     return (
         <div className='create-project'>
             <div className='button-create'>
-                <Link onClick={() => {showModal(true)}} to='#' className='button-create-link'><Icon type="plus" /></Link>
+                {
+                    (type === 'empty')
+                        ? <Button handleClick={() => {showModal(true)}} classname='button-empty' text='Создать сейчас'></Button>
+                        : <Link onClick={() => {showModal(true)}} to='#' className='button-create-link'><Icon type="plus" /></Link>
+                }
+                
             </div>
 
             <Modal

@@ -24,6 +24,8 @@ const ProjectItem = props => {
         image
     } = props;
 
+    // console.log(milestones.milestones.map(item => item))
+
     return (
         <Link to={`/project?id=${_id}`}>
             <div className='project-item'>
