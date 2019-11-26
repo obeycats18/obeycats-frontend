@@ -34,9 +34,6 @@ const RegistrationForm = props => {
         setFieldValue('role', selectedOption.value)
     };
 
-    // console.log(props);
-    
-
     const{
         setFieldValue,
         errors,
@@ -46,8 +43,6 @@ const RegistrationForm = props => {
         handleSubmit,
         isSubmitting
     } = props;
-
-    
 
     const options = [
         { value: 'projectManager', label: 'Project Manager' },

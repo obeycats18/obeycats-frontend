@@ -1,37 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import {Link} from 'react-router-dom'
-import {Icon, Modal} from 'antd'
+import {Link, withRouter} from 'react-router-dom'
+import {Icon} from 'antd'
 
 import {Button} from 'components/common'
 
 import './style.scss'
-import PopupCreate from '../PopupCreate'
 
-import CloseIcon from 'assets/project-item/Close_Icon.svg'
+const CreateProject = (props) => {
+    const {type} = props;
 
-const CreateProject = ({type}) => {
-
-    const [visible, setVisible] = useState(false);
-
-    const showModal = isVisible => {
-        setVisible(isVisible)
-    }
-
-    const handleOk = e => {
-        e.preventDefault()
-        setVisible(false)
-    }
-
-    const handleCancle = e => {
-        e.preventDefault()
-        setVisible(false)
-    }
-
-    const [idModal, setId] = useState(1);
-
-    const switchModal = (id) => {
-        setId(id);
+    const pushURL = () => {
+        props.history.push('project/add')
     }
 
     return (
@@ -39,24 +19,13 @@ const CreateProject = ({type}) => {
             <div className='button-create'>
                 {
                     (type === 'empty')
-                        ? <Button handleClick={() => {showModal(true)}} classname='button-empty' text='Создать сейчас'></Button>
-                        : <Link onClick={() => {showModal(true)}} to='#' className='button-create-link'><Icon type="plus" /></Link>
+                        ? <Button handleClick={pushURL} classname='button-empty' text='Создать сейчас'></Button>
+                        : <Link to='project/add' className='button-create-link'><Icon type="plus" /></Link>
                 }
                 
             </div>
-
-            <Modal
-                visible={visible}
-                className='popup-ant'
-                footer={null}
-                onCancel={handleCancle}
-                onOk={handleOk}
-                closeIcon={<img src={CloseIcon} alt='Close Button'/>}
-            >
-                <PopupCreate switchModal={switchModal} idModal={idModal} showModal={showModal} />
-            </Modal>
         </div>
     );
 };
 
-export default CreateProject;
+export default withRouter(CreateProject);

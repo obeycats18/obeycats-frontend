@@ -5,6 +5,10 @@ import { Switch, Route } from 'react-router-dom';
 import {Header} from 'components/common';
 import Home from './Home/container';
 import Project from './Project/containers'
+import CreateProject from './CreateProject/container'
+import CreateTasks from './CreateTasks'
+
+
 
 import './style.scss' 
 
@@ -18,6 +22,8 @@ const Main = () => {
                 <Switch>
                     <Route exact path={["/", "/home"]} component={Home}/>
                     <Route exact path='/project' component={Project} />
+                    <Route exact path='/project/add' component={CreateProject} />
+                    <Route exact path='/tasks/add' component={CreateTasks} />
                 </Switch>
             </div>
         </div>

@@ -8,7 +8,7 @@ import {
     ErrorMessage,
     Button,
     Checkbox
-} from 'components/common'
+} from '../../../CreateProject/PopupCreateForm/node_modules/components/common'
 
 import {Link} from 'react-router-dom'
 

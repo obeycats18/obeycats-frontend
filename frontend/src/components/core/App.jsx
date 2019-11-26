@@ -14,8 +14,8 @@ const App = props => {
   return (
     <div className="app">
       <Switch>
-        <Route exact path={['/', '/home', '/project']} render={ () => (window.localStorage.getItem('token')) ? <Main /> : <Redirect to='/login'/>}/>
-        <Route exact path={['/login', '/registration', '/registration/success']} render={ () => (window.localStorage.getItem('token')) ? <Redirect to='/'/> : <Autherization/>}/>       
+        <Route exact path={['/', '/home', '/project', '/project/add', '/tasks/add']} render={ () => (window.localStorage.getItem('token')) ? <Main /> : <Redirect to='/login'/>}/>
+        <Route exact path={['/login', '/registration', '/registration/success']} render={ () => (window.localStorage.getItem('token')) ? <Redirect to='/'/> : <Autherization/>}/>     
       </Switch>
     </div>
     

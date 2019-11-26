@@ -119,10 +119,11 @@ export let createProject = (values) => {
     return dispatch => {
         return projectAPI.addProjects(values).then( (data) => {   
             if(data.status === 200){
+                openNotification('success', 'Успешное создание', 'Проект успешно создан')
                 dispatch(setProjectId(data.id))
             }
             if(data.status === 409){  
-                openNotification('error', 'Такой проект уже существует', 'Введите другое название')
+                openNotification('error', 'Такой проект уже существует', 'Введите другое название проекта')
             }
             return data
         })

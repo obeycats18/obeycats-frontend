@@ -1,0 +1,73 @@
+@import 'src/components/core/advanced';
+
+
+.create-tasks-block{
+    h3{
+        font-size: 20px;
+        position: relative;
+        margin-bottom: 85px;
+        &:after{
+             content: '';
+             position: absolute;
+             bottom: -7px;
+             left: 0;
+             width: 4%;
+             height: 1px;
+             background-color: $main_color;
+         }
+    }
+    .tasks-wrapper{
+        margin-top: 80px;
+        .create-task{
+            &-link{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 5px;
+                border: 2px solid $success_color;
+                transition: all .25s ease;
+                &:hover{
+                    background-color: $success_color;
+                    border-color: transparent;
+                    svg{
+                        line{
+                            stroke: #fff;
+                        }
+                    }
+                }
+            }
+        }
+        .task-input{
+            margin-top: 30px;
+            width: 869px;
+            max-width: 869px;
+            opacity: 0;
+            transition: all .10s ease;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100px;
+            height: auto;
+            resize: none;
+            &::placeholder{
+                font-size: 14px;
+            }
+            &::-webkit-scrollbar{
+                width: 10px;
+            }
+            &::-webkit-scrollbar-track{
+                background-color: #2448CB;
+                border-top-right-radius: 7px;
+                border-bottom-right-radius: 7px;
+            }
+            &::-webkit-scrollbar-thumb{
+                background-color: #fff;
+                border-radius: 10px;
+            }
+        }
+        .visible{
+            opacity: 1;
+        }
+    }
+}

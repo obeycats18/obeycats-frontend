@@ -52,7 +52,7 @@ const PopupCreate = props => {
     }
 
     return (
-        <div className='popup-create'>
+        <div className='create-block popup-create'>
             <h3>Cоздание проекта</h3>
             <div className="popup-create-wrapper">
                 <div className="popup-create-left">

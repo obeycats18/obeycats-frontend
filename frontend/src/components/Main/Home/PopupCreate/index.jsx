@@ -1,6 +1,6 @@
 import React from 'react' 
 
-import PopupCreateForm from './PopupCreateForm'
+import PopupCreateForm from '../../CreateProject/PopupCreateForm'
 import PopupCreateMilestone from './PopupCreateMilestone'
 import PopupCreateSuccess from './PopupCreateSuccess'
 
@@ -13,7 +13,7 @@ import {withFormik} from 'formik'
 import {fetchUsers} from 'redux/reducers/users'
 import {createProject, createMilestone, deleteProject} from 'redux/reducers/projects'
 
-import {projectSchema} from './validation'
+import {projectSchema} from '../../CreateProject/validation'
 
 class PopupCreate extends React.Component {
 
