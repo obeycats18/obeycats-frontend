@@ -49,15 +49,23 @@ export default compose(
         handleSubmit: ( values, {setSubmitting, props}) => {
             let buttonName = values.buttonName
             if(buttonName === 'next'){
-                props.createProject(values).then( () => setSubmitting(false))
-                props.history.push('/tasks/add')
+                props.createProject(values).then( (status) => {
+                    setSubmitting(false)
+                    if(status === 200){
+                        props.history.push('/tasks/add')
+                    }
+                })
+                
             }   
                 
             if(buttonName === 'create'){
-                props.createProject(values).then( () => setSubmitting(false))
-                setInterval(()=> {
-                    props.history.push('/')
-                }, 4000)
+                props.createProject(values).then( (status) => {
+                    setSubmitting(false)
+                    if(status === 200) {
+                        setInterval( () => props.history.push('/'), 4000)
+                    }
+                })
+                
             }
 
             if(buttonName === 'cancle'){

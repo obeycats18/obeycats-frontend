@@ -1,0 +1,75 @@
+@import 'src/components/core/advanced';
+
+
+.ant-drawer-header{
+    background-color: transparent!important;
+    height: 120px!important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #F4F4F4!important;
+    .ant-drawer-title{
+        font-weight: bold;
+        letter-spacing: 0.08em;
+    }
+}
+
+.ant-drawer-close{
+    position: relative!important;
+    // margin-right: 110px;
+    width: 30px!important;
+    height: 30px!important;
+    background-color: $main_color!important;
+    border-radius: 100%;
+    display: flex!important;
+    align-items: center;
+    justify-content: center;
+    svg{
+        fill: transparent;
+        width: 0.8em;
+    }
+    background-image: url('../../../../assets/project-item/Close_Icon.svg')!important;
+    background-repeat: no-repeat!important;
+    background-position: center!important;
+}
+
+.ant-drawer-content{
+    padding: 0 60px 0 30px;
+    background-color: #F9F9F9;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+}
+
+.edit-wrapper{
+    .edit-text{
+        .task-text{
+            font-size: 14px;
+            color: $main_color;
+            letter-spacing: 0.05em;
+            line-height: 22px;
+        }
+        .task-input{
+            opacity: 1;
+            max-width: 460px;
+            &::-webkit-scrollbar-thumb{
+                background-color: rgb(122, 146, 236);
+                border-radius: 10px;
+            }
+        }
+        .button-group{
+            margin-top: 15px;
+            display: flex;
+            justify-content: flex-end;
+            .confirm-button, .close-button{
+                margin-left: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 35px;
+                height: 35px;
+                border-radius: 5px;
+            }
+        }
+    }
+}

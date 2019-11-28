@@ -125,7 +125,7 @@ export let createProject = (values) => {
             if(data.status === 409){  
                 openNotification('error', 'Такой проект уже существует', 'Введите другое название проекта')
             }
-            return data
+            return data.status
         })
         .catch( err => {    
             console.log(err);

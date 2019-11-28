@@ -1,10 +1,12 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 
 import {Link} from 'react-router-dom'
 import CloseIcon from 'assets/project-item/Close_Icon.svg'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faPencilAlt} from '@fortawesome/free-solid-svg-icons'
+
+import DrawerEdit from '../Drawer'
 
 import './style.scss'
 
@@ -15,7 +17,6 @@ const Task = props => {
         handleDelete
     } = props
 
-    const pRef = useRef(null)
     
     const CloseIcon = (
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,22 +25,37 @@ const Task = props => {
         </svg>
 
     )
-    
+
+    const pRef = useRef()
+    const [visible, setVisible] = useState(false)
+
+    const handleOpen = () => {        
+        setVisible(true)
+    }
+
+    const handleClose = () => {
+        setVisible(false)
+    }
+
     const deleteTask = () => {
         handleDelete(pRef.current.textContent)
     }
 
     return (
-        
-        <div className='task-item'>
-            <div className="task-content">
-                <p ref={pRef}>{title}</p>
-                <div className="tools-block">
-                    <Link to='#' className='edit'><FontAwesomeIcon className={"faPencilAlt-icon"} icon={faPencilAlt}/></Link>
-                    <Link to='#' onClick={deleteTask} className='delete'>{CloseIcon}</Link>
+        <>
+            <div className='task-item'>
+                <div className="task-content">
+                    <p ref={pRef}>{title}</p>
+                    <div className="tools-block">
+                        <Link to='#' onClick={handleOpen} className='edit'><FontAwesomeIcon className={"faPencilAlt-icon"} icon={faPencilAlt}/></Link>
+                        <Link to='#' onClick={deleteTask} className='delete'>{CloseIcon}</Link>
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <DrawerEdit visible={visible} handleClose={handleClose} taskText={title}/>
+
+        </>
     );
 };
 

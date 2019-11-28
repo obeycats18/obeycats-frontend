@@ -12,7 +12,8 @@ const Item = ( {
     value,
     validateStatus,
     keyAction,
-    children
+    children,
+    autofocus
     } ) => {
     return (
         <div className="input-block">
@@ -26,6 +27,7 @@ const Item = ( {
                         onChange={onChange}
                         onBlur={onBlur}
                         value={value}
+                        autofocus={autofocus}
                         onKeyPress={keyAction}
                         ></textarea>)
                     :  <input 
