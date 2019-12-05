@@ -7,51 +7,56 @@ import {compose} from 'redux'
 import {withFormik} from 'formik'
 
 import {fetchUsers} from 'redux/reducers/users'
+import {setTasks, addTasks} from 'redux/reducers/tasks'
 
-import {projectSchema} from '../../CreateProject/validation'
+//import {projectSchema} from '../../CreateProject/validation'
 
 class PopupCreate extends React.Component {
 
     componentDidMount(){
         this.props.fetchUsers()
+        this.props.setTasks()
     }
 
     render() {
-       return <TasksForm />
+       return <TasksForm {...this.props}/>
     }
 }
 
-const mapStateToProps = ({users, projects}) => {
+const mapStateToProps = ({users, projects, tasks}) => {
     return {
         users: users.users, 
-        idProject: projects.idProject
+        idProject: projects.idProject,
+        tasks: tasks.tasks
     }
 }
 
 export default compose(
     connect(mapStateToProps, {
-        fetchUsers
+        fetchUsers,
+        setTasks,
+        addTasks
     }),
     withFormik({
-        mapPropsToValues: (props) => ({
-            idProject: props.idProject
-        }),
+        // mapPropsToValues: (props) => ({
+        //     idProject: props.idProject
+        // }),
     
-        validationSchema: projectSchema,
+        // validationSchema: projectSchema,
     
         handleSubmit: ( values, {setSubmitting, props}) => {
+            // console.log(values)
             let buttonName = values.buttonName
-            if(buttonName === 'finish'){
-                props.createMilestone(values).then( (data) => {
+            if(buttonName === 'create'){
+                // console.log()
+                props.addTasks(values.tasks.items).then( (data) => {
                     setSubmitting(false)
                     if(data.status === 200){
-                        props.switchModal(3)
-                        setTimeout( () => props.showModal(false), 4000)
+                        props.history.push('/milestones/add')
                     }
                 })
             }
            
-
             if(buttonName === 'cancle'){
                 props.deleteProject( values.idProject).then( (data) => {
                 if(data.status === 200){

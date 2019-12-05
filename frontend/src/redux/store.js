@@ -3,6 +3,8 @@ import thunk from 'redux-thunk'
 
 import authReducer from './reducers/auth'
 import projectsReducer from './reducers/projects'
+import tasksReducer from './reducers/tasks'
+
 import usersReducer from './reducers/users'
 
 
@@ -11,6 +13,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const reducers = combineReducers({
     auth: authReducer,
     projects: projectsReducer,
+    tasks: tasksReducer,
     users: usersReducer
 });
 

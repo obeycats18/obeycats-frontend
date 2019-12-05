@@ -23,7 +23,6 @@ const Task = props => {
             <line x1="1.4142" y1="1.41423" x2="12.0208" y2="12.0208" stroke="white" stroke-width="2"/>
             <line x1="1.41423" y1="12.0207" x2="12.0208" y2="1.41407" stroke="white" stroke-width="2"/>
         </svg>
-
     )
 
     const pRef = useRef()
@@ -52,9 +51,7 @@ const Task = props => {
                     </div>
                 </div>
             </div>
-
             <DrawerEdit visible={visible} handleClose={handleClose} taskText={title}/>
-
         </>
     );
 };

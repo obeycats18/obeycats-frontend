@@ -48,15 +48,15 @@
 
 
 .task-input{
+    padding: 15px 55px;
+    line-height: 30px;
     margin-top: 30px;
     width: 869px;
-    max-width: 869px;
     opacity: 0;
     transition: all .10s ease;
-    overflow-x: hidden;
+    overflow: hidden;
     position: relative;
     min-height: 100px;
-    height: auto;
     resize: none;
     &::placeholder{
         font-size: 14px;

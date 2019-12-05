@@ -1,13 +1,21 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import classnames from 'classnames'
 
 import Task from './Task'
 import {Link} from 'react-router-dom'
-import {Item} from 'components/common';
+import {TextArea, Button, Form} from 'components/common';
 
 import './style.scss'
 
 const TaskForm = props => {
+
+    const {
+        tasks,
+        setFieldValue,
+        handleSubmit
+    } = props
+
+    console.log(tasks)
 
     const Plus = (
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -18,11 +26,35 @@ const TaskForm = props => {
 
     const [visible, setVisible] = useState(false)
     const [value, setValue ] = useState('')
+    
+    
     const [storeTask, setTask] = useState(
         {
-            items: [{title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'}]
+            items: [{text: ''}]
         } 
     )
+
+    useEffect( () => {
+        if(tasks !== null){
+            setTask({items: tasks.map(item => item)})
+        }
+        else if(tasks !== null && storeTask.items !== null) {
+            let newTasks = tasks.map((item, index) => {
+                if(item.text !== storeTask.items[index].text){
+                    return item
+                }
+            } )
+            setTask({items: newTasks})
+        }
+        
+    }, [tasks])
+
+    console.log(storeTask.items)
+
+    let handleButtonClick = e => {
+        setFieldValue('tasks', storeTask)
+        setFieldValue('buttonName', e.target.dataset.name)
+    }
 
     const toggleVisible = () => {
         if(storeTask.items.length === 0){
@@ -38,20 +70,20 @@ const TaskForm = props => {
     const handleKeyPressed = e => {
         let newItems = []
         if(e.key === "Enter" && (e.target.value.trim() !== "" || e.target.value.length.trim() !== 0)){
-            newItems = [...storeTask.items, {title: e.target.value}]
+            newItems = [...storeTask.items, {text: e.target.value}]
             setTask({items: newItems})
             setValue('')
         }
     }
     const deleteTask = (ref) => {
         const value = ref
-        let filtred = storeTask.items.filter( item => item.title !== value)
+        let filtred = storeTask.items.filter( item => item.text !== value)
         setTask({items: filtred})
     }
 
-    const tasks = storeTask.items.map( (item,index) => {
-        if(item.title !== ''){
-            return <Task key={index} title={item.title} handleDelete={deleteTask}/>
+    const tasksSet = storeTask.items.map( (item,index) => {
+        if(item.text !== ''){
+            return <Task key={index} title={item.text} handleDelete={deleteTask}/>
         }
 
         return null
@@ -63,13 +95,20 @@ const TaskForm = props => {
             <h3>Бэклог</h3>
             <div className='create-task-wrapper'>
                 <span className='description'>Добавление задач в бэклог</span>
-                <div className="tasks-wrapper">
-                    {tasks}
-                    <div className="create-task">
-                        <Link onClick={toggleVisible} to='#' className="create-task-link">{Plus}</Link>
-                        <Item type='textarea' onChange={handleChange} keyAction={handleKeyPressed} value={value} classname={classnames('task-input', {visible}) } placeholder='Что нужно сделать?'/>
+                <Form onSubmit={handleSubmit}>
+                    <div className="tasks-wrapper">
+                        {tasksSet}
+                        <div className="create-task">
+                            <Link onClick={toggleVisible} to='#' className="create-task-link">{Plus}</Link>
+                            <TextArea type='textarea' onChange={handleChange} keyAction={handleKeyPressed} value={value} classname={classnames('task-input', {visible}) } placeholder='Что нужно сделать?'/>
+                        </div>
                     </div>
-                </div>
+                    <div className="button-group">
+                        <Button classname='cancle-button' typeButton='cancle' text='Отменить' handleClick={handleButtonClick} dataName='cancle'/>
+                        <Button classname='confirm-button' typeButton='ok' text='Далее' handleClick={handleButtonClick} dataName='create'/>
+                    </div>
+                </Form>
+                
             </div>
        </div>
     );

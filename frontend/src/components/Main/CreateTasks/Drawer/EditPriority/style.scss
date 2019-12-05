@@ -1,0 +1,38 @@
+@import 'src/components/core/advanced';
+
+.edit-priority{
+    margin-top: 50px;
+    .priority-wrapper{
+        display: flex;
+        .priority-block{
+            border-radius: 3px;
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+            transition: all .25s ease;
+            border: 2px solid transparent;
+        }
+        .green {
+            background-color: $success_color;
+            &:hover{
+                background-color: transparent;
+                border-color: $success_color;
+            }
+        }
+        .yellow{
+            background-color: $accent_color;
+            &:hover{
+                background-color: transparent;
+                border-color: $accent_color;
+            }
+        }
+        .red{
+            background-color: $error_color;
+            &:hover{
+                background-color: transparent;
+                border-color: $error_color;
+
+            }
+        }
+    }
+}

@@ -1,0 +1,43 @@
+@import 'src/components/core/advanced';
+
+
+.edit-text{
+    .task-text{
+        font-size: 14px;
+        color: $main_color;
+        letter-spacing: 0.05em;
+        line-height: 22px;
+        padding: 20px;
+        border: 2px solid $main_color;
+        border-radius: 5px;
+        transition: all .25s ease;
+        &:hover{
+            background-color: rgba(#466EFF, 0.10);
+            cursor: text;
+        }
+    }
+    .task-input{
+        opacity: 1;
+        line-height: 24px;
+        max-width: 460px;
+        font-size: 14px;
+        &::-webkit-scrollbar-thumb{
+            background-color: rgb(122, 146, 236);
+            border-radius: 10px;
+        }
+    }
+    .button-group{
+        margin-top: 15px;
+        display: flex;
+        justify-content: flex-end;
+        .confirm, .close{
+            margin-left: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 5px;
+        }
+    }
+}

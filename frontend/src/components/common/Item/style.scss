@@ -3,12 +3,12 @@
 .form-item, .select.select__control, .select.select__control.select__value-container {
     min-height: 50px;
     height: 50px;
-    padding: 10px 45px;
+    padding: 10px 25px;
     border: 2px solid $main_color;
     box-sizing: border-box;
-    border-radius: 10px;      
+    border-radius: 5px;      
     color: $main_color;
-    font-size: 16px;
+    font-size: 14px;
     font-family: $main_font;
     letter-spacing: 0.05em;
     font-weight: normal;

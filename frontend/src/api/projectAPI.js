@@ -5,7 +5,7 @@ export let projectAPI = {
         return axios(window.localStorage.getItem('token')).get('/projects').then(response => response.data)
     },
     getProject: (id) => {
-        return axios(window.localStorage.getItem('token')).get('/project', { params: {id}}).then(response => response.data)
+        return axios(window.localStorage.getItem('token')).get('/project', { params: {id} }).then(response => response.data)
     },
     addProjects: ( values ) => {
         return axios(window.localStorage.getItem('token')).post('/projects/add', values).then(response => response.data)

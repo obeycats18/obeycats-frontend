@@ -6,7 +6,7 @@ import {Header} from 'components/common';
 import Home from './Home/container';
 import Project from './Project/containers'
 import CreateProject from './CreateProject/container'
-import CreateTasks from './CreateTasks'
+import CreateTasks from './CreateTasks/container'
 
 
 
