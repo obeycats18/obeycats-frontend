@@ -8,6 +8,8 @@ import EditStatus from './EditStatus';
 import EditDescription from './EditDescription';
 import EditCost from './EditCost';
 import EditPriority from './EditPriority';
+import EditDeveloper from './EditDeveloper';
+
 
 import {Button} from 'components/common'
 
@@ -15,9 +17,23 @@ const DrawerEdit = props => {
 
     const {
         visible,
-        taskText, 
-        handleClose
+        task, 
+        handleClose,
+        editTask,
+        fetchUsers,
+        users
     } = props;
+
+
+    let updatedTask = {}
+    const handleUpdate = (task) => {
+        updatedTask = {...updatedTask, ...task}
+    }
+
+    const handleConfirm = () => {
+        let newTask = {...task, ...updatedTask}
+        editTask(newTask)
+    }
 
     return (
             <div>
@@ -29,16 +45,16 @@ const DrawerEdit = props => {
                 >
                 <div className="edit-wrapper">
                     
-                    <EditText taskText={taskText}/>
-                    <EditStatus title='Статус'/>
-                    <EditDescription/>
-                    <EditStatus title='Исполнитель'/>
-                    <EditCost />
-                    <EditPriority />
+                    <EditText handleUpdate={handleUpdate} text={task.text}/>
+                    <EditStatus handleUpdate={handleUpdate} status={task.status}/>
+                    <EditDescription handleUpdate={handleUpdate} description={task.description}/>
+                    <EditDeveloper users={users} fetchUsers={fetchUsers} handleUpdate={handleUpdate} developer={task.developer}/>
+                    <EditCost handleUpdate={handleUpdate} cost={task.cost}/>
+                    <EditPriority handleUpdate={handleUpdate} priority={task.priority}/>
                     
                     <div className="button-group">
                         <Button classname='cancle-button' typeButton='cancle' text='Отменить'/>
-                        <Button classname='confirm-button' typeButton='ok' text='Сохранить'/>
+                        <Button classname='confirm-button' handleClick={handleConfirm} typeButton='ok' text='Сохранить'/>
                     </div>
                 </div> 
                 </Drawer>

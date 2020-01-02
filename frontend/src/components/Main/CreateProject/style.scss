@@ -1,4 +1,4 @@
-@import 'src/components/core/advanced';
+@import 'src/components/core/advanced';q
 
 .ant-modal-content{
     border-radius: 10px!important;
@@ -76,6 +76,7 @@
        .popup-create__button-group{
         padding-top: 15px;    
         &-link{
+            padding: 17px 30px;
             width: 49%;
             margin-right: 1.9%;
             &:nth-child(3){
@@ -132,7 +133,7 @@
         padding: 10px 45px;
         font-size: 16px;
         height: 50px;
-        border-radius: 10px;
+        border-radius: 5px;
         border: 2px solid $main_color;
         box-shadow: 0 0 0 0!important;
         font-family: $main_font!important;

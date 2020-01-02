@@ -10,12 +10,11 @@ import './style.scss'
 const TaskForm = props => {
 
     const {
-        tasks,
         setFieldValue,
-        handleSubmit
+        handleSubmit,
+        users,
+        fetchUsers
     } = props
-
-    console.log(tasks)
 
     const Plus = (
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,31 +29,26 @@ const TaskForm = props => {
     
     const [storeTask, setTask] = useState(
         {
-            items: [{text: ''}]
+            items: []
         } 
     )
 
-    useEffect( () => {
-        if(tasks !== null){
-            setTask({items: tasks.map(item => item)})
-        }
-        else if(tasks !== null && storeTask.items !== null) {
-            let newTasks = tasks.map((item, index) => {
-                if(item.text !== storeTask.items[index].text){
-                    return item
-                }
-            } )
-            setTask({items: newTasks})
-        }
-        
-    }, [tasks])
-
-    console.log(storeTask.items)
-
     let handleButtonClick = e => {
-        setFieldValue('tasks', storeTask)
+        setFieldValue('tasks', storeTask.items)
         setFieldValue('buttonName', e.target.dataset.name)
     }
+
+    const editTask = (updatedTask) => {
+        setTask({items: storeTask.items.map(item => {       
+            if(item._id === updatedTask._id){
+                return {...item, ...updatedTask}
+            }else{
+                return item
+            }
+        })})
+    }
+
+    // console.log(storeTask.items)
 
     const toggleVisible = () => {
         if(storeTask.items.length === 0){
@@ -67,10 +61,33 @@ const TaskForm = props => {
         setValue(e.target.value)
     }
 
+    const generateNumber = () => {
+        let number = Math.ceil(Math.random() * 100);
+
+        if(number !== Math.ceil(Math.random() * 100)){
+            return number
+        } else{
+            number = Math.ceil(Math.random() * 100)
+            return number 
+        }
+         
+    }
+
     const handleKeyPressed = e => {
         let newItems = []
+        let task = {
+            _id: generateNumber(),
+            text: '',
+            status: '',
+            description: '',
+            developer: '',
+            cost: null,
+            priority: null
+        }
         if(e.key === "Enter" && (e.target.value.trim() !== "" || e.target.value.length.trim() !== 0)){
-            newItems = [...storeTask.items, {text: e.target.value}]
+
+            task.text = e.target.value
+            newItems = [...storeTask.items, task]
             setTask({items: newItems})
             setValue('')
         }
@@ -83,8 +100,8 @@ const TaskForm = props => {
 
     const tasksSet = storeTask.items.map( (item,index) => {
         if(item.text !== ''){
-            return <Task key={index} title={item.text} handleDelete={deleteTask}/>
-        }
+            return <Task users={users} fetchUsers={fetchUsers} editTask={editTask} task={item} handleDelete={deleteTask}/>
+        } 
 
         return null
     })

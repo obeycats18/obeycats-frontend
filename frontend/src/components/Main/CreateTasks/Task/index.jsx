@@ -13,10 +13,12 @@ import './style.scss'
 const Task = props => {
 
     const {
-        title,
-        handleDelete
+        task,
+        handleDelete,
+        editTask,
+        fetchUsers,
+        users
     } = props
-
     
     const CloseIcon = (
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -44,14 +46,14 @@ const Task = props => {
         <>
             <div className='task-item'>
                 <div className="task-content">
-                    <p ref={pRef}>{title}</p>
+                    <p ref={pRef}>{task.text}</p>
                     <div className="tools-block">
                         <Link to='#' onClick={handleOpen} className='edit'><FontAwesomeIcon className={"faPencilAlt-icon"} icon={faPencilAlt}/></Link>
                         <Link to='#' onClick={deleteTask} className='delete'>{CloseIcon}</Link>
                     </div>
                 </div>
             </div>
-            <DrawerEdit visible={visible} handleClose={handleClose} taskText={title}/>
+            <DrawerEdit users={users} fetchUsers={fetchUsers} editTask={editTask} visible={visible} handleClose={handleClose} task={task}/>
         </>
     );
 };

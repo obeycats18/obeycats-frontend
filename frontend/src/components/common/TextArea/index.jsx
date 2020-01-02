@@ -12,6 +12,7 @@ const TextArea = props => {
         placeholder,
         onChange,
         onBlur,
+        handleClick,
         value,
         autofocus,
         keyAction
@@ -35,6 +36,7 @@ const TextArea = props => {
             placeholder={placeholder}
             onChange={onChange}
             onBlur={onBlur}
+            onClick={handleClick}
             value={value}
             autofocus={autofocus}
             onKeyPress={keyAction}

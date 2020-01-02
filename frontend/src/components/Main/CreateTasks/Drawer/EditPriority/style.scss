@@ -11,7 +11,26 @@
             height: 20px;
             transition: all .25s ease;
             border: 2px solid transparent;
+            &:hover{
+                cursor: pointer;
+            }
         }
+
+        .priority-block.green.priority-active {
+            background-color: transparent!important;
+            border-color: $success_color;
+        }
+        
+        .priority-block.yellow.priority-active{
+            background-color: transparent!important;
+            border-color: $accent_color;
+        }
+        .priority-block.red.priority-active{
+            background-color: transparent!important;
+            border-color: $error_color;
+        
+        }
+
         .green {
             background-color: $success_color;
             &:hover{
@@ -35,4 +54,14 @@
             }
         }
     }
+}
+
+
+
+.ant-radio-inner{
+    display: none!important;
+}
+
+.priority-input{
+    display: none;
 }

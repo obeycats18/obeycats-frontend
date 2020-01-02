@@ -1,6 +1,6 @@
 import React from 'react' 
 
-import TasksForm from '../index'
+import DrawerForm from '../index'
 
 import {connect} from 'react-redux'
 import {compose} from 'redux'
@@ -9,21 +9,22 @@ import {withFormik} from 'formik'
 import {fetchUsers} from 'redux/reducers/users'
 import {setTasks, addTasks} from 'redux/reducers/tasks'
 
-import {reduce} from 'lodash'
-
 //import {projectSchema} from '../../CreateProject/validation'
 
-class PopupCreate extends React.Component {
+class Drawer extends React.Component {
+
+    componentDidMount(){
+        this.props.fetchUsers()
+    }
 
     render() {
-       return <TasksForm {...this.props}/>
+       return <DrawerForm {...this.props}/>
     }
 }
 
 const mapStateToProps = ({users, projects, tasks}) => {
     return {
         users: users.users, 
-        idProject: projects.idProject,
     }
 }
 
@@ -45,17 +46,7 @@ export default compose(
             let buttonName = values.buttonName
             if(buttonName === 'create'){
                 // console.log()
-                let postData = values.tasks.map(item => {
-                    return reduce(item, (result, value, key) => {
-                        if(key !== '_id' && value !== '' && value !== null){
-                            // console.log(key)
-                            result[key] = value
-                        }
-                        return result
-                    }, {})
-                })
-                console.log('postdata',postData)
-                props.addTasks(postData).then( (data) => {
+                props.addTasks(values.tasks.items).then( (data) => {
                     setSubmitting(false)
                     if(data.status === 200){
                         props.history.push('/milestones/add')
@@ -63,14 +54,14 @@ export default compose(
                 })
             }
            
-            // if(buttonName === 'cancle'){
-            //     props.deleteProject( values.idProject).then( (data) => {
-            //     if(data.status === 200){
-            //         console.log('success')
-            //         setTimeout( () => props.showModal(false), 1000)
-            //         }
-            //     })
-            // }
+            if(buttonName === 'cancle'){
+                props.deleteProject( values.idProject).then( (data) => {
+                if(data.status === 200){
+                    console.log('success')
+                    setTimeout( () => props.showModal(false), 1000)
+                    }
+                })
+            }
         }
     })
     

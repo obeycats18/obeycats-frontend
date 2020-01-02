@@ -1,9 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import {Link} from 'react-router-dom'
 import './style.scss'
 
-const EditPriority = () => {
+const EditPriority = props => {
+
+    const{
+        priority,
+        handleUpdate
+    } = props
+
+    const handleClick = e => {
+        handleUpdate({priority: parseInt(e.target.dataset.value)})
+
+        Array.prototype.slice.call(e.target.parentNode.children).forEach(item => {
+            if(item === e.target){
+                item.classList.toggle(`priority-active`)
+            }else{
+                if(item.classList.contains('priority-active')){
+                    item.classList.remove('priority-active')
+                }
+            }
+        })
+
+        // e.target.classList.toggle()
+    }
+
     return (
         <div className="edit-priority">
             <div className="description-section">
@@ -11,9 +32,9 @@ const EditPriority = () => {
             </div>
             
             <div className="priority-wrapper">
-                <Link><div className="priority-block green"></div></Link>
-                <Link><div className="priority-block yellow"></div></Link>
-                <Link><div className="priority-block red"></div></Link>
+                <div onClick={handleClick} data-value={1} data-name={'green'} className="priority-block green"></div>
+                <div onClick={handleClick} data-value={2} data-name={'yellow'} className="priority-block yellow"></div>
+                <div onClick={handleClick} data-value={3} data-name={'red'} className="priority-block red"></div>
             </div>
 
         </div>

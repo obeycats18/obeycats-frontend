@@ -7,7 +7,8 @@ import './style.scss'
 const EditText = props => {
 
     const {
-        taskText
+        text,
+        handleUpdate
     } = props;
 
     const CheckIcon = (
@@ -28,8 +29,8 @@ const EditText = props => {
 
     const [edit, setEdit] = useState({
         editMode: false,
-        text: taskText,
-        prevText: taskText
+        text: text,
+        prevText: text
     })
     const handleClick = () => {
         setEdit({editMode: true, text: edit.text, prevText: edit.text})
@@ -50,6 +51,7 @@ const EditText = props => {
                 text: edit.text,
                 prevText: edit.text
             })
+            handleUpdate({text: edit.text})
         }
         else{
             setEdit({

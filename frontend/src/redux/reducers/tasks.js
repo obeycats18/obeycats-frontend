@@ -44,25 +44,27 @@ export const setTasksAction = (tasks) => ({ type: SET_TASK, tasks })
 export const setFetchingStatus = (status) => ({ type: SET_FETCHING_STATUS, status })
 
 
-export let setTasks = () => {
+export let setTasks = (tasks) => {
     return dispatch => {
         dispatch(setFetchingStatus(true))
-        return tasksAPI.getTasks().then( (data) => {
-            
-            let tasks = []
-
-            data.set.forEach((item) => {
-                item.forEach(item => {
-                    item.tasks.forEach(item => {
-                        tasks.push(item)
-                    })                    
-                })
-            }) 
-
-            dispatch(setTasksAction(tasks))
-            dispatch(setFetchingStatus(false))
-        })
+        dispatch(setTasksAction(tasks))
+        dispatch(setFetchingStatus(false))
         
+        // return tasksAPI.getTasks().then( (data) => {
+            
+        //     let tasks = []
+
+        //     data.set.forEach((item) => {
+        //         item.forEach(item => {
+        //             item.tasks.forEach(item => {
+        //                 tasks.push(item)
+        //             })                    
+        //         })
+        //     }) 
+
+        //     
+        // })
+
     }  
 }
 
