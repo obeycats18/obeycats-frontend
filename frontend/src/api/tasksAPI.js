@@ -1,6 +1,6 @@
 import axios from './settings'
 
-export let tasksAPI = {
+export const tasksAPI = {
     getTasks: () => {
         return axios(window.localStorage.getItem('token')).get('/tasks').then(response => response.data)
     },

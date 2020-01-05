@@ -10,7 +10,6 @@ import EditCost from './EditCost';
 import EditPriority from './EditPriority';
 import EditDeveloper from './EditDeveloper';
 
-
 import {Button} from 'components/common'
 
 const DrawerEdit = props => {
@@ -26,6 +25,7 @@ const DrawerEdit = props => {
 
 
     let updatedTask = {}
+    
     const handleUpdate = (task) => {
         updatedTask = {...updatedTask, ...task}
     }
@@ -33,6 +33,7 @@ const DrawerEdit = props => {
     const handleConfirm = () => {
         let newTask = {...task, ...updatedTask}
         editTask(newTask)
+        handleClose()
     }
 
     return (

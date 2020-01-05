@@ -27,7 +27,7 @@ const Item = ( {
                             placeholder={placeholder}
                             onChange={onChange}
                             onBlur={onBlur}
-                            value={value}
+                            value={value || ''}
                             autofocus={autofocus}
                             onKeyPress={keyAction}
                         ></textarea>)
@@ -39,7 +39,7 @@ const Item = ( {
                             onChange={onChange}
                             onClick={handleClick}
                             onBlur={onBlur}
-                            value={value}
+                            value={value || ''}
                             onKeyPress={keyAction}
                             
                         />

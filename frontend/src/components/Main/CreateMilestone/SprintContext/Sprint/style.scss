@@ -1,0 +1,68 @@
+@import 'src/components/core/advanced';
+
+.sprint-wrapper{
+    padding: 40px 0;
+}
+
+.sprint-block{
+    padding: 25px 0;
+    border-bottom: 1px solid rgba(70, 110, 255, 0.1);
+    .sprint-title{
+        display: flex;
+        p {
+            font-style: normal;
+            font-size: 16px;
+            line-height: 20px;
+            color: #000000;
+            margin-bottom: 40px;
+            margin-right: 20px;
+        }
+    }
+    .sprint-content{
+        display: flex;
+        justify-content: space-between;
+        .sprint-tasks{
+            min-height: 70px;
+        }
+        .sprint-info{
+            .subtitle{
+                font-size: 14px;
+                line-height: 16px;
+                letter-spacing: 0.05em;
+                color: #BDC0CD;
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
+
+.create-sprint{
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    .sprint-input.visible{
+        opacity: 1;
+    }
+    .sprint-input{
+        opacity: 0;
+    }
+}
+
+.create-sprint-link{
+    margin-right: 30px;
+    padding: 10px 20px;
+    color: #000;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    background-color: #e8e8e8;
+    border: 2px solid transparent;
+    transition: all .15s ease;
+    &:hover{
+        background-color: transparent;
+        border-color: #e8e8e8;
+        color: #000000;
+    }
+}

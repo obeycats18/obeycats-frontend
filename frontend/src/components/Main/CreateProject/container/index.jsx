@@ -48,6 +48,7 @@ export default compose(
     
         handleSubmit: ( values, {setSubmitting, props}) => {
             let buttonName = values.buttonName
+            console.log(values)
             if(buttonName === 'next'){
                 props.createProject(values).then( (status) => {
                     setSubmitting(false)

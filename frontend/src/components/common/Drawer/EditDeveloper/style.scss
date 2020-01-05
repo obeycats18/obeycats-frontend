@@ -13,28 +13,6 @@
     }
 }
 
-.ant-select{
-    .ant-select-selection{
-        display: flex;
-        align-items: center;
-        padding-left: 15px;
-        padding-right: 20px!important;
-        height: 50px;
-        border: 2px solid $main_color;
-        color: $main_color;
-        &:hover, &:active, &:focus{
-            border: 2px solid $main_color;
-            border-right: 2px solid $main_color!important;
-        }
-        &:active, &:focus {
-            box-shadow: 0 0 0 0;
-        }
-        svg{
-            fill: $main_color;
-        }
-    }
-}
-
 .ant-select-dropdown{
     background-color: $main_color!important;
     .ant-select-dropdown-menu-item.dropdown-list {

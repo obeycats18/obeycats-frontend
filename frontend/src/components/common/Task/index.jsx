@@ -1,12 +1,15 @@
 import React, {useRef, useState} from 'react';
 
 import {Link} from 'react-router-dom'
-import CloseIcon from 'assets/project-item/Close_Icon.svg'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faPencilAlt} from '@fortawesome/free-solid-svg-icons'
+import {faTimes} from '@fortawesome/free-solid-svg-icons'
 
-import DrawerEdit from '../Drawer'
+
+import {Drawer} from 'components/common'
+
+import classnames from 'classnames'
 
 import './style.scss'
 
@@ -17,7 +20,9 @@ const Task = props => {
         handleDelete,
         editTask,
         fetchUsers,
-        users
+        users,
+        type,
+        style
     } = props
     
     const CloseIcon = (
@@ -43,18 +48,16 @@ const Task = props => {
     }
 
     return (
-        <>
-            <div className='task-item'>
-                <div className="task-content">
-                    <p ref={pRef}>{task.text}</p>
-                    <div className="tools-block">
-                        <Link to='#' onClick={handleOpen} className='edit'><FontAwesomeIcon className={"faPencilAlt-icon"} icon={faPencilAlt}/></Link>
-                        <Link to='#' onClick={deleteTask} className='delete'>{CloseIcon}</Link>
-                    </div>
+        <div style={style} className={classnames('task-item', type)}>
+            <div className="task-content">
+                <p ref={pRef}>{task.text}</p>
+                <div className="tools-block">
+                    <Link to='#' onClick={handleOpen} className='edit'><FontAwesomeIcon className={"faPencilAlt-icon"} style={{fontSize: 12}} icon={faPencilAlt}/></Link>
+                    <Link to='#' onClick={deleteTask} className='delete'><FontAwesomeIcon className={"faPencilAlt-icon"} style={{fontSize: 14}} icon={faTimes}/></Link>
                 </div>
             </div>
-            <DrawerEdit users={users} fetchUsers={fetchUsers} editTask={editTask} visible={visible} handleClose={handleClose} task={task}/>
-        </>
+            <Drawer users={users} fetchUsers={fetchUsers} editTask={editTask} visible={visible} handleClose={handleClose} task={task}/>
+        </div>
     );
 };
 

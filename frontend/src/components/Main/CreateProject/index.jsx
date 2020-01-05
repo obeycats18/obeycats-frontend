@@ -6,12 +6,13 @@ import {
     Item,
     ErrorMessage,
     Button,
-    Select
 } from 'components/common'
 
-import { DatePicker } from 'antd';
+import { DatePicker, Select} from 'antd';
 
 import classnames from 'classnames'
+
+const {Option} = Select
 
 const PopupCreate = props => {
 
@@ -26,22 +27,31 @@ const PopupCreate = props => {
         users
     } = props;
 
-    const teamLeads = users;
-    const clients = users;
 
-    let [teamLeadSelected, teamLeadSetSelected] = useState(null);
-    let [clientSelected, clientSetSelected] = useState(null);
-    let [focused, setFocused] = useState(null);
 
-    let handleTeamLeadChange = teamLead => {
-        teamLeadSetSelected(teamLead)
-        setFieldValue('teamLead', teamLead.value)
-    };
+    const options = users;
+    // const clients = users;
 
-    let handleClientChange = client => {
-        clientSetSelected(client)
-        setFieldValue('client', client.value)
-    };
+    // let [teamLeadSelected, teamLeadSetSelected] = useState(null);
+    // let [clientSelected, clientSetSelected] = useState(null);
+    // let [focused, setFocused] = useState(null);
+
+    // let handleTeamLeadChange = teamLead => {
+    //     teamLeadSetSelected(teamLead)
+    //     setFieldValue('teamLead', teamLead.value)
+    // };
+
+    // let handleClientChange = client => {
+    //     clientSetSelected(client)
+    //     setFieldValue('client', client.value)
+    // };
+
+    let handleClientChange = value => {
+        setFieldValue('client', value)
+    }
+    let handleTeamLeadChange = value => {
+        setFieldValue('teamLead', value)
+    }
 
     let handleDateChange = (date, dateString) => {
         setFieldValue('dataToFinish', dateString)
@@ -106,44 +116,16 @@ const PopupCreate = props => {
                             placeholder='Дата deadline'
                             onChange={handleDateChange}
                         />
-
+                        
                         <Select 
-                            options={teamLeads} 
-                            inputName="teamLeadId"
-                            classname={classnames("select", 'popup-create-form-select')} 
-                            classnameprefix='select'
-                            value={teamLeadSelected}
-                            onChange={handleTeamLeadChange}
-                            onBlur = { () => setFocused(false)}
-                            onFocus = {() => setFocused(true)}
-                            placeholderText='Team Lead'
-
+                            onChange={handleTeamLeadChange} 
+                            defaultValue='Team Lead'
                         >
-                            {
-                                !focused
-                                    ? '' 
-                                    : (teamLeadSetSelected === null) ?  <ErrorMessage text={'Нужно выбрать роль'}/>: console.log('not error')
-                                
-                            }
+                            {options.map(item => <Option className='dropdown-list' value={item.value}>{item.label}</Option>)}
                         </Select>
 
-                        <Select 
-                            options={clients} 
-                            inputName="client"
-                            classname={classnames("select", 'popup-create-form-select')} 
-                            classnameprefix='select'
-                            value={clientSelected}
-                            onChange={handleClientChange}
-                            onBlur = { () => setFocused(false)}
-                            onFocus = {() => setFocused(true)}
-                            placeholderText='Заказчик'
-                        >
-                            {
-                                !focused
-                                    ? '' 
-                                    : (clientSetSelected === null) ?  <ErrorMessage text={'Нужно выбрать роль'}/>: console.log('not error')
-                                
-                            }
+                        <Select onChange={handleClientChange} defaultValue='Заказчик' style={{marginTop: 20}}>
+                            {options.map(item => <Option className='dropdown-list' value={item.value}>{item.label}</Option>)}
                         </Select>
 
                         <div className="popup-create__button-group">

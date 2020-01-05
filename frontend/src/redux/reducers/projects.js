@@ -1,6 +1,7 @@
 import {projectAPI} from 'api/projectAPI'
 
 import { openNotification } from 'helpers/openNotifcation';
+import checkToken from 'api/checkToken'
 
 const SET_PROJECTS = "SET_PROJECTS";
 const SET_PROJECT = "SET_PROJECT";
@@ -96,7 +97,7 @@ export let getProject = (id) => {
     }  
 }
 
-export let getProjects = () => {
+export let getProjects = (history) => {
     return dispatch => {
         dispatch(setFetchingStatus(true));
         return projectAPI.getAllProjects().then( (data) => {   
@@ -106,8 +107,8 @@ export let getProjects = () => {
             }
             if(data.status === 404){
                 dispatch(setFetchingStatus(false));
-                console.log('Not Found')
             }
+            checkToken(data.status, history)
         })
         .catch( err => {console.log(err);
         } )
@@ -125,6 +126,7 @@ export let createProject = (values) => {
             if(data.status === 409){  
                 openNotification('error', 'Такой проект уже существует', 'Введите другое название проекта')
             }
+
             return data.status
         })
         .catch( err => {    

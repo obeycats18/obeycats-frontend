@@ -1,75 +1,30 @@
 @import 'src/components/core/advanced';
 
-.select.select__control, .select.select__control.select__value-container {
-    min-height: 50px;
-    height: 50px;
-    padding: 10px 45px;
-    border: 2px solid $main_color;
-    box-sizing: border-box;
-    border-radius: 5px;      
-    color: $main_color;
-    font-size: 16px;
-    font-family: $main_font;
-    letter-spacing: 0.05em;
-    font-weight: normal;
-    background-color: transparent;
-    &::placeholder{
+
+.ant-select{
+    .ant-select-arrow{
+        padding: 0 15px;
+    }
+    .ant-select-selection{
+        display: flex;
+        align-items: center;
+        height: auto!important;
+        border: 2px solid $main_color;
         color: $main_color;
+        &:hover, &:active, &:focus{
+            border: 2px solid $main_color;
+            border-right: 2px solid $main_color!important;
+        }
+        &:active, &:focus {
+            box-shadow: 0 0 0 0;
+        }
+        svg{
+            fill: $main_color;
+        }
     }
 }
 
-.select{
-    &__menu{
-        box-shadow: 0 0 0 0!important;
-        overflow: hidden;
-        border-radius: 5px!important;
-        background-color: $main_color!important;
-        color: #ffffff;
-        &-list{
-            .select__option{
-                padding: 15px !important;
-                &:hover{
-                    background-color: rgba(244, 246, 252, 0.15)!important;
-                }
-                
-            }
-            .select__option.select__option--is-focused{
-                background-color: rgba(244, 246, 252, 0.15)!important;
-
-            }
-            .select__option.select__option--is-selected{
-                background-color: rgba(244, 246, 252, 0.5)!important;
-
-            }
-        }
-    }
-    &__control{
-        border-radius: 5px!important;
-        border: 2px solid $main_color!important;  
-    }
-    .select__value-container--has-value{
-        background: $main_color!important;
-        .select__single-value {
-            color: #ffffff !important;
-        }
-    }
-    &__value-container{
-        padding: 10px 45px!important;
-        .select__single-value{
-            color: $main_color!important;
-        }
-    }
-    &__placeholder{
-        color: $main_color!important;
-    } 
-    &__indicators{
-        .select__indicator-separator{
-            background-color: $main_color!important;
-            display: none !important;
-        }
-        .select__indicator.select__dropdown-indicator{
-            color: $main_color!important;
-        }
-        
-    }
+.ant-select-selection--single .ant-select-selection__rendered{
+    line-height: 1.5!important;
+    margin: 0!important;
 }

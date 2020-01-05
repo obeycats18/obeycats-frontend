@@ -38,7 +38,7 @@ const TextArea = props => {
             onBlur={onBlur}
             onClick={handleClick}
             value={value}
-            autofocus={autofocus}
+            autoFocus={autofocus}
             onKeyPress={keyAction}
             onKeyDown={expandedField}
             rows={1}

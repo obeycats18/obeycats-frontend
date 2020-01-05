@@ -32,9 +32,9 @@ const EditStatus = props => {
                 <p>Cтатус</p>
                
             </div>
-            <Select defaultValue={!status ? 'Статус задачи' : status} onChange={handleChange} style={{ width: 280 }}>
+            <Select defaultValue={!status ? 'Статус задачи' : status} onChange={handleChange} > 
                 {
-                    options.map( (item) => <Option className='dropdown-list' value={item.value}>{item.label}</Option>)
+                    options.map( (item) => <Option key={item.label} className='dropdown-list' value={item.value}>{item.label}</Option>)
                 }
             </Select>
         </div>

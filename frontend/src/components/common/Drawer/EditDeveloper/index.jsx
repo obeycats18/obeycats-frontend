@@ -33,9 +33,9 @@ const EditStatus = props => {
                 <p>Исполнитель</p>
                
             </div>
-            <Select defaultValue={developer ? options.forEach(item => item.value === developer ? item.label : 'Выберите испольнителя') : 'Выберите испольнителя'} onChange={handleChange} style={{ width: 280 }}>
+            <Select defaultValue={developer ? options.forEach(item => item.value === developer ? item.label : 'Выберите испольнителя') : 'Выберите испольнителя'} onChange={handleChange} >
                 {
-                    options.map( (item) => <Option className='dropdown-list' value={item.value}>{item.label}</Option>)
+                    options.map( (item) => <Option key={item.label} className='dropdown-list' value={item.value}>{item.label}</Option>)
                 }
             </Select>
         </div>

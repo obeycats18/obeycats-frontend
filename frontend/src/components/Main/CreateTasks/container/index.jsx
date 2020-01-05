@@ -7,7 +7,7 @@ import {compose} from 'redux'
 import {withFormik} from 'formik'
 
 import {fetchUsers} from 'redux/reducers/users'
-import {setTasks, addTasks} from 'redux/reducers/tasks'
+import {setTasks} from 'redux/reducers/tasks'
 
 import {reduce} from 'lodash'
 
@@ -31,7 +31,6 @@ export default compose(
     connect(mapStateToProps, {
         fetchUsers,
         setTasks,
-        addTasks
     }),
     withFormik({
         // mapPropsToValues: (props) => ({

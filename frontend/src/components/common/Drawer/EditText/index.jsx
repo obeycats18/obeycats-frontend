@@ -13,16 +13,16 @@ const EditText = props => {
 
     const CheckIcon = (
         <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line x1="0.707107" y1="4.29289" x2="3.70711" y2="7.29289" stroke="white" stroke-width="2"/>
-            <line x1="11.7071" y1="0.707107" x2="3.70711" y2="8.70711" stroke="white" stroke-width="2"/>
+            <line x1="0.707107" y1="4.29289" x2="3.70711" y2="7.29289" stroke="white" strokeWidth="2"/>
+            <line x1="11.7071" y1="0.707107" x2="3.70711" y2="8.70711" stroke="white" strokeWidth="2"/>
         </svg>
 
     )
 
     const CloseIcon = (
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line x1="1.4142" y1="1.41423" x2="12.0208" y2="12.0208" stroke="white" stroke-width="2"/>
-            <line x1="1.41423" y1="12.0207" x2="12.0208" y2="1.41407" stroke="white" stroke-width="2"/>
+            <line x1="1.4142" y1="1.41423" x2="12.0208" y2="12.0208" stroke="white" strokeWidth="2"/>
+            <line x1="1.41423" y1="12.0207" x2="12.0208" y2="1.41407" stroke="white" strokeWidth="2"/>
         </svg>
 
     )

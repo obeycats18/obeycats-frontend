@@ -6,6 +6,7 @@ import projectsReducer from './reducers/projects'
 import tasksReducer from './reducers/tasks'
 
 import usersReducer from './reducers/users'
+import globalReducer from './reducers/global'
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -14,11 +15,17 @@ const reducers = combineReducers({
     auth: authReducer,
     projects: projectsReducer,
     tasks: tasksReducer,
-    users: usersReducer
+    users: usersReducer,
+    global: globalReducer
 });
 
 const store = createStore( 
     reducers,
-    composeEnhancers(applyMiddleware(thunk)) )
+    composeEnhancers(
+        applyMiddleware(
+            thunk
+        )
+    ) 
+)
 
 export default store;

@@ -77,13 +77,17 @@
         padding-bottom: 10%;
         &-info{
             display: flex;
+            margin-right: 20px;
             flex-direction: column;
-            
             a {
-                color: #000000;
-                font-size: 15px;
+                font-style: normal;
                 font-weight: bold;
-                letter-spacing: 1.8px;
+                font-size: 14px;
+                line-height: 16px;
+                color: #000000;
+                // font-size: 15px;
+                // font-weight: bold;
+                letter-spacing: 0.07em;
                 padding-bottom: 25px;
             }
             
@@ -109,9 +113,12 @@
             }
         }
         .project-button{
-            padding-right: 35px;
-            margin-left: 24%;
-            margin-top: 7%;
+            position: absolute;
+            bottom: 10%;
+            right: 10%;
+            // padding-right: 15px;
+            // margin-left: 24%;
+            // margin-top: 7%;
             &-link{
                 display: flex;
                 justify-content: center;

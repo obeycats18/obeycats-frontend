@@ -1,6 +1,5 @@
 @import 'src/components/core/advanced';
 
-
 .ant-drawer-header{
     background-color: transparent!important;
     height: 120px!important;
@@ -38,7 +37,7 @@
         fill: transparent;
         width: 0.8em;
     }
-    background-image: url('../../../../assets/project-item/Close_Icon.svg')!important;
+    background-image: url('../../../assets/project-item/Close_Icon.svg')!important;
     background-repeat: no-repeat!important;
     background-position: center!important;
 }

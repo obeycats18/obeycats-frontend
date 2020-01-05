@@ -1,24 +1,15 @@
 @import 'src/components/core/advanced';
 
+.create-block{
+    padding: 70px 100px;
+
+}
 
 .create-tasks-block{
-    h3{
-        font-size: 20px;
-        position: relative;
-        margin-bottom: 85px;
-        &:after{
-             content: '';
-             position: absolute;
-             bottom: -7px;
-             left: 0;
-             width: 4%;
-             height: 1px;
-             background-color: $main_color;
-         }
-    }
     .tasks-wrapper{
         margin-top: 80px;
         .create-task{
+            margin-top: 50px;
             &-link{
                 display: flex;
                 align-items: center;
@@ -39,7 +30,6 @@
                 }
             }
         }
-        
         .visible{
             opacity: 1;
         }

@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import classnames from 'classnames'
 
-import Task from './Task'
 import {Link} from 'react-router-dom'
-import {TextArea, Button, Form} from 'components/common';
+import {TextArea, Button, Form, Task} from 'components/common';
 
 import './style.scss'
 
@@ -18,8 +17,8 @@ const TaskForm = props => {
 
     const Plus = (
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line x1="8" y1="4.37113e-08" x2="8" y2="15" stroke="#10AC84" stroke-width="2"/>
-            <line x1="15" y1="8" x2="-8.74228e-08" y2="8" stroke="#10AC84" stroke-width="2"/>
+            <line x1="8" y1="4.37113e-08" x2="8" y2="15" stroke="#10AC84" strokeWidth="2"/>
+            <line x1="15" y1="8" x2="-8.74228e-08" y2="8" stroke="#10AC84" strokeWidth="2"/>
         </svg>
     )
 
@@ -48,8 +47,6 @@ const TaskForm = props => {
         })})
     }
 
-    // console.log(storeTask.items)
-
     const toggleVisible = () => {
         if(storeTask.items.length === 0){
             setVisible(true)
@@ -69,8 +66,7 @@ const TaskForm = props => {
         } else{
             number = Math.ceil(Math.random() * 100)
             return number 
-        }
-         
+        }    
     }
 
     const handleKeyPressed = e => {
@@ -100,10 +96,8 @@ const TaskForm = props => {
 
     const tasksSet = storeTask.items.map( (item,index) => {
         if(item.text !== ''){
-            return <Task users={users} fetchUsers={fetchUsers} editTask={editTask} task={item} handleDelete={deleteTask}/>
+            return <Task key={item.text} users={users} fetchUsers={fetchUsers} type='backlog-task' editTask={editTask} task={item} handleDelete={deleteTask}/>
         } 
-
-        return null
     })
 
 
@@ -114,7 +108,9 @@ const TaskForm = props => {
                 <span className='description'>Добавление задач в бэклог</span>
                 <Form onSubmit={handleSubmit}>
                     <div className="tasks-wrapper">
-                        {tasksSet}
+                        <div className="tasks">
+                            {tasksSet}
+                        </div>
                         <div className="create-task">
                             <Link onClick={toggleVisible} to='#' className="create-task-link">{Plus}</Link>
                             <TextArea type='textarea' onChange={handleChange} keyAction={handleKeyPressed} value={value} classname={classnames('task-input', {visible}) } placeholder='Что нужно сделать?'/>
@@ -125,7 +121,6 @@ const TaskForm = props => {
                         <Button classname='confirm-button' typeButton='ok' text='Далее' handleClick={handleButtonClick} dataName='create'/>
                     </div>
                 </Form>
-                
             </div>
        </div>
     );
