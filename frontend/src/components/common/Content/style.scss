@@ -1,19 +1,19 @@
 @import 'src/components/core/advanced';
 
-.content{
-    h3{
-        font-size: 24px;
-        position: relative;
-        margin-bottom: 100px;
-        &:after{
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 5%;
-            height: 2px;
-            background-color: $main_color;
-        }
+// .content{
+//     h3{
+//         font-size: 24px;
+//         position: relative;
+//         margin-bottom: 100px;
+//         &:after{
+//             content: '';
+//             position: absolute;
+//             bottom: -5px;
+//             left: 0;
+//             width: 5%;
+//             height: 2px;
+//             background-color: $main_color;
+//         }
 
-    }
-}
+//     }
+// }

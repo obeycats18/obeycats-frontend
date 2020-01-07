@@ -4,18 +4,17 @@ import {Task} from 'components/common'
 
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 
-
 import './style.scss'
 
 const Backlog = props => {
 
     const {
-        tasks,
+        backlog,
         users,
         fetchUsers
     } = props
 
-    let tasksLength = tasks.length
+    let tasksLength = backlog.length
 
     return (
         <div className='backlog-wrapper'>
@@ -29,7 +28,7 @@ const Backlog = props => {
                             {...provided.droppableProps} 
                             className="tasks"
                         >
-                            {tasks.map((item, index) => {
+                            {backlog.map((item, index) => {
                                 return (
                                     <Draggable key={item._id} draggableId={item._id} index={index}>
                                         {(provided) => (

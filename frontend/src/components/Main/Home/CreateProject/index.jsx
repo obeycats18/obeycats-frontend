@@ -15,15 +15,13 @@ const CreateProject = (props) => {
     }
 
     return (
-        <div className='create-project'>
-            <div className='button-create'>
-                {
-                    (type === 'empty')
-                        ? <Button handleClick={pushURL} classname='button-empty' text='Создать сейчас'></Button>
-                        : <Link to='project/add' className='button-create-link'><Icon type="plus" /></Link>
-                }
-                
-            </div>
+        <div className='button-create'>
+            {
+                (type === 'empty')
+                    ? <Button handleClick={pushURL} classname='button-empty' text='Создать сейчас'></Button>
+                    : <Link to='project/add' className='button-create-link'><Icon type="plus" /></Link>
+            }
+            
         </div>
     );
 };

@@ -40,7 +40,6 @@
 .task-item{
     max-width: 869px;
     padding: 10px 35px 10px 46px;
-    // border-bottom: 1px solid rgb(89, 125, 255);
     .task-content{
         width: 100%;
         display: flex;
@@ -48,7 +47,6 @@
         justify-content: space-around;
         p{
             margin: 0;
-            // color: #ffffff;
             font-size: 14px;
             letter-spacing: 0.05em;
             padding-right: 65px;
@@ -83,18 +81,15 @@
     }
 }
 
-
-.draggble-item:first-child{
-    .task-item{
-
-        border-top-right-radius: 7px;
-        border-top-left-radius: 7px;
-    }
-}
-.draggble-item:last-child{
-    .task-item{
-
-        border-bottom-left-radius: 7px;
-        border-bottom-right-radius: 7px;
+.tasks-wrapper{
+    .tasks{
+        .task-item:first-child{
+            border-top-right-radius: 7px;
+            border-top-left-radius: 7px;
+        }
+        .task-item:last-child{
+            border-bottom-left-radius: 7px;
+            border-bottom-right-radius: 7px;
+        }
     }
 }

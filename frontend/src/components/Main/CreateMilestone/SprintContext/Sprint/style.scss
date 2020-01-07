@@ -22,7 +22,8 @@
         display: flex;
         justify-content: space-between;
         .sprint-tasks{
-            min-height: 70px;
+            width: 100%;
+            min-height: 100px;
         }
         .sprint-info{
             .subtitle{

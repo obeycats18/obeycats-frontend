@@ -10,21 +10,35 @@ import classnames from 'classnames'
 import './style.scss'
 import { useState } from 'react';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
+import { useEffect } from 'react';
 
 const Sprint = props => {
 
     const {
         users,
-        fetchUsers
+        fetchUsers,
+        storeSprints,
+        createSprint
     } = props
+
+    
 
     const [visible, setVisible] = useState(false)
     const [value, setValue] = useState('')
     const [sprints, setSprint] = useState({
-        items: [ ]
+        items: []
     })
+    useEffect( () => {
+        
+        if(storeSprints !== undefined && storeSprints !== null) {
+            if(storeSprints.length > 0) {
+                setSprint({items: [...storeSprints]})
+            }
+            setSprint({items: storeSprints || [] })
+        
+        }
+    }, [storeSprints])
 
-    // const [tasks, setTasks] = useState({})
 
     const editTask = (updatedTask) => {
         let newSprints = [] 
@@ -40,9 +54,7 @@ const Sprint = props => {
                 })
             })
         })
-        
-        setSprint({items: newSprints})
-        
+        createSprint(newSprints)
     }
 
     const handleClick = () => {
@@ -74,13 +86,13 @@ const Sprint = props => {
             }
 
             sprint.title = e.target.value
-            setSprint({items: [...sprints.items, sprint]})
+            createSprint(sprint)
             setValue('')
         }
     }
 
     const renderSprint = () => {
-        if(sprints.items.length > 0){
+        if(sprints.items !== null && sprints.items.length > 0){
             return sprints.items.map(sprint => {
                 let tasksLength = sprint.tasks.length
                 return (
@@ -108,7 +120,7 @@ const Sprint = props => {
                                                 </Draggable>
                                             )
                                         })}
-                                    {provided.placeholder}
+                                        {provided.placeholder}
                                     </div>
                                 )}
                             </Droppable>

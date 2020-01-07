@@ -32,6 +32,8 @@ const TaskForm = props => {
         } 
     )
 
+    let tasksLength = storeTask.items.length
+    
     let handleButtonClick = e => {
         setFieldValue('tasks', storeTask.items)
         setFieldValue('buttonName', e.target.dataset.name)
@@ -96,7 +98,16 @@ const TaskForm = props => {
 
     const tasksSet = storeTask.items.map( (item,index) => {
         if(item.text !== ''){
-            return <Task key={item.text} users={users} fetchUsers={fetchUsers} type='backlog-task' editTask={editTask} task={item} handleDelete={deleteTask}/>
+            return <Task 
+                        key={item.text} 
+                        users={users} 
+                        fetchUsers={fetchUsers} 
+                        type='backlog-task' 
+                        editTask={editTask} 
+                        task={item} 
+                        handleDelete={deleteTask}
+                        style={(tasksLength > 1 && index < tasksLength - 1) ? {borderBottom: '1px solid #597dff'} : {}}
+                    />
         } 
     })
 

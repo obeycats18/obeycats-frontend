@@ -47,7 +47,7 @@ const ProjectPage = props => {
     return (
         (isFetching) 
             ? <div className='fetching-block'><Spin indicator={<Icon type="loading" style={{ fontSize: 36 }} spin />}/></div>
-            :<div className="project-wrapper">
+            :<div className="project-wrapper" style={{margin: "50px"}}>
                 <div className="project-wrapper__title"><h3>{project.name}</h3></div>
                 <div className="project-wrapper__info">
                     <h3>Общее</h3>

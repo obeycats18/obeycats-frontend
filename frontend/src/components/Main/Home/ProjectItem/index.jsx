@@ -45,7 +45,7 @@ const ProjectItem = props => {
                 </div>
                 <div className="project-item-bottom">
                     <div className="project-item-bottom-info">
-                        <Link to={`/project?id=${_id}`}>{name}</Link>
+                        <p className='project-title'>{name}</p>
                         <div className="project-item-bottom-analitics">
                             <div className="info-icons total-count">
                                 <FontAwesomeIcon className={"users-icon"} icon={faUserFriends}/>
