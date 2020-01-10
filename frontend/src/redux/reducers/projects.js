@@ -7,7 +7,6 @@ const SET_PROJECTS = "SET_PROJECTS";
 const SET_PROJECT = "SET_PROJECT";
 const SET_MILESTONES = "SET_MILESTONES";
 
-
 const SET_PROJECT_ID = "SET_PROJECT_ID";
 const SET_FETCHING_STATUS = "SET_FETCHING_STATUS";
 const UPDATE_PROJECTS_ARRAY = "UPDATE_PROJECTS_ARRAY";
@@ -15,7 +14,7 @@ const UPDATE_PROJECTS_ARRAY = "UPDATE_PROJECTS_ARRAY";
 
 
 let initialState = {
-    idProject: '',
+    idProject: window.localStorage.getItem('idProject') || '',
     projects: [],
     project: [],
     milestones: [],
@@ -89,7 +88,6 @@ export let getProject = (id) => {
             }else{
                 dispatch(setMilestones(data.project.milestones));
             }
-            
 
             dispatch(setFetchingStatus(false))
         })
@@ -121,7 +119,9 @@ export let createProject = (values) => {
         return projectAPI.addProjects(values).then( (data) => {   
             if(data.status === 200){
                 openNotification('success', 'Успешное создание', 'Проект успешно создан')
-                dispatch(setProjectId(data.id))
+                window.localStorage.setItem('idProject', data.id)
+                // dispatch(setProjectId(window.localStorage.getItem('idProject')))
+
             }
             if(data.status === 409){  
                 openNotification('error', 'Такой проект уже существует', 'Введите другое название проекта')
@@ -136,29 +136,29 @@ export let createProject = (values) => {
     
 }
 
-export let createMilestone = (values) => {
-    return dispatch => {
-        return projectAPI.addMilestone(values).then( (data) => {   
-            if(data.status === 200){
-                projectAPI.saveProject( {idProject: values.idProject, idMilestone: data.id} ).then( (data) => {   
-                    if(data.status === 200){
-                        console.log(data.message);
-                    }
-                })
-                .catch( err => {                  
-                    console.log(err);
-                } )
-            }
-            if(data.status === 409){
-                openNotification('error', 'Такой этап уже существует', 'Введите другое название')
-            }
+// export let createMilestone = (values) => {
+//     return dispatch => {
+//         return projectAPI.addMilestone(values).then( (data) => {   
+//             if(data.status === 200){
+//                 projectAPI.saveProject( {idProject: values.idProject, idMilestone: data.id} ).then( (data) => {   
+//                     if(data.status === 200){
+//                         console.log(data.message);
+//                     }
+//                 })
+//                 .catch( err => {                  
+//                     console.log(err);
+//                 } )
+//             }
+//             if(data.status === 409){
+//                 openNotification('error', 'Такой этап уже существует', 'Введите другое название')
+//             }
 
-            return data
-        })
-        .catch( err => {console.log(err);
-        } )
-    } 
-}
+//             return data
+//         })
+//         .catch( err => {console.log(err);
+//         } )
+//     } 
+// }
 
 export let deleteProject = (id) => {
     return dispatch => {

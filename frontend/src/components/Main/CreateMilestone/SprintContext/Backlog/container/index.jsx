@@ -1,21 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import {connect} from 'react-redux'
 import {setTasks} from 'redux/reducers/tasks'
 
 import Backlog from '../index'
 
-class BacklogContainer extends React.Component {
+const BacklogContainer = props => {
 
-    componentDidMount() {
-        this.props.setTasks()
-    }
+    useEffect(() => {
+        props.setTasks(props.idProject)
+    }, [idProject])
 
-    render(){
-        return (
-            <Backlog {...this.props} />
-        );
-    }
+    return (
+        <Backlog {...this.props} />
+    );
+    
 };
 
-export default connect(({tasks}) => ({tasks: tasks.tasks}), {setTasks})(BacklogContainer);
+export default connect(
+    ({tasks, projects}) => ({tasks: tasks.tasks, idProject: projects.idProject}), 
+    {setTasks}
+)(BacklogContainer);

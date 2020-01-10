@@ -30,7 +30,8 @@ export const LoginForm = props => {
         handleChange,
         handleBlur,
         handleSubmit,
-        isSubmitting
+        isSubmitting,
+        values
     } = props;
 
     return (
@@ -39,6 +40,7 @@ export const LoginForm = props => {
             <Block classname='login-block' >
                 <Form onSubmit={handleSubmit} classname='login-form'>
                     <Item 
+                        value={values.email}
                         type='email' 
                         name='email' 
                         classname='login-form__input' 
@@ -57,6 +59,7 @@ export const LoginForm = props => {
                         : errors.email ? <ErrorMessage text={errors.email}/> : ''  
                     } </Item>
                     <Item 
+                        value={values.password}
                         type='password' 
                         name='password' 
                         classname='login-form__input' 

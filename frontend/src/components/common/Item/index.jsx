@@ -18,7 +18,7 @@ const Item = ( {
     } ) => {
     return (
         <div className="input-block">
-            {
+            {/* {
                 (type === 'textarea')
                     ? (<textarea 
                             type={type} 
@@ -43,7 +43,19 @@ const Item = ( {
                             onKeyPress={keyAction}
                             
                         />
-            }
+            } */}
+            <input 
+                type={type} 
+                name={name} 
+                className={'form-item ' + classname + ' ' + validateStatus} 
+                placeholder={placeholder}
+                onChange={onChange}
+                onClick={handleClick}
+                onBlur={onBlur}
+                value={value || ''}
+                onKeyPress={keyAction}
+                
+            />
            
             {children}
         </div>

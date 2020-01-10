@@ -41,6 +41,8 @@ export default compose(
     }),
     withFormik({
         mapPropsToValues: (props) => ({
+            name: '',
+            cost: 0,
             idProject: props.idProject
         }),
     

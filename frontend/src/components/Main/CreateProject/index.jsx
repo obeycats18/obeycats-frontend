@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import './style.scss'
 import {
@@ -10,7 +10,6 @@ import {
 
 import { DatePicker, Select} from 'antd';
 
-import classnames from 'classnames'
 
 const {Option} = Select
 
@@ -24,27 +23,12 @@ const PopupCreate = props => {
         handleBlur,
         handleSubmit,
         isSubmitting,
-        users
+        users,
+        values
     } = props;
 
 
-
     const options = users;
-    // const clients = users;
-
-    // let [teamLeadSelected, teamLeadSetSelected] = useState(null);
-    // let [clientSelected, clientSetSelected] = useState(null);
-    // let [focused, setFocused] = useState(null);
-
-    // let handleTeamLeadChange = teamLead => {
-    //     teamLeadSetSelected(teamLead)
-    //     setFieldValue('teamLead', teamLead.value)
-    // };
-
-    // let handleClientChange = client => {
-    //     clientSetSelected(client)
-    //     setFieldValue('client', client.value)
-    // };
 
     let handleClientChange = value => {
         setFieldValue('client', value)
@@ -69,6 +53,7 @@ const PopupCreate = props => {
                     <span className='description'>Базовая информация о проекте</span>
                     <Form onSubmit={handleSubmit} classname='popup-create-form'>
                         <Item 
+                            value={values.name}
                             type='text' 
                             name='name' 
                             classname='popup-create-form-input' 
@@ -90,6 +75,7 @@ const PopupCreate = props => {
                         </Item>
                         
                         <Item 
+                            value={values.cost}
                             type='text' 
                             name='cost' 
                             classname='popup-create-form-input' 
@@ -121,11 +107,11 @@ const PopupCreate = props => {
                             onChange={handleTeamLeadChange} 
                             defaultValue='Team Lead'
                         >
-                            {options.map(item => <Option className='dropdown-list' value={item.value}>{item.label}</Option>)}
+                            {options.map(item => <Option key={item.value} className='dropdown-list' value={item.value}>{item.label}</Option>)}
                         </Select>
 
                         <Select onChange={handleClientChange} defaultValue='Заказчик' style={{marginTop: 20}}>
-                            {options.map(item => <Option className='dropdown-list' value={item.value}>{item.label}</Option>)}
+                            {options.map(item => <Option key={item.value} className='dropdown-list' value={item.value}>{item.label}</Option>)}
                         </Select>
 
                         <div className="popup-create__button-group">

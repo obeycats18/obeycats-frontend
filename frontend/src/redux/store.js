@@ -7,6 +7,7 @@ import tasksReducer from './reducers/tasks'
 
 import usersReducer from './reducers/users'
 import globalReducer from './reducers/global'
+import sprintsReducer from './reducers/milestones'
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -16,7 +17,9 @@ const reducers = combineReducers({
     projects: projectsReducer,
     tasks: tasksReducer,
     users: usersReducer,
-    global: globalReducer
+    global: globalReducer,
+    sprints: sprintsReducer
+
 });
 
 const store = createStore( 

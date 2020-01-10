@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Task, Item} from 'components/common'
 
-import {DatePicker, Checkbox, Icon, Empty} from 'antd'
+import {Icon, Empty, Spin} from 'antd'
 import {Link} from 'react-router-dom'
 
 import classnames from 'classnames'
@@ -11,6 +11,7 @@ import './style.scss'
 import { useState } from 'react';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 import { useEffect } from 'react';
+import { addSprints } from '../../../../../redux/reducers/milestones';
 
 const Sprint = props => {
 
@@ -18,13 +19,14 @@ const Sprint = props => {
         users,
         fetchUsers,
         storeSprints,
-        createSprint
+        createSprint,
+        idProject
     } = props
 
-    
-
+    // const [isSubmitting, setSubmitting] = useState(false)
     const [visible, setVisible] = useState(false)
     const [value, setValue] = useState('')
+    const [isSubmmit, setSubmitting] = useState(false)
     const [sprints, setSprint] = useState({
         items: []
     })
@@ -38,7 +40,6 @@ const Sprint = props => {
         
         }
     }, [storeSprints])
-
 
     const editTask = (updatedTask) => {
         let newSprints = [] 
@@ -54,6 +55,7 @@ const Sprint = props => {
                 })
             })
         })
+
         createSprint(newSprints)
     }
 
@@ -81,12 +83,17 @@ const Sprint = props => {
 
             let sprint = {
                 _id: generateNumber(),
-                title: '',
+                name: '',
                 tasks: []
             }
 
-            sprint.title = e.target.value
-            createSprint(sprint)
+            sprint.name = e.target.value
+            
+            setSubmitting(true)
+            addSprints({idProject: idProject, ...sprint}).then(() => {
+                setSubmitting(false)
+                createSprint(sprint)
+            })
             setValue('')
         }
     }
@@ -96,12 +103,12 @@ const Sprint = props => {
             return sprints.items.map(sprint => {
                 let tasksLength = sprint.tasks.length
                 return (
-                    <div key={sprint.title} className='sprint-block'>
+                    <div key={sprint.name} className='sprint-block'>
                         <div className="sprint-title">
-                            <p>{sprint.title}</p>
+                            <p>{sprint.name}</p>
                         </div>
                         <div className="sprint-content">
-                            <Droppable key={sprint._id} droppableId={`${sprint.title}`}>
+                            <Droppable key={sprint._id} droppableId={`${sprint.name}`}>
                                 {provided => (
                                     <div ref={provided.innerRef} {...provided.droppableProps} className="sprint-tasks">
                                         {sprint.tasks.map((task, index) => {
@@ -151,6 +158,12 @@ const Sprint = props => {
     return (
         <div className='sprint-wrapper'>
             {renderSprint()}
+            {
+                (isSubmmit)
+                    ? <div className='spin-block' style={{marginTop: 20}}><Spin indicator={<Icon type="loading" style={{ fontSize: 24 }} spin />}/></div>
+                    : ''
+            }
+            
             <div className="create-sprint">
                 <Link onClick={handleClick} to='#' className="create-sprint-link">Создать спринт<Icon style={{marginLeft: 15 }} type="plus" /></Link>
                 <Item 

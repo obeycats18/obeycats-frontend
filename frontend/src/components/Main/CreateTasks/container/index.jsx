@@ -5,22 +5,20 @@ import TasksForm from '../index'
 import {connect} from 'react-redux'
 import {compose} from 'redux'
 import {withFormik} from 'formik'
+import {withRouter} from 'react-router-dom'
 
 import {fetchUsers} from 'redux/reducers/users'
-import {setTasks} from 'redux/reducers/tasks'
+import {fetchAddTask} from 'redux/reducers/tasks'
 
 import {reduce} from 'lodash'
 
-//import {projectSchema} from '../../CreateProject/validation'
-
-class PopupCreate extends React.Component {
-
-    render() {
-       return <TasksForm {...this.props}/>
-    }
+const PopupCreate = props => {
+    return <TasksForm {...props}/>
 }
 
-const mapStateToProps = ({users, projects, tasks}) => {
+
+const mapStateToProps = ({users, projects}) => {
+    
     return {
         users: users.users, 
         idProject: projects.idProject,
@@ -28,33 +26,30 @@ const mapStateToProps = ({users, projects, tasks}) => {
 }
 
 export default compose(
+    withRouter,
     connect(mapStateToProps, {
         fetchUsers,
-        setTasks,
+        fetchAddTask,
     }),
     withFormik({
-        // mapPropsToValues: (props) => ({
-        //     idProject: props.idProject
-        // }),
-    
-        // validationSchema: projectSchema,
     
         handleSubmit: ( values, {setSubmitting, props}) => {
-            // console.log(values)
+            console.log(values)
             let buttonName = values.buttonName
             if(buttonName === 'create'){
-                // console.log()
-                let postData = values.tasks.map(item => {
+                let postData = {}
+                postData.tasks = values.tasks.map(item => {
                     return reduce(item, (result, value, key) => {
                         if(key !== '_id' && value !== '' && value !== null){
-                            // console.log(key)
                             result[key] = value
                         }
                         return result
                     }, {})
                 })
-                console.log('postdata',postData)
-                props.addTasks(postData).then( (data) => {
+
+                postData.idProject = props.idProject
+
+                props.fetchAddTask(postData).then( data => {
                     setSubmitting(false)
                     if(data.status === 200){
                         props.history.push('/milestones/add')

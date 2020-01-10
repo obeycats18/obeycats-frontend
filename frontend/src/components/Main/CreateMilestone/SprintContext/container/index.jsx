@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import {connect} from 'react-redux'
 
@@ -6,14 +6,14 @@ import SprintContext from '../';
 
 import {fetchUsers} from 'redux/reducers/users'
 import {setTasks} from 'redux/reducers/tasks'
-
-import { useEffect } from 'react';
+import {addSprints, fetchSprints} from 'redux/reducers/milestones'
 
 const ContextContainer = props => {
 
     useEffect( () => {
-        props.setTasks()
-    }, [props.tasks.length])
+        props.setTasks(props.idProject)
+        props.fetchSprints(props.idProject)
+    }, [props.tasks.length, props.sprints.length])
 
 
     return (
@@ -21,4 +21,19 @@ const ContextContainer = props => {
     );
 };
 
-export default connect( ({users, tasks}) => ({users: users.users, tasks: tasks.tasks}), {fetchUsers, setTasks})(ContextContainer);
+export default connect( 
+    ({users, tasks, sprints, projects}) => (
+        {
+            users: users.users, 
+            tasks: tasks.tasks, 
+            sprints: sprints.sprints,
+            idProject: projects.idProject
+        }
+    ), 
+    {
+        fetchUsers, 
+        setTasks, 
+        addSprints, 
+        fetchSprints
+    }
+)(ContextContainer);

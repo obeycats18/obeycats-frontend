@@ -1,37 +1,22 @@
 import React from 'react';
-import Select from 'react-select';
+
+import {Select} from 'antd'
 
 import './style.scss'
 
+const {Option} = Select
+
 const SelectBase = ({ 
     options,
-    classname, 
-    classnameprefix, 
-    value, 
-    onChange, 
-    onFocus, 
-    children, 
-    onBlur, 
-    type, 
-    inputName,
-    placeholderText,
+    defaultValue,
+    handleChange
 }) => {
     return (
-        <div className='select-block'>
-            <Select 
-                options={options} 
-                className={classname}   /*"select"*/ 
-                classNamePrefix={classnameprefix} /*'select'*/
-                value={value}
-                onChange={onChange}
-                onBlur={onBlur}
-                onFocus={onFocus}
-                type={type}
-                name={inputName}
-                placeholder={placeholderText}
-            />
-            {children}
-        </div>
+        <Select defaultValue={defaultValue} onChange={handleChange} >
+            {
+                options.map( (item) => <Option key={item.label} className='dropdown-list' value={item.value}>{item.label}</Option>)
+            }
+        </Select>
     );
 };
 

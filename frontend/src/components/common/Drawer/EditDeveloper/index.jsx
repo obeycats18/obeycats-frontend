@@ -1,12 +1,8 @@
 import React, {useEffect} from 'react';
 
-// import {Select} from 'components/common'
-import { Select } from 'antd';
+import {Select} from 'components/common'
 
 import './style.scss'
-
-const { Option } = Select;
-
 
 const EditStatus = props => {
 
@@ -19,7 +15,7 @@ const EditStatus = props => {
 
     useEffect(() => {
         fetchUsers()
-    }, [users.lenght])
+    }, [fetchUsers, users.lenght])
 
     const options = users
 
@@ -33,11 +29,7 @@ const EditStatus = props => {
                 <p>Исполнитель</p>
                
             </div>
-            <Select defaultValue={developer ? options.forEach(item => item.value === developer ? item.label : 'Выберите испольнителя') : 'Выберите испольнителя'} onChange={handleChange} >
-                {
-                    options.map( (item) => <Option key={item.label} className='dropdown-list' value={item.value}>{item.label}</Option>)
-                }
-            </Select>
+            <Select options={options} defaultValue={developer ? options.forEach(item => item.value === developer ? item.label : 'Выберите испольнителя') : 'Выберите испольнителя'} handleChange={handleChange}/>
         </div>
     );
 };

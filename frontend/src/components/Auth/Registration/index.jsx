@@ -1,8 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 
-import {useState} from 'react'
-
 import {
     Block,
     Button,
@@ -13,26 +11,9 @@ import {
     Select
 } from 'components/common';
 
-
 import 'components/Auth/style.scss'
 
 const RegistrationForm = props => {
-
-    let [selected, setSelected] = useState(null);
-    let [focused, setFocused] = useState(null);
-
-    let onFocus = () => {
-        setFocused(true)
-    }
-
-    let onBlur = () => {
-        setFocused(false)
-    }
-
-    let handleSelectChange = selectedOption => {
-        setSelected(selectedOption)
-        setFieldValue('role', selectedOption.value)
-    };
 
     const{
         setFieldValue,
@@ -41,7 +22,8 @@ const RegistrationForm = props => {
         handleChange,
         handleBlur,
         handleSubmit,
-        isSubmitting
+        isSubmitting,
+        values
     } = props;
 
     const options = [
@@ -51,12 +33,18 @@ const RegistrationForm = props => {
         { value: 'clien', label: 'Клиент' },
     ];
 
+    
+    const handleSelectChange = value => {
+        setFieldValue('role', value)
+      };
+
     return (
         <div className="registration">
             <h3 className='registration-title'>Регистрация</h3>
             <Block classname='registration-block' >
                 <Form onSubmit={handleSubmit} classname='registration-form'>
                     <Item 
+                        value={values.last_name}
                         type='text' 
                         name='last_name' 
                         classname='registration-form__input' 
@@ -77,6 +65,7 @@ const RegistrationForm = props => {
                         } 
                     </Item>
                     <Item 
+                        value={values.first_name}
                         type='text' 
                         name='first_name' 
                         classname='registration-form__input' 
@@ -97,6 +86,7 @@ const RegistrationForm = props => {
                         } 
                     </Item>
                     <Item 
+                        value={values.email}
                         type='email' 
                         name='email' 
                         classname='registration-form__input' 
@@ -118,6 +108,7 @@ const RegistrationForm = props => {
                     </Item>
                         
                     <Item 
+                        value={values.password}
                         type='password' 
                         name='password' 
                         classname='registration-form__input' 
@@ -138,6 +129,7 @@ const RegistrationForm = props => {
                         } 
                     </Item>
                     <Item 
+                        value={values.confirm_password}
                         type='password' 
                         name='confirm_password' 
                         classname='registration-form__input' 
@@ -157,25 +149,7 @@ const RegistrationForm = props => {
                             : errors.confirm_password ? <ErrorMessage text={errors.confirm_password}/> : ''  
                         } 
                     </Item>
-
-                    <Select 
-                        options={options} 
-                        // type='select'
-                        inputName="role"
-                        classname="select" 
-                        classnameprefix='select'
-                        value={selected}
-                        onChange={handleSelectChange}
-                        onBlur = {onBlur}
-                        onFocus = {onFocus}
-                    >
-                        {
-                            !focused
-                                ? '' 
-                                : (selected === null) ?  <ErrorMessage text={'Нужно выбрать роль'}/>: console.log('not error')
-                            
-                        }
-                    </Select>
+                    <Select options={options} defaultValue='Роль' handleChange={handleSelectChange}/>
 
                     <div className="registration-form__button-group">
                         <Checkbox text={["Я прочитал и принимаю условия ", <Link to='#'><u>Пользовательского соглашения</u></Link> ]}/>

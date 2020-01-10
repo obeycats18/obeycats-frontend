@@ -1,12 +1,8 @@
 import React from 'react';
 
-// import {Select} from 'components/common'
-import { Select } from 'antd';
+import {Select} from 'components/common'
 
 import './style.scss'
-
-const { Option } = Select;
-
 
 const EditStatus = props => {
 
@@ -23,7 +19,6 @@ const EditStatus = props => {
 
     const handleChange = value => {
         handleUpdate({status: value})
-        
     }
 
     return (
@@ -32,11 +27,7 @@ const EditStatus = props => {
                 <p>Cтатус</p>
                
             </div>
-            <Select defaultValue={!status ? 'Статус задачи' : status} onChange={handleChange} > 
-                {
-                    options.map( (item) => <Option key={item.label} className='dropdown-list' value={item.value}>{item.label}</Option>)
-                }
-            </Select>
+            <Select options={options} defaultValue={!status ? 'Статус задачи' : status} handleChange={handleChange}/>
         </div>
     );
 };

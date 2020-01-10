@@ -3,7 +3,7 @@ import React from 'react';
 import Sprint from './Sprint'
 import Backlog from './Backlog'
 
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import { DragDropContext } from 'react-beautiful-dnd';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
@@ -12,13 +12,16 @@ const SprintContext = props => {
     const {
         users,
         fetchUsers,
-        tasks
+        tasks,
+        sprints,
+        addSprints,
+        idProject
     } = props
     
     useEffect( () => {
-        setData({sprints: [], backlog: tasks})
-    }, [tasks])
-    
+        setData({sprints: sprints, backlog: tasks})
+    }, [tasks, sprints])
+
     const [store, setData] = useState({
         sprints: [],
         backlog: []
@@ -33,6 +36,7 @@ const SprintContext = props => {
         }
 
     }
+
 
     const reorderBackog = (source, destination) => {
 
@@ -50,7 +54,7 @@ const SprintContext = props => {
         let result = []
         let newSprint = [] 
         store.sprints.forEach(sprint => {
-            if(destination.droppableId === sprint.title){
+            if(destination.droppableId === sprint.name){
                 sprint.tasks.forEach(task => result.push(task))
             }
         })
@@ -58,7 +62,7 @@ const SprintContext = props => {
         result.splice(destination.index, 0, removed);
 
         store.sprints.forEach(sprint => {
-            if(destination.droppableId === sprint.title){
+            if(destination.droppableId === sprint.name){
                 newSprint.push({
                     ...sprint,
                     tasks: [...result]
@@ -73,29 +77,26 @@ const SprintContext = props => {
 
     const move = (list, source, destination) => {
         let tempList = (list.tasks !== undefined) ? list.tasks : list 
-        console.log('temp', tempList)
 
         let startList = tempList.map(item => item)
         let finishList = []
         store.sprints.forEach(sprint => {
-            if(destination.droppableId === sprint.title){
+            if(destination.droppableId === sprint.name){
                 sprint.tasks.forEach(task => finishList.push(task))
             }
         })
         
         startList.splice(source.index, 1)
         finishList.splice(destination.index, 0, tempList[source.index])
-        console.log('start', startList)
-        console.log('finish', finishList)
         
         const newSprint = [] 
         store.sprints.forEach(sprint => {
-            if(destination.droppableId === sprint.title){
+            if(destination.droppableId === sprint.name){
                 newSprint.push({
                     ...sprint,
                     tasks: [...finishList]
                 })
-            }else if( source.droppableId === sprint.title ){
+            }else if( source.droppableId === sprint.name ){
                 newSprint.push({
                     ...sprint,
                     tasks: [...startList]
@@ -112,11 +113,8 @@ const SprintContext = props => {
             setData({sprints: [...newSprint], backlog: store.backlog })
         }  
     }
-
-    console.log(store)
     
     const handleDragEnd = (result) => {
-        console.log(result)
         const {source, destination} = result
 
         if(!destination) return 
@@ -133,15 +131,20 @@ const SprintContext = props => {
         if(source.droppableId === destination.droppableId) {
             if(source.droppableId === 'backlog') reorderBackog(source, destination)
             else reorderSprint(source, destination)
-
         }
-
     }
     
     return (
         <DragDropContext onDragEnd={handleDragEnd}>
             <div className="dnd-sprint-context">
-                <Sprint createSprint={createSprint} storeSprints={store.sprints} users={users} fetchUsers={fetchUsers}/>
+                <Sprint
+                    idProject={idProject}
+                    addSprint={addSprints} 
+                    storeSprints={store.sprints} 
+                    users={users} 
+                    fetchUsers={fetchUsers}
+                    createSprint={createSprint}
+                />
             </div>
             <div className="dnd-bakclog-context">
                 <Backlog backlog={store.backlog} users={users} fetchUsers={fetchUsers}/>

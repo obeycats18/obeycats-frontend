@@ -7,7 +7,7 @@ import Connection from 'hoc/Connection'
 
 const App = props => {
 
-  const {isAuth} = window.localStorage.token || '';  
+  // const {isAuth} = window.localStorage.token || '';  
 
   return (
     <div className="app">

@@ -1,4 +1,4 @@
-import { openNotification } from 'helpers/openNotifcation';
+// import { openNotification } from 'helpers/openNotifcation';
 import axios from 'api/settings'
 // const SET_TOKEN = "SET_TOKEN";
 
