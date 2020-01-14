@@ -11,17 +11,16 @@ import {fetchUsers} from 'redux/reducers/users'
 import {createProject, deleteProject} from 'redux/reducers/projects'
 
 import {projectSchema} from '../validation'
+import { useEffect } from 'react'
 
-class CreateProject extends React.Component {
+const CreateProject = props => {
 
-    componentDidMount(){
-        this.props.fetchUsers()
-    }
-    render() {
-        return (
-            <PopupCreateForm {...this.props}/>
-        )
-    }
+    useEffect(() => {
+        props.fetchUsers()
+    }, [fetchUsers, props.users.lenght])
+    return (
+        <PopupCreateForm {...props}/>
+    )
 }
 
 const mapStateToProps = ({users, projects}) => {
@@ -40,41 +39,38 @@ export default compose(
         deleteProject
     }),
     withFormik({
-        mapPropsToValues: (props) => ({
-            name: '',
-            cost: 0,
-            idProject: props.idProject
-        }),
     
         validationSchema: projectSchema,
     
         handleSubmit: ( values, {setSubmitting, props}) => {
             let buttonName = values.buttonName
             console.log(values)
-            if(buttonName === 'next'){
-                props.createProject(values).then( (status) => {
-                    setSubmitting(false)
-                    if(status === 200){
-                        props.history.push('/tasks/add')
-                    }
-                })
-                
-            }   
-                
-            if(buttonName === 'create'){
-                props.createProject(values).then( (status) => {
-                    setSubmitting(false)
-                    if(status === 200) {
-                        setInterval( () => props.history.push('/'), 4000)
-                    }
-                })
-                
-            }
 
-            if(buttonName === 'cancle'){
-                //todo обратно на главную стр
-                // props.showModal(false);
-            } 
+            switch(buttonName) {
+                case 'next' : 
+                    props.createProject(values).then( (status) => {
+                        setSubmitting(false)
+                        if(status === 200){
+                            props.history.push('/tasks/add')
+                        }
+                    })
+                break
+
+                case 'create' : 
+                    props.createProject(values).then( (status) => {
+                        setSubmitting(false)
+                        if(status === 200) {
+                            setInterval( () => props.history.push('/'), 4000)
+                        }
+                    })
+                break
+
+                case 'cancle' : props.history.push('/')
+                break
+
+                default: props.history.push('/')
+                    
+            }
         }
     })
     

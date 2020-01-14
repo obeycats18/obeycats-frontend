@@ -4,6 +4,8 @@ import classnames from 'classnames'
 import {Link} from 'react-router-dom'
 import {TextArea, Button, Form, Task} from 'components/common';
 
+import {generateNumber} from 'utils/generateNumber'
+
 import './style.scss'
 
 const TaskForm = props => {
@@ -60,23 +62,12 @@ const TaskForm = props => {
         setValue(e.target.value)
     }
 
-    const generateNumber = () => {
-        let number = Math.ceil(Math.random() * 100);
-
-        if(number !== Math.ceil(Math.random() * 100)){
-            return number
-        } else{
-            number = Math.ceil(Math.random() * 100)
-            return number 
-        }    
-    }
-
     const handleKeyPressed = e => {
         let newItems = []
         let task = {
             _id: generateNumber(),
             text: '',
-            status: '',
+            status: 'todo',
             description: '',
             developer: '',
             cost: null,

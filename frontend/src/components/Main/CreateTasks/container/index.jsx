@@ -34,37 +34,37 @@ export default compose(
     withFormik({
     
         handleSubmit: ( values, {setSubmitting, props}) => {
-            console.log(values)
             let buttonName = values.buttonName
-            if(buttonName === 'create'){
-                let postData = {}
-                postData.tasks = values.tasks.map(item => {
-                    return reduce(item, (result, value, key) => {
-                        if(key !== '_id' && value !== '' && value !== null){
-                            result[key] = value
+
+            switch(buttonName) {
+
+                case 'create' : 
+                    let postData = {}
+                    postData.tasks = values.tasks.map(item => {
+                        return reduce(item, (result, value, key) => {
+                            if(key !== '_id' && value !== '' && value !== null){
+                                result[key] = value
+                            }
+                            return result
+                        }, {})
+                    })
+
+                    postData.idProject = props.idProject
+
+                    props.fetchAddTask(postData).then( data => {
+                        setSubmitting(false)
+                        if(data.status === 200){
+                            props.history.push('/milestones/add')
                         }
-                        return result
-                    }, {})
-                })
+                    })
+                break
 
-                postData.idProject = props.idProject
+                case 'cancle' : props.history.push('/')
+                break
 
-                props.fetchAddTask(postData).then( data => {
-                    setSubmitting(false)
-                    if(data.status === 200){
-                        props.history.push('/milestones/add')
-                    }
-                })
+                default: props.history.push('/')
+                    
             }
-           
-            // if(buttonName === 'cancle'){
-            //     props.deleteProject( values.idProject).then( (data) => {
-            //     if(data.status === 200){
-            //         console.log('success')
-            //         setTimeout( () => props.showModal(false), 1000)
-            //         }
-            //     })
-            // }
         }
     })
     

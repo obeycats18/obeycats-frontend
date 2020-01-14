@@ -3,6 +3,7 @@ import {tasksAPI} from 'api/tasksAPI'
 // import { openNotification } from 'helpers/openNotifcation';
 
 let initialState = {
+    idTask: '',
     tasks: [],
     isFetching: false
 }
@@ -15,35 +16,41 @@ const tasksReducer = (state = initialState, action = {}) => {
                 tasks : action.tasks    
             }
         }
-        
-        
+        case "SET_ID_TASK": {
+            return {
+                ...state,
+                idTask : action.id    
+            }
+        }
         default: 
             return state
     }
 }
 
 export const setTasksAction = (tasks) => ({ type: "SET_TASK", tasks }) 
+export const setIdTasksAction = (id) => ({ type: "SET_ID_TASK", id }) 
 
 export const setTasks = idProject => {
     return dispatch => {
         return tasksAPI.getTaskById(idProject).then( (data) => {   
             if(data.status === 200){
-                let tasks = []
-                tasks = [...data.tasks.set.map(item => item.tasks)]
-                // console.log(...tasks)
-                // data.set.forEach(item => {
-                //     item.map(item => tasks.push([]))
-                // })
-                dispatch(setTasksAction (...tasks));
+                dispatch(setTasksAction (data.tasks));
+                dispatch(setIdTasksAction (data.idTask));
             }
         })
     }  
 }
 
+export const changeTask = (tasks) => {
+    return dispatch => {
+        dispatch(setTasksAction(tasks));
+    }
+}
+
 export const fetchAddTask = value => {
     return dispatch => {
         return tasksAPI.addTasks(value)
-            .then( data => data )
+            .then( data => data)
     }
 } 
 

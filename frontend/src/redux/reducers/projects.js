@@ -14,7 +14,7 @@ const UPDATE_PROJECTS_ARRAY = "UPDATE_PROJECTS_ARRAY";
 
 
 let initialState = {
-    idProject: window.localStorage.getItem('idProject') || '',
+    idProject: window.localStorage.getItem('idProject'),
     projects: [],
     project: [],
     milestones: [],
@@ -120,7 +120,7 @@ export let createProject = (values) => {
             if(data.status === 200){
                 openNotification('success', 'Успешное создание', 'Проект успешно создан')
                 window.localStorage.setItem('idProject', data.id)
-                // dispatch(setProjectId(window.localStorage.getItem('idProject')))
+                dispatch(setProjectId(window.localStorage.getItem('idProject')))
 
             }
             if(data.status === 409){  

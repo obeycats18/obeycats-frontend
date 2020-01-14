@@ -2,6 +2,7 @@ import React from 'react';
 
 import {Task} from 'components/common'
 
+import {Spin, Icon} from 'antd'
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 
 import './style.scss'
@@ -11,17 +12,21 @@ const Backlog = props => {
     const {
         backlog,
         users,
-        fetchUsers
+        fetchUsers,
+        idTask,
+        submmit
     } = props
 
     let tasksLength = backlog.length
+
+    // console.log(submit)
 
     return (
         <div className='backlog-wrapper'>
             <h3 className='backlog-title'>Бэклог</h3>
             
             <div className="dnd-backlog-droppable">
-                <Droppable droppableId='backlog'>
+                <Droppable droppableId={idTask}>
                     {provided => (
                         <div 
                             ref={provided.innerRef} 
@@ -38,7 +43,12 @@ const Backlog = props => {
                                                 {...provided.draggableProps}
                                                 {...provided.dragHandleProps}
                                             >
-                                                <Task users={users} fetchUsers={fetchUsers} key={item._id} task={item} style={tasksLength > 1 ? {borderBottom: '1px solid  #597dff'} : {}}  type='backlog-task'/>
+                                                {
+                                                    (submmit)
+                                                        ? <div className='spin-block' style={{marginTop: 20}}><Spin indicator={<Icon type="loading" style={{ fontSize: 24 }} spin />}/></div>
+                                                        : <Task users={users} fetchUsers={fetchUsers} key={item._id} task={item} style={tasksLength > 1 ? {borderBottom: '1px solid  #597dff'} : {}}  type='backlog-task'/>
+                                                }
+                                                
                                             </div>
                                         )} 
                                     </Draggable>

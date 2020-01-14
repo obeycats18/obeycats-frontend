@@ -5,13 +5,16 @@ import {Task, Item} from 'components/common'
 import {Icon, Empty, Spin} from 'antd'
 import {Link} from 'react-router-dom'
 
+import {generateNumber} from 'utils/generateNumber'
+
 import classnames from 'classnames'
 
-import './style.scss'
 import { useState } from 'react';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 import { useEffect } from 'react';
 import { addSprints } from '../../../../../redux/reducers/milestones';
+
+import './style.scss'
 
 const Sprint = props => {
 
@@ -20,10 +23,11 @@ const Sprint = props => {
         fetchUsers,
         storeSprints,
         createSprint,
-        idProject
+        idProject,
+        addSprints,
+        submmit
     } = props
 
-    // const [isSubmitting, setSubmitting] = useState(false)
     const [visible, setVisible] = useState(false)
     const [value, setValue] = useState('')
     const [isSubmmit, setSubmitting] = useState(false)
@@ -67,32 +71,18 @@ const Sprint = props => {
         setValue(e.target.value)
     }
 
-    const generateNumber = () => {
-        let number = Math.ceil(Math.random() * 100);
-
-        if(number !== Math.ceil(Math.random() * 100)){
-            return number
-        } else{
-            number = Math.ceil(Math.random() * 100)
-            return number 
-        }    
-    }
-
     const handleEnterKey = e => {
         if(e.key === "Enter" && (e.target.value.trim() !== "" || e.target.value.length.trim() !== 0)){
 
             let sprint = {
-                _id: generateNumber(),
                 name: '',
                 tasks: []
             }
-
             sprint.name = e.target.value
             
             setSubmitting(true)
             addSprints({idProject: idProject, ...sprint}).then(() => {
                 setSubmitting(false)
-                createSprint(sprint)
             })
             setValue('')
         }
@@ -103,12 +93,12 @@ const Sprint = props => {
             return sprints.items.map(sprint => {
                 let tasksLength = sprint.tasks.length
                 return (
-                    <div key={sprint.name} className='sprint-block'>
+                    <div key={sprint._id} className='sprint-block'>
                         <div className="sprint-title">
                             <p>{sprint.name}</p>
                         </div>
                         <div className="sprint-content">
-                            <Droppable key={sprint._id} droppableId={`${sprint.name}`}>
+                            <Droppable key={sprint._id} droppableId={`${sprint._id}`}>
                                 {provided => (
                                     <div ref={provided.innerRef} {...provided.droppableProps} className="sprint-tasks">
                                         {sprint.tasks.map((task, index) => {
@@ -121,7 +111,12 @@ const Sprint = props => {
                                                             {...provided.draggableProps}
                                                             {...provided.dragHandleProps}
                                                         >
-                                                            <Task editTask={editTask} users={users} fetchUsers={fetchUsers} key={task._id} task={task} style={(tasksLength > 1 && index < tasksLength - 1) ? {borderBottom: '1px solid rgba(70, 110, 255, 0.1)'} : {}} type='sprint-task'/>
+                                                            {
+                                                                (submmit)
+                                                                    ? <div className='spin-block' style={{marginTop: 20}}><Spin indicator={<Icon type="loading" style={{ fontSize: 24 }} spin />}/></div>
+                                                                    :  <Task editTask={editTask} users={users} fetchUsers={fetchUsers} key={task._id} task={task} style={(tasksLength > 1 && index < tasksLength - 1) ? {borderBottom: '1px solid rgba(70, 110, 255, 0.1)'} : {}} type='sprint-task'/>
+                                                            }
+                                                           
                                                         </div>
                                                     )} 
                                                 </Draggable>

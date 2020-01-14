@@ -1,5 +1,7 @@
 import {milestoneAPI} from 'api/milestonesAPI'
 
+import {setTasksAction} from './tasks'
+
 import { openNotification } from 'helpers/openNotifcation';
 
 let initialState = {
@@ -32,21 +34,37 @@ export const fetchSprints = (idProject) => {
     }  
 }
 
+export const changeSprint = (sprint) => {
+    return dispatch => {
+        dispatch(setSprints(sprint) );
+    }
+}
+
 export const addSprints = value => {
-    
-    console.log('here')
-    return milestoneAPI.addMilestone(value).then( (data) => {   
-        if(data.status === 200){
-            openNotification('success', 'Успешно', 'Sprint успешно создан')
-            // dispatch(setSprints( data.milestones ) );
-        }
-    })
-    .catch( err => {console.log(err);
-    } )
-    
-    // return dispatch => {
-       
-    // }  
+    return dispatch => {
+        return milestoneAPI.addMilestone(value).then( (data) => {   
+            if(data.status === 200){
+                openNotification('success', 'Успешно', 'Sprint успешно создан')
+                dispatch(setSprints( data.milestones.milestones) );
+
+            }
+        })
+        .catch( err => {console.log(err);
+        } )
+    }
+}
+
+export const editSprints = value => {
+    return dispatch => {
+        return milestoneAPI.editMilestone(value).then( (data) => {
+            console.log(data.milestones.milestones)
+            dispatch(setSprints( data.milestones.milestones) );
+            dispatch(setTasksAction( data.tasks.tasks) );
+
+        })
+        .catch( err => {console.log(err);
+        } )
+    }
 }
 
 export default sprintsReducer
