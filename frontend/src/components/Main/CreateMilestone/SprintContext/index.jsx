@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Sprint from './Sprint'
 import Backlog from './Backlog'
 
+import {Spin, Icon} from 'antd'
 import { DragDropContext } from 'react-beautiful-dnd';
 
 const SprintContext = props => {
@@ -19,7 +20,8 @@ const SprintContext = props => {
         changeSprint,
         changeTask,
         setTasks,
-        fetchSprints
+        fetchSprints,
+        isFetching
     } = props
     
 
@@ -62,7 +64,7 @@ const SprintContext = props => {
                 newSprint.push(sprint)
             }
         })
-
+                                                 
         changeSprint([...newSprint])
     }
 
@@ -104,15 +106,20 @@ const SprintContext = props => {
                     submmit={submmiting}
                 />
             </div>
-            <div className="dnd-bakclog-context">
-                <Backlog 
-                    backlog={tasks} 
-                    users={users} 
-                    fetchUsers={fetchUsers}
-                    idTask={idTask}
-                    submmit={submmiting}
-                />
-            </div>
+            {
+                (isFetching)
+                    ?<div className='spin-block' style={{marginTop: 20}}><Spin indicator={<Icon type="loading" style={{ fontSize: 24 }} spin />}/></div>
+                    :<div className="dnd-bakclog-context">
+                        <Backlog 
+                            backlog={tasks} 
+                            users={users} 
+                            fetchUsers={fetchUsers}
+                            idTask={idTask}
+                            submmit={submmiting}
+                        />
+                    </div>
+            }
+            
         </DragDropContext>
     );
 };

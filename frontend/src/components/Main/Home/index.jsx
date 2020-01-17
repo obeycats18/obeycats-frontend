@@ -5,8 +5,7 @@ import { Spin, Icon, Empty } from 'antd';
 
 import './style.scss'
 import ProjectItem from './ProjectItem';
-import CreateProject from './CreateProject'
-
+import {CreateProject} from 'components/Protected'
 
 const Home = props => {
 
@@ -21,7 +20,7 @@ const Home = props => {
                         <div className="content-header">
                             <h3>Мои проекты</h3>
                             <div className="home-button">
-                                <CreateProject />
+                                <CreateProject isEmpty={!data.length}/>
                             </div>
                         </div>
                         <div className="home">
@@ -32,12 +31,7 @@ const Home = props => {
                             
                         </div>
                     </Content>
-                    : <div className='empty-block'>
-                        <Empty description='Проектов не существует'/>
-                        <div className="home-button">
-                            <CreateProject type='empty'/>
-                        </div>
-                    </div>
+                    :  <CreateProject isEmpty={!data.length}/>
                 
             )
     );

@@ -3,11 +3,15 @@ import { withFormik } from 'formik';
 import {LoginForm} from '../index'
 
 import {setData} from 'redux/reducers/auth'
-import store from 'redux/store'
+
+import {compose} from 'redux'
+import {connect} from 'react-redux'
 
 import {loginSchema} from 'components/Auth/validation'
 
-export default withFormik({
+export default compose(
+    connect(null, {setData}),
+    withFormik({
 
     mapPropsToValues: () => ({
         email: '',
@@ -18,7 +22,6 @@ export default withFormik({
     validationSchema: loginSchema,
 
     handleSubmit: ( values, {setSubmitting, props}) => {        
-        store.dispatch( setData(values, props.history) )
-            .then(() => {setSubmitting(false)})
+        props.setData(values, props.history).then(() => setSubmitting(false) )
     }
-}) (LoginForm)
+}) )(LoginForm)

@@ -5,15 +5,11 @@ import {Task, Item} from 'components/common'
 import {Icon, Empty, Spin} from 'antd'
 import {Link} from 'react-router-dom'
 
-import {generateNumber} from 'utils/generateNumber'
-
 import classnames from 'classnames'
 
 import { useState } from 'react';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 import { useEffect } from 'react';
-import { addSprints } from '../../../../../redux/reducers/milestones';
-
 import './style.scss'
 
 const Sprint = props => {
@@ -111,12 +107,8 @@ const Sprint = props => {
                                                             {...provided.draggableProps}
                                                             {...provided.dragHandleProps}
                                                         >
-                                                            {
-                                                                (submmit)
-                                                                    ? <div className='spin-block' style={{marginTop: 20}}><Spin indicator={<Icon type="loading" style={{ fontSize: 24 }} spin />}/></div>
-                                                                    :  <Task editTask={editTask} users={users} fetchUsers={fetchUsers} key={task._id} task={task} style={(tasksLength > 1 && index < tasksLength - 1) ? {borderBottom: '1px solid rgba(70, 110, 255, 0.1)'} : {}} type='sprint-task'/>
-                                                            }
-                                                           
+                                                            <Task editTask={editTask} users={users} fetchUsers={fetchUsers} key={task._id} task={task} style={(tasksLength > 1 && index < tasksLength - 1) ? {borderBottom: '1px solid rgba(70, 110, 255, 0.1)'} : {}} type='sprint-task'/>
+          
                                                         </div>
                                                     )} 
                                                 </Draggable>

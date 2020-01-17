@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import {connect} from 'react-redux'
 
@@ -9,7 +9,6 @@ import {setTasks, changeTask} from 'redux/reducers/tasks'
 import {addSprints, fetchSprints, editSprints, changeSprint} from 'redux/reducers/milestones'
 
 const ContextContainer = props => {
-
 
     return (
         <SprintContext {...props}/>
@@ -23,7 +22,8 @@ export default connect(
             tasks: tasks.tasks, 
             sprints: sprints.sprints,
             idProject: projects.idProject,
-            idTask: tasks.idTask
+            idTask: tasks.idTask,
+            isFetching: sprints.isFetching
         }
     ), 
     {

@@ -22,7 +22,6 @@ export const LoginForm = props => {
         setFieldValue('rememberMe', selected);
     }
 
-    
     const{
         setFieldValue,
         errors,

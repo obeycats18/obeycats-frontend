@@ -27,10 +27,10 @@ const RegistrationForm = props => {
     } = props;
 
     const options = [
-        { value: 'projectManager', label: 'Project Manager' },
-        { value: 'teamLead', label: 'Team Lead' },
+        { value: 'project_manager', label: 'Project Manager' },
+        { value: 'team_lead', label: 'Team Lead' },
         { value: 'developer', label: 'Разработчик' },
-        { value: 'clien', label: 'Клиент' },
+        { value: 'client', label: 'Клиент' },
     ];
 
     

@@ -1,5 +1,7 @@
 import {userAPI} from 'api/userAPI'
+
 import { openNotification } from 'helpers/openNotifcation';
+
 import {reduce} from 'lodash'
 
 const SET_TOKEN = "SET_TOKEN";
@@ -17,6 +19,7 @@ const authReducer = (state = initialState, action = {}) => {
                 token: action.token,
                 isAuth: window.localStorage.isAuth
             }
+        
         default: 
             return state
     }
@@ -24,12 +27,12 @@ const authReducer = (state = initialState, action = {}) => {
 
 export const setToken = (token) => ({ type: SET_TOKEN, token })
 
+
 export let setData = (values, history) => {
     return dispatch => {
         return userAPI.login( values ).then( (data) => {   
             if(data.status === 201){
                 window.localStorage.setItem('token', data.token)
-                window.localStorage.setItem('isAuth', true)
                 dispatch(setToken (window.localStorage.token) );
                 history.push('/')
             } if(data.status === 400) {

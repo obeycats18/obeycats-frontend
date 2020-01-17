@@ -1,9 +1,12 @@
 import {userAPI} from 'api/userAPI'
+import { openNotification } from 'helpers/openNotifcation';
 
 const SET_USERS = "SET_USERS";
+const SET_CREDENTIALS = "SET_CREDENTIALS";
 
 let initialState = {
-    users: []
+    users: [],
+    credentials: null
 }
 
 const usersReducer = (state = initialState, action = {}) => {
@@ -18,21 +21,39 @@ const usersReducer = (state = initialState, action = {}) => {
                     }
                 } )
             }
+        case SET_CREDENTIALS : 
+            return {
+                ...state,
+                credentials: action.credentials
+            }
         default: 
             return state
     }
 }
 
 export const setUsers = (users) => ({ type: SET_USERS, users })
+export const setCredentialsAC = (credentials) => ({ type: SET_CREDENTIALS, credentials })
 
-export let fetchUsers = () => {
+export const setCredentials = () => {
+    return dispatch => {
+        return userAPI.getMe().then( (data) => {   
+            console.log(data.user)
+            if(data.status === 200){
+                dispatch(setCredentialsAC ( data.user ) );
+            }
+        })
+        .catch( err => {console.log(err);
+        } )
+    }  
+}
+
+export const fetchUsers = () => {
     return dispatch => {
         return userAPI.getUsers( ).then( (data) => {   
             if(data.status === 200){
-                console.log(data)
                 dispatch(setUsers ( data.users ) );
             } if(data.status === 404) {
-                dispatch(setUsers ( { value: '', message: 'Пользователей не найдено!' } ) );
+                openNotification('error', 'Пользователь не найден', 'Проверте правильность введенных данных')
             }
         })
         .catch( err => {console.log(err);

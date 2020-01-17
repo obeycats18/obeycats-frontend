@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
+import {connect} from 'react-redux'
 import { Switch, Route } from 'react-router-dom';
 
 import {HeaderCommon} from 'components/common';
@@ -9,7 +10,6 @@ import CreateProject from './CreateProject/container'
 import CreateTasks from './CreateTasks/container'
 import CreateMilestone from './CreateMilestone/index'
 
-
 import { Layout } from 'antd';
 
 import {Sidebar} from 'components/common';
@@ -18,7 +18,7 @@ import './style.scss'
 
 const { Sider, Content } = Layout;
 
-const Main = () => {
+const Main = props => {
 
     return (
 

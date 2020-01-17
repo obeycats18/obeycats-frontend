@@ -22,6 +22,12 @@ const tasksReducer = (state = initialState, action = {}) => {
                 idTask : action.id    
             }
         }
+        case "SET_FETCHING": {
+            return {
+                ...state,
+                isFetching : action.isFetching    
+            }
+        }
         default: 
             return state
     }
@@ -29,13 +35,17 @@ const tasksReducer = (state = initialState, action = {}) => {
 
 export const setTasksAction = (tasks) => ({ type: "SET_TASK", tasks }) 
 export const setIdTasksAction = (id) => ({ type: "SET_ID_TASK", id }) 
+export const setFetching = (isFetching) => ({ type: "SET_FETCHING", isFetching }) 
 
 export const setTasks = idProject => {
     return dispatch => {
+        dispatch(setFetching(true))
         return tasksAPI.getTaskById(idProject).then( (data) => {   
             if(data.status === 200){
                 dispatch(setTasksAction (data.tasks));
                 dispatch(setIdTasksAction (data.idTask));
+                dispatch(setFetching(false))
+
             }
         })
     }  
