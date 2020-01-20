@@ -80,15 +80,9 @@ export let getProject = (id) => {
         return projectAPI.getProject(id).then( (data) => {
             
             dispatch(setProject(data.project));
-            if(data.project.milestones === undefined){
-                let milestones = {
-                    milestones: []
-                }
-                dispatch(setMilestones(milestones));
-            }else{
-                dispatch(setMilestones(data.project.milestones));
+            if(data.project.milestones){
+                dispatch(setMilestones(data.project.milestones.milestones));
             }
-
             dispatch(setFetchingStatus(false))
         })
         
@@ -136,29 +130,15 @@ export let createProject = (values) => {
     
 }
 
-// export let createMilestone = (values) => {
-//     return dispatch => {
-//         return projectAPI.addMilestone(values).then( (data) => {   
-//             if(data.status === 200){
-//                 projectAPI.saveProject( {idProject: values.idProject, idMilestone: data.id} ).then( (data) => {   
-//                     if(data.status === 200){
-//                         console.log(data.message);
-//                     }
-//                 })
-//                 .catch( err => {                  
-//                     console.log(err);
-//                 } )
-//             }
-//             if(data.status === 409){
-//                 openNotification('error', 'Такой этап уже существует', 'Введите другое название')
-//             }
-
-//             return data
-//         })
-//         .catch( err => {console.log(err);
-//         } )
-//     } 
-// }
+export const editProject = (values) => {
+    return dispatch => {
+        return projectAPI.editProject(values).then( data => {
+            if(data.status === 200) {
+                dispatch(setProject(data.project));
+            }
+        })
+    }
+}
 
 export let deleteProject = (id) => {
     return dispatch => {

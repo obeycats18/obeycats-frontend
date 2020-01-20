@@ -8,7 +8,7 @@ import Home from './Home/container';
 import Project from './Project/containers'
 import CreateProject from './CreateProject/container'
 import CreateTasks from './CreateTasks/container'
-import CreateMilestone from './CreateMilestone/index'
+import CreateMilestone from './CreateMilestone/container'
 
 import { Layout } from 'antd';
 

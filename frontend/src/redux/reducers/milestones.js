@@ -6,6 +6,7 @@ import { openNotification } from 'helpers/openNotifcation';
 
 let initialState = {
     sprints: [],
+    idMilestones: '',
     isFetching: false
 }
 
@@ -21,6 +22,11 @@ const sprintsReducer = (state = initialState, action = {}) => {
                 ...state,
                 isFetching: action.isFetching
             }
+        case 'SET_ID_SPRINTS' : 
+            return {
+                ...state,
+                idMilestones: action.idMilestone
+            }
         default: 
             return state
     }
@@ -28,6 +34,8 @@ const sprintsReducer = (state = initialState, action = {}) => {
 
 export const setFetching = (isFetching) => ({ type: "SET_FETCHING", isFetching }) 
 export const setSprints = (sprints) => ({ type: 'SET_SPRINTS', sprints })
+export const setIdMilestones = (idMilestone) => ({ type: 'SET_ID_SPRINTS', idMilestone })
+
 
 export const fetchSprints = (idProject) => {
     return dispatch => {
@@ -35,6 +43,7 @@ export const fetchSprints = (idProject) => {
         return milestoneAPI.getMilestones(idProject).then( data => {   
             if(data.status === 200){
                 dispatch(setSprints( data.milestones.milestones ) );
+                dispatch(setIdMilestones(data.milestones._id))
                 // dispatch(setFetching(false))
             }
         })

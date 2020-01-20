@@ -13,8 +13,7 @@ const Backlog = props => {
         backlog,
         users,
         fetchUsers,
-        idTask,
-        submmit
+        idTask
     } = props
 
     let tasksLength = backlog.length

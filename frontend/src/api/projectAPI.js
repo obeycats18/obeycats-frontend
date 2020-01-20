@@ -15,7 +15,7 @@ export let projectAPI = {
         return axios(window.localStorage.getItem('token')).post('/milestone/add', values).then(response => response.data)
     },
 
-    saveProject: ( values ) => {
+    editProject: ( values ) => {
         return axios(window.localStorage.getItem('token')).post('/projects/edit', values).then(response => response.data)
     },
 

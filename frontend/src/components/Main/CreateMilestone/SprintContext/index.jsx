@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 import Sprint from './Sprint'
 import Backlog from './Backlog'
 
 import {Spin, Icon} from 'antd'
-import { DragDropContext } from 'react-beautiful-dnd';
+
+import {Button, Form} from 'components/common';
+
 
 const SprintContext = props => {
 
@@ -21,7 +24,8 @@ const SprintContext = props => {
         changeTask,
         setTasks,
         fetchSprints,
-        isFetching
+        isFetching,
+        handleSubmit
     } = props
     
 
@@ -95,32 +99,38 @@ const SprintContext = props => {
     }
     
     return (
-        <DragDropContext onDragEnd={handleDragEnd}>
-            <div className="dnd-sprint-context">
-                <Sprint
-                    idProject={idProject}
-                    addSprints={addSprints} 
-                    storeSprints={sprints} 
+        <Form onSubmit={handleSubmit}>
+            <DragDropContext onDragEnd={handleDragEnd}>
+                <div className="dnd-sprint-context">
+                    <Sprint
+                        idProject={idProject}
+                        addSprints={addSprints} 
+                        storeSprints={sprints} 
+                        users={users} 
+                        fetchUsers={fetchUsers}
+                        submmit={submmiting}
+                    />
+                </div>
+                <Backlog 
+                    backlog={tasks} 
                     users={users} 
                     fetchUsers={fetchUsers}
+                    idTask={idTask}
                     submmit={submmiting}
                 />
+                {/* {
+                    (isFetching)
+                        ?<div className='spin-block' style={{marginTop: 20}}><Spin indicator={<Icon type="loading" style={{ fontSize: 24 }} spin />}/></div>
+                        :<div className="dnd-bakclog-context">
+                        
+                        </div>
+                } */}
+                
+            </DragDropContext>
+            <div className="button-group">
+                <Button classname='confirm-button' typeButton='ok' text='Завершить' dataName='create'/>
             </div>
-            {
-                (isFetching)
-                    ?<div className='spin-block' style={{marginTop: 20}}><Spin indicator={<Icon type="loading" style={{ fontSize: 24 }} spin />}/></div>
-                    :<div className="dnd-bakclog-context">
-                        <Backlog 
-                            backlog={tasks} 
-                            users={users} 
-                            fetchUsers={fetchUsers}
-                            idTask={idTask}
-                            submmit={submmiting}
-                        />
-                    </div>
-            }
-            
-        </DragDropContext>
+        </Form>
     );
 };
 

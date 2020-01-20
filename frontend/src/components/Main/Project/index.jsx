@@ -1,14 +1,14 @@
 import React from 'react';
 
-import './style.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faHryvnia} from '@fortawesome/free-solid-svg-icons'
 
 import { Spin, Icon } from 'antd';
 
-import Countdown, {zeroPad} from 'react-countdown-now';
-
+import Timer from './Timer'
 import {Tabs, Progress} from 'components/common'
+
+import './style.scss'
 
 const ProjectPage = props => {
 
@@ -18,32 +18,6 @@ const ProjectPage = props => {
         isFetching
     } = props
     let percent = project.procentComplete; 
-
-    const deadline = new Date(project.dateToFinish);
-
-    const renderer = ({ hours, days, minutes }) => {
-        
-        return (
-            <div className='timer-block'>
-                <div className='timer-block__wrapper'>
-                    <div className='timer-block__day'>{zeroPad(days)} </div> 
-                    <span className='title'>дней</span>
-                </div>
-                <div className="seperator">:</div>
-                <div className='timer-block__wrapper'>
-                    <div className='timer-block__hours'>{zeroPad(hours)}  </div>
-                    <span className='title'>часов</span>
-                </div>
-                <div className="seperator">:</div>
-                <div className='timer-block__wrapper'>
-                    <div className='timer-block__hours'>{zeroPad(minutes)}  </div>
-                    <span className='title'>минут</span>
-                </div>
-            </div>
-        )
-        
-      };
-
     return (
         (isFetching) 
             ? <div className='fetching-block'><Spin indicator={<Icon type="loading" style={{ fontSize: 36 }} spin />}/></div>
@@ -63,14 +37,7 @@ const ProjectPage = props => {
                                 <h4>Цена проекта</h4>
                                 <span className='cost-text'>{project.cost}<FontAwesomeIcon className={"hryvnia-icon"} icon={faHryvnia}/> </span>
                             </div>
-                            <div className="project-wrapper__block timer">
-                                <h4>До сдачи проекта</h4>
-                                <Countdown
-                                    date={deadline}
-                                    renderer={renderer}
-                                />
-                                
-                            </div>
+                            <Timer project={project}/>
                         </div>
                     </div>
                     <h3>Этапы разработки</h3>
