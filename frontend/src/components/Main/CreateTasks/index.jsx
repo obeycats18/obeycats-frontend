@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import classnames from 'classnames'
 
 import {Link} from 'react-router-dom'
-import {TextArea, Button, Form, Task} from 'components/common';
+import {TextArea, Button, Form, Task, Content} from 'components/common';
 
 import {generateNumber} from 'utils/generateNumber'
 
@@ -104,7 +104,7 @@ const TaskForm = props => {
 
 
     return (
-       <div className="create-block create-tasks-block">
+       <Content type='create-block' classname="create-tasks-block">
             <h3>Бэклог</h3>
             <div className='create-task-wrapper'>
                 <span className='description'>Добавление задач в бэклог</span>
@@ -124,7 +124,7 @@ const TaskForm = props => {
                     </div>
                 </Form>
             </div>
-       </div>
+       </Content>
     );
 };
 

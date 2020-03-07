@@ -11,9 +11,6 @@ export {default as Select} from './Select'
 export {default as Task} from './Task'
 export {default as Drawer} from './Drawer'
 
-
-export {default as HeaderCommon} from './Header'
-export {default as Sidebar} from './Sidebar'
 export {default as Content} from './Content'
 
 export {default as Tabs} from './Tabs'

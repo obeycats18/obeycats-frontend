@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Task, Item} from 'components/common'
+import {Task, Item, Button} from 'components/common'
 
 import {Icon, Empty, Spin} from 'antd'
 import {Link} from 'react-router-dom'
@@ -67,21 +67,19 @@ const Sprint = props => {
         setValue(e.target.value)
     }
 
-    const handleEnterKey = e => {
-        if(e.key === "Enter" && (e.target.value.trim() !== "" || e.target.value.length.trim() !== 0)){
+    const createSprintButton = e => {
 
-            let sprint = {
-                name: '',
-                tasks: []
-            }
-            sprint.name = e.target.value
-            
-            setSubmitting(true)
-            addSprints({idProject: idProject, ...sprint}).then(() => {
-                setSubmitting(false)
-            })
-            setValue('')
+        let sprint = {
+            name: '',
+            tasks: []
         }
+        sprint.name = value
+        
+        setSubmitting(true)
+        addSprints({idProject: idProject, ...sprint}).then(() => {
+            setSubmitting(false)
+        })
+        setValue('')
     }
 
     const renderSprint = () => {
@@ -153,14 +151,19 @@ const Sprint = props => {
             
             <div className="create-sprint">
                 <Link onClick={handleClick} to='#' className="create-sprint-link">Создать спринт<Icon style={{marginLeft: 15 }} type="plus" /></Link>
-                <Item 
-                    type='text' 
-                    classname={classnames('popup-create-form-input sprint-input', {visible})} 
-                    placeholder='Название спринта'
-                    keyAction={handleEnterKey}
-                    value={value}
-                    onChange={handleChange}
-                />
+                <div className={classnames("sprint-input-block", {visible})}>
+                    <Item 
+                        type='text' 
+                        classname={classnames('popup-create-form-input sprint-input')} 
+                        placeholder='Название спринта'
+                        // keyAction={handleEnterKey}
+                        value={value}
+                        onChange={handleChange}
+                    />
+                    <div className="button-group">
+                        <Button classname='confirm-button' type="button" typeButton='ok' text='Создать' handleClick={createSprintButton}/>
+                    </div>
+                </div>
             </div>
         </div>
     );

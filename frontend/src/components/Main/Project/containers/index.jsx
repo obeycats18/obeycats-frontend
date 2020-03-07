@@ -20,16 +20,15 @@ class ProjectContainer extends Component {
     render() {
         return (
             <Project {...this.props}/>
-            // isFetching={this.props.isFetching} project={this.props.project}
         );
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({projects}) => {
     return {
-        isFetching: state.projects.isFetching,
-        project: state.projects.project,
-        milestones: state.projects.milestones
+        isFetching: projects.isFetching,
+        project: projects.project,
+        milestones: projects.milestones
     }
 }
 

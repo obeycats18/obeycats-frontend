@@ -7,8 +7,14 @@ import SprintContext from '../';
 import {fetchUsers} from 'redux/reducers/users'
 import {setTasks, changeTask} from 'redux/reducers/tasks'
 import {addSprints, fetchSprints, editSprints, changeSprint} from 'redux/reducers/milestones'
+import { useEffect } from 'react';
 
 const ContextContainer = props => {
+
+    useEffect ( () => {
+        props.fetchSprints(props.idProject)
+        props.setTasks(props.idProject)
+    }, [props.sprints.length, props.tasks.length])
 
     return (
         <SprintContext {...props}/>
@@ -23,7 +29,8 @@ export default connect(
             sprints: sprints.sprints,
             idProject: projects.idProject,
             idTask: tasks.idTask,
-            isFetching: sprints.isFetching
+            isSprintFetching: sprints.isFetching,
+            isTasksFetching: tasks.isFetching
         }
     ), 
     {

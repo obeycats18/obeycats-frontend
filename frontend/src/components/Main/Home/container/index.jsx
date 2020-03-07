@@ -3,9 +3,9 @@ import Home from '../index';
 
 import {connect} from 'react-redux'
 import {compose} from 'redux'
-import {getProjects} from 'redux/reducers/projects'
 import { withRouter } from 'react-router';
-// import Connection from 'hoc/Connection'
+
+import {getProjects} from 'redux/reducers/projects'
 
 
 class HomeContainer extends React.Component{
@@ -30,5 +30,4 @@ const mapStateToProps = (state) => {
 export default compose(
     withRouter,
     connect(mapStateToProps, {getProjects}),
-    // Connection
-    )(HomeContainer);
+)(HomeContainer);

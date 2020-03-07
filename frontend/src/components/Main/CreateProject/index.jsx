@@ -6,6 +6,7 @@ import {
     Item,
     ErrorMessage,
     Button,
+    Content
 } from 'components/common'
 
 import { DatePicker, Select} from 'antd';
@@ -46,7 +47,7 @@ const PopupCreate = props => {
     }
 
     return (
-        <div className='create-block popup-create'>
+        <Content type='create-block' classname="popup-create">
             <h3>Cоздание проекта</h3>
             <div className="popup-create-wrapper">
                 <div className="popup-create-left">
@@ -152,7 +153,7 @@ const PopupCreate = props => {
                     </div>
                 </div>
             </div>
-        </div>
+        </Content>
     );
 };
 

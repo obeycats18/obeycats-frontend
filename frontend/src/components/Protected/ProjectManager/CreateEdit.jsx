@@ -20,12 +20,10 @@ const Component = (props) => {
         setCredentials()
     }, [])
 
-    let role = {}
+    let role = ""
 
     if(credentials){
-        role = {
-            project_manager: credentials.role.name
-        }
+        role = credentials.role.name
     }
     
 

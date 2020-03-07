@@ -1,0 +1,29 @@
+@import 'src/components/core/advanced';
+
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    transition: all .25s ease;
+    margin-right: 15px;
+    &-menu{
+        transition: all .25s ease;
+        padding: 66px 25px !important;
+        height: 100%;
+        &-item{
+            &-link{
+                &:hover{
+                    color: $main_color;
+                }
+                span{
+                    padding-left: 15px;     
+                }
+            }
+        }
+    }
+}
+
+.ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left{
+    border-right: none!important;
+}

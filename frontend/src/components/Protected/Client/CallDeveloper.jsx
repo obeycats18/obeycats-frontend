@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import {connect} from 'react-redux'
 
 import { CredentialProvider } from "react-rbac-guard";
-import {ProjectNanager} from 'hoc/RBAC/Guards' 
+import {Client} from 'hoc/RBAC/Guards' 
 
 import {setCredentials} from 'redux/reducers/users'
 
@@ -20,20 +20,18 @@ const Component = (props) => {
         setCredentials()
     }, [])
 
-    let role = {}
+    let role = ""
 
     if(credentials){
-        role = {
-            client: credentials.role.name
-        }
+        role = credentials.role.name
     }
     
 
     return (
         <CredentialProvider value={role || {}}>
-            <ProjectNanager>
+            <Client>
                 <Button text='Связаться с разработчиком' classname='button-contact'></Button>
-            </ProjectNanager>
+            </Client>
         </CredentialProvider>
         
     )

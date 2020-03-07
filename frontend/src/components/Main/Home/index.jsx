@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Content} from 'components/common'
-import { Spin, Icon, Empty } from 'antd';
+import { Spin, Icon } from 'antd';
 
 import './style.scss'
 import ProjectItem from './ProjectItem';

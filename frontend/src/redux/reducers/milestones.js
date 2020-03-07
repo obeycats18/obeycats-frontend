@@ -64,7 +64,6 @@ export const addSprints = value => {
             if(data.status === 200){
                 openNotification('success', 'Успешно', 'Sprint успешно создан')
                 dispatch(setSprints( data.milestones.milestones) );
-
             }
         })
         .catch( err => {console.log(err);

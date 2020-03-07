@@ -27,6 +27,11 @@ const authReducer = (state = initialState, action = {}) => {
 
 export const setToken = (token) => ({ type: SET_TOKEN, token })
 
+export const logout = () => {
+    window.localStorage.removeItem('token')
+    window.location.reload(true);
+}
+
 
 export let setData = (values, history) => {
     return dispatch => {

@@ -22,18 +22,11 @@ const SprintContext = props => {
         editSprints,
         changeSprint,
         changeTask,
-        setTasks,
-        fetchSprints,
-        isFetching,
+        isSprintFetching,
+        isTasksFetching,
         handleSubmit
     } = props
     
-
-    useEffect( () => {
-        setTasks(idProject)
-        fetchSprints(idProject)
-    }, [tasks.length, sprints.length])
-
     const [submmiting, setSubmitting] = useState(false)
 
     const reorderBackog = (source, destination) => {
@@ -42,7 +35,7 @@ const SprintContext = props => {
         result = Array.from(tasks);
         const [removed] = result.splice(source.index, 1);
         result.splice(destination.index, 0, removed);
-        changeTask([...result])
+        changeTask(result)
 
     };
 
@@ -111,24 +104,22 @@ const SprintContext = props => {
                         submmit={submmiting}
                     />
                 </div>
-                <Backlog 
-                    backlog={tasks} 
-                    users={users} 
-                    fetchUsers={fetchUsers}
-                    idTask={idTask}
-                    submmit={submmiting}
-                />
-                {/* {
-                    (isFetching)
-                        ?<div className='spin-block' style={{marginTop: 20}}><Spin indicator={<Icon type="loading" style={{ fontSize: 24 }} spin />}/></div>
-                        :<div className="dnd-bakclog-context">
-                        
-                        </div>
-                } */}
+
+                {
+                    isTasksFetching
+                        ? <div className='spin-block' style={{marginTop: 20}}><Spin indicator={<Icon type="loading" style={{ fontSize: 24 }} spin />}/></div>                        
+                        :<Backlog 
+                            backlog={tasks} 
+                            users={users} 
+                            fetchUsers={fetchUsers}
+                            idTask={idTask}
+                            submmit={submmiting}
+                        />
+                }
                 
             </DragDropContext>
             <div className="button-group">
-                <Button classname='confirm-button' typeButton='ok' text='Завершить' dataName='create'/>
+                <Button classname='confirm-button'  typeButton='ok' text='Завершить' dataName='create'/>
             </div>
         </Form>
     );

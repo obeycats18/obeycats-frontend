@@ -7,9 +7,9 @@ export class Need extends Requirement {
   }
   
   
+  
   isSatisfied(credentials) {
-    console.log('credential', credentials[this.role])
     // assume credentilas is an object
-    return credentials[this.role] ? true : false;
+    return credentials === this.role ? true : false;
   }
 }

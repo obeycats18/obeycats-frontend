@@ -1,11 +1,11 @@
 import React from 'react';
 
+import classnames from 'classnames'
 import './style.scss'
 
-const Content = ( {children, title, style} ) => {
+const Content = ( {children, type, style, classname} ) => {
     return (
-        <div style={style} className='content'>
-            {/* <h3>{title}</h3> */}
+        <div style={style} className={classnames('content', type, classname)}>
             {children}
         </div>
     );
