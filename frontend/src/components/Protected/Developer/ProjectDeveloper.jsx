@@ -3,11 +3,11 @@ import React, { useEffect } from 'react'
 import {connect} from 'react-redux'
 
 import { CredentialProvider } from "react-rbac-guard";
-import {Client} from 'hoc/RBAC/Guards' 
+import {Developer} from 'hoc/RBAC/Guards' 
+
+import Tasks from 'components/Main/Tasks/index.jsx'
 
 import {setCredentials} from 'redux/reducers/users'
-
-import Project from 'components/Main/Project'
 
 const Component = (props) => {
 
@@ -29,9 +29,9 @@ const Component = (props) => {
 
     return (
         <CredentialProvider value={role || {}}>
-            <Client>
-                <Project {...props}/>
-            </Client>
+            <Developer>
+                <Tasks {...props}/>
+            </Developer>
         </CredentialProvider>
         
     )

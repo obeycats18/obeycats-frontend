@@ -4,11 +4,12 @@ import { Switch, Route } from 'react-router-dom';
 import Header from 'components/Header/containers';
 import Home from './Home/container';
 import Project from './Project/containers'
-import {ProjectClient, ProjectSudo} from 'components/Protected'
 import CreateProject from './CreateProject/container'
 import CreateTasks from './CreateTasks/container'
 import CreateMilestone from './CreateMilestone/container'
 import Boards from './Boards'
+import Tasks from './Tasks'
+
 
 
 import { Layout } from 'antd';
@@ -37,11 +38,12 @@ const Main = props => {
                 >
                     <Switch>
                         <Route exact path={["/", "/home"]} component={Home}/>
-                        <Route exact path='/project' render={ () => <> <ProjectClient /> <ProjectSudo/></>} />
+                        <Route exact path='/project' component={Project} />
                         <Route exact path='/project/add' component={CreateProject} />
                         <Route exact path='/tasks/add' component={CreateTasks} />
                         <Route exact path='/milestones/add' component={CreateMilestone} />
                         <Route exact path='/boards' component={Boards} />
+                        <Route exact path='/prtasks' component={Tasks} />
                      </Switch>
                 </Content>
             </Layout>

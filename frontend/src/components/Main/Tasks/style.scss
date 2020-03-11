@@ -1,0 +1,40 @@
+@import 'src/components/core/advanced';
+
+.tasks-page{
+    .tasks-tools{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 50px;
+        padding-bottom: 50px;
+        input[type=search]{
+            padding: 8px 15px;
+            border: 2px solid $main_color;
+            border-radius: 3px;
+            width: 520px;
+            color: #ffffff;
+            font-size: 14px;
+            transition: all .25s ease;
+            &::placeholder{color: $main_color;}
+            &:active, &:focus{
+                background-color: $main_color;
+                &::placeholder{color: #fff;}
+            }
+        }
+    }
+    .tasks-wrapper{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .tasks-sort{
+        .task-sort-title{
+            display: flex;
+            align-items: center;
+            p{
+                margin: 0;
+                padding-right: 10px;
+                color: #000000;
+            }
+        }
+    }
+}
+

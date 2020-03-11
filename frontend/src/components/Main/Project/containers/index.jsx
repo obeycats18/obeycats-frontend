@@ -6,12 +6,12 @@ import {connect} from 'react-redux'
 
 import { withRouter } from 'react-router-dom';
 import {getProject} from 'redux/reducers/projects'
+import { ProjectClient, ProjectPM, ProjectDeveloper } from 'components/Protected';
 
 
 class ProjectContainer extends Component {
 
     id = this.props.location.search.split('=')[1]
- 
 
     componentDidMount(){
         this.props.getProject(this.id);
@@ -19,7 +19,11 @@ class ProjectContainer extends Component {
 
     render() {
         return (
-            <Project {...this.props}/>
+           <>
+                <ProjectClient {...this.props}/>
+                <ProjectPM {...this.props}/>
+                <ProjectDeveloper {...this.props}/>
+           </>
         );
     }
 }

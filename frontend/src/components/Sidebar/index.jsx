@@ -6,7 +6,8 @@ import {Link} from 'react-router-dom'
 import {
     HomeIcon,
     Settings,
-    Boards
+    Boards,
+    Tasks
 } from 'assets/menu-icons'
 
 import { Message } from 'assets/header-icons'
@@ -33,13 +34,20 @@ const Sidebar = ( {collapsed} ) => {
               </Link>
             </Menu.Item>
             <Menu.Item key="3" className='sidebar-menu-item'>
+              <Link to='/prtasks' className='sidebar-menu-item-link'>
+                  <img src={Tasks} alt=""/>
+                  <span>Задачи</span>
+              </Link>
+             
+            </Menu.Item>
+            <Menu.Item key="4" className='sidebar-menu-item'>
               <Link to='/boards' className='sidebar-menu-item-link'>
                   <img src={Boards} alt=""/>
                   <span>Доски</span>
               </Link>
              
             </Menu.Item>
-            <Menu.Item key="4" className='sidebar-menu-item'>
+            <Menu.Item key="5" className='sidebar-menu-item'>
               <Link to='' className='sidebar-menu-item-link'>
                   <img src={Settings} alt=""/>
                   <span>Настройки</span>

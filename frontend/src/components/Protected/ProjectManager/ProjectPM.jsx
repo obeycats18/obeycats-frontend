@@ -7,7 +7,8 @@ import {ProjectNanager} from 'hoc/RBAC/Guards'
 
 import {setCredentials} from 'redux/reducers/users'
 
-import Project from 'components/Main/Project/containers'
+import Tasks from 'components/Main/Tasks/index.jsx'
+// import Project from 'components/Main/Project/containers'
 
 const Component = (props) => {
 
@@ -30,7 +31,7 @@ const Component = (props) => {
     return (
         <CredentialProvider value={role || {}}>
             <ProjectNanager>
-                <Project />
+                <Tasks {...props}/>
             </ProjectNanager>
         </CredentialProvider>
         
