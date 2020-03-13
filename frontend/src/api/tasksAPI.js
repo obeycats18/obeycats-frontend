@@ -9,7 +9,10 @@ export const tasksAPI = {
         return axios(window.localStorage.getItem('token')).post('/tasks/add', {idProject: value.idProject, tasks: value.tasks}).then(response => response.data)
     },
     getTaskById: (idProject) => {
-        return axios(window.localStorage.getItem('token')).get(`/task?id=${idProject}`).then(response => response.data)
+        return axios(window.localStorage.getItem('token')).get(`/tasks?idProject=${idProject}`).then(response => response.data)
+    },
+    getBacklog: (idProject) => {
+        return axios(window.localStorage.getItem('token')).get(`/backlog?idProject=${idProject}`).then(response => response.data)
     }
 
 }

@@ -40,7 +40,7 @@ export let setData = (values, history) => {
                 window.localStorage.setItem('token', data.token)
                 dispatch(setToken (window.localStorage.token) );
                 history.push('/')
-            } if(data.status === 400) {
+            } if(data.status === 404) {
                 openNotification('error', 'Пользователь не найден', 'Проверте правильность введенных данных')
             }
         })

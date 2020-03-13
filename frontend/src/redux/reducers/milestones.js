@@ -42,8 +42,8 @@ export const fetchSprints = (idProject) => {
         // dispatch(setFetching(true))
         return milestoneAPI.getMilestones(idProject).then( data => {   
             if(data.status === 200){
-                dispatch(setSprints( data.milestones.milestones ) );
-                dispatch(setIdMilestones(data.milestones._id))
+                dispatch(setSprints( data.milestones ) );
+                dispatch(setIdMilestones(data.idMilestone))
                 // dispatch(setFetching(false))
             }
         })
@@ -75,8 +75,8 @@ export const editSprints = value => {
     return dispatch => {
         dispatch(setFetching(true))
         return milestoneAPI.editMilestone(value).then( (data) => {
-            dispatch(setSprints( data.milestones.milestones) );
-            dispatch(setTasksAction( data.tasks.tasks) );
+            dispatch(setSprints( data.milestones) );
+            // dispatch(setTasksAction( data.tasks.tasks) );
             dispatch(setFetching(false))
 
         })

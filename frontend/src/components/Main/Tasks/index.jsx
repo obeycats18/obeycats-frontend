@@ -6,15 +6,8 @@ import Task from './Task'
 import './style.scss'
 
 const Tasks = props => {
-
-    const tasks = [
-        {_id: 1, text: 'This defines a flex container; inline or block depending on the given value.', status: "TODO", priority: 3},
-        {_id: 2, text: 'Task 2', status: "In Progress", priority: 1},
-        {_id: 3, text: 'Task 3', status: "TODO", priority: 2},
-        {_id: 4, text: 'Task 1', status: "TODO", priority: 1},
-        {_id: 5, text: 'Task 2', status: "In Progress", priority: 2},
-        {_id: 6, text: 'Task 3', status: "TODO", priority: 3},
-    ]
+    
+    const {tasks} = props
 
     const AngleDown = (
         <svg width="9" height="5" viewBox="0 0 9 5" fill="none" xmlns="http://www.w3.org/2000/svg">

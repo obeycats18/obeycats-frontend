@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 import Sprint from './Sprint'
@@ -14,7 +14,7 @@ const SprintContext = props => {
     const {
         users,
         fetchUsers,
-        tasks,
+        backlog,
         sprints,
         addSprints,
         idProject,
@@ -22,7 +22,7 @@ const SprintContext = props => {
         editSprints,
         changeSprint,
         changeTask,
-        isSprintFetching,
+        // isSprintFetching,
         isTasksFetching,
         handleSubmit
     } = props
@@ -32,7 +32,7 @@ const SprintContext = props => {
     const reorderBackog = (source, destination) => {
 
         let result = []     
-        result = Array.from(tasks);
+        result = Array.from(backlog);
         const [removed] = result.splice(source.index, 1);
         result.splice(destination.index, 0, removed);
         changeTask(result)
@@ -66,19 +66,25 @@ const SprintContext = props => {
     }
 
     const move = (list, source, destination) => {
-
         let tempList = (list.tasks !== undefined) ? list.tasks : list 
         setSubmitting(true)
-        editSprints({idProject, idSource: source.droppableId,idDestination: destination.droppableId, tasks: tempList[source.index]})
-            .then(() => setSubmitting(false))
+        editSprints(
+            {
+                idProject, 
+                idSource: source.droppableId,
+                idDestination: destination.droppableId, 
+                tasks: tempList[source.index]
+            }
+            ).then(() => setSubmitting(false))
     
     }
     
     const handleDragEnd = (result) => {
         const {source, destination} = result
         if(!destination) return 
+
         if(source.droppableId !== destination.droppableId){
-            if(source.droppableId === idTask) move(tasks, source, destination)
+            if(source.droppableId === idTask) move(backlog, source, destination)
             else{
                 sprints.forEach(sprint => {
                     if(sprint._id === source.droppableId) move(sprint, source, destination)
@@ -95,6 +101,7 @@ const SprintContext = props => {
         <Form onSubmit={handleSubmit}>
             <DragDropContext onDragEnd={handleDragEnd}>
                 <div className="dnd-sprint-context">
+                    {/* TODO Показать загрузку когда идет запрос */}
                     <Sprint
                         idProject={idProject}
                         addSprints={addSprints} 
@@ -109,7 +116,7 @@ const SprintContext = props => {
                     isTasksFetching
                         ? <div className='spin-block' style={{marginTop: 20}}><Spin indicator={<Icon type="loading" style={{ fontSize: 24 }} spin />}/></div>                        
                         :<Backlog 
-                            backlog={tasks} 
+                            backlog={backlog} 
                             users={users} 
                             fetchUsers={fetchUsers}
                             idTask={idTask}

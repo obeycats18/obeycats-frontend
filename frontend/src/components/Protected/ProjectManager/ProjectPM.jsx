@@ -7,7 +7,7 @@ import {ProjectNanager} from 'hoc/RBAC/Guards'
 
 import {setCredentials} from 'redux/reducers/users'
 
-import Tasks from 'components/Main/Tasks/index.jsx'
+import Tasks from 'components/Main/Tasks/container'
 // import Project from 'components/Main/Project/containers'
 
 const Component = (props) => {

@@ -8,9 +8,7 @@ import CreateProject from './CreateProject/container'
 import CreateTasks from './CreateTasks/container'
 import CreateMilestone from './CreateMilestone/container'
 import Boards from './Boards'
-import Tasks from './Tasks'
-
-
+import Tasks from './Tasks/container'
 
 import { Layout } from 'antd';
 

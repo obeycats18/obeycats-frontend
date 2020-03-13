@@ -1,10 +1,10 @@
 import {tasksAPI} from 'api/tasksAPI'
 
-// import { openNotification } from 'helpers/openNotifcation';
 
 let initialState = {
     idTask: '',
     tasks: [],
+    backlog: [],
     isFetching: false
 }
 
@@ -14,6 +14,12 @@ const tasksReducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 tasks : action.tasks    
+            }
+        }
+        case "SET_BACKLOG": {
+            return {
+                ...state,
+                backlog: action.backlog    
             }
         }
         case "SET_ID_TASK": {
@@ -35,7 +41,9 @@ const tasksReducer = (state = initialState, action = {}) => {
 
 export const setTasksAction = (tasks) => ({ type: "SET_TASK", tasks }) 
 export const setIdTasksAction = (id) => ({ type: "SET_ID_TASK", id }) 
+export const setBacklogAction = (backlog) => ({ type: "SET_BACKLOG", backlog }) 
 export const setFetching = (isFetching) => ({ type: "SET_FETCHING", isFetching }) 
+
 
 export const setTasks = idProject => {
     return dispatch => {
@@ -46,6 +54,21 @@ export const setTasks = idProject => {
                 dispatch(setIdTasksAction (data.idTask));
                 dispatch(setFetching(false))
 
+            }
+        })
+    }  
+}
+
+
+export const setBacklog = idProject => {
+    return dispatch => {
+        dispatch(setFetching(true))
+        return tasksAPI.getBacklog(idProject).then( (data) => {   
+            if(data.status === 200){
+                console.log(data)
+                dispatch(setBacklogAction (data.backlog));
+                dispatch(setIdTasksAction (data.idTask));
+                dispatch(setFetching(false))
             }
         })
     }  

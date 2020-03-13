@@ -3,7 +3,7 @@ import axios from './settings'
 export let milestoneAPI = {
 
     getMilestones: (idProject) => {
-        return axios(window.localStorage.getItem('token')).get(`/milestone?id=${idProject}`).then(response => response.data)
+        return axios(window.localStorage.getItem('token')).get(`/milestones?idProject=${idProject}`).then(response => response.data)
     },
     addMilestone: (value) => {
         return axios(window.localStorage.getItem('token')).post('/milestone/add', value).then(response => response.data)
