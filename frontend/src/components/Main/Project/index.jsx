@@ -17,7 +17,6 @@ const ProjectPage = props => {
         milestones,
         isFetching
     } = props
-    let percent = project.procentComplete; 
     return (
         (isFetching) 
             ? <div className='fetching-block'><Spin indicator={<Icon type="loading" style={{ fontSize: 36 }} spin />}/></div>
@@ -29,7 +28,7 @@ const ProjectPage = props => {
                         <div className="project-wrapper__right">
                             <div className="project-wrapper__block progress">
                                 <h4>Выполненная работа</h4>
-                                <Progress percent={percent} type='big'/>
+                                <Progress percent={project.procentComplete} type='big'/>
                             </div>
                         </div>
                         <div className="project-wrapper__left">

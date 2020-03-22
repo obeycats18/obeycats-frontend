@@ -37,7 +37,7 @@ export const setCredentialsAC = (credentials) => ({ type: SET_CREDENTIALS, crede
 export const setCredentials = () => {
     return dispatch => {
         return userAPI.getMe().then( (data) => {   
-            console.log(data.user)
+            
             if(data.status === 200){
                 dispatch(setCredentialsAC ( data.user ) );
             }

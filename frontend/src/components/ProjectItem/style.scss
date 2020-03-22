@@ -1,0 +1,101 @@
+@import 'src/components/core/advanced';
+
+.project{
+    width: 300px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #ffffff;
+    border-radius: 3px;
+    box-shadow: 0px 2px 6px rgba(15, 71, 242, 0.1);
+    padding: 20px 25px;
+    .project-title{
+        .project-name{
+            .name{
+                font-size: 16px;
+                font-weight: 600;
+            }
+            .client{
+                margin-top: 5px;
+                color: #d7d7d7;
+            }
+        }
+    }
+    .project-progress{
+       .progress-info{
+           display: flex;
+           align-items: center;
+           justify-content: space-between;
+           p{
+               font-size: 10px;
+               font-weight: 600;
+               letter-spacing: 0.05em;
+               color: $main_light;
+
+           }
+           span{
+               color: #2B2B2B;
+               font-size: 12px;
+           }      
+       }
+       .progress-bar{
+            width: 100%;
+            height: 3px;
+            position: relative;
+            margin-top: 10px;
+            .bar{
+                width: 100%;
+                height: 100%;
+                border-radius: 1px;
+                background-color: $main_light;
+                
+            }
+            .value{
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                background-color: $main_color;
+                border-radius: 1px;
+
+            }
+        }
+    }
+    .project-bottom{
+        display: flex;
+        justify-content: space-between;
+        .project-status{
+            .developing-status{
+                font-size: 11px;
+                font-weight: 600;
+                padding: 5px 20px;
+                border-radius: 3px;
+            }
+            .not-developed{
+                background-color: $accent_color;
+                color: darken($accent_color, 20%);
+           
+            }
+        }
+        .team-avatars{
+            display: flex;
+            .avatar, .team-more{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 20px;
+                height: 20px;
+                border-radius: 100%;
+                overflow: hidden;
+                margin-right: 5px;
+            }
+            .team-more{
+                background-color: $main_light;
+                color: $main_color;
+                font-size: 9px;
+                font-weight: 600;
+            }
+        }
+    }
+}

@@ -9,6 +9,7 @@ import CreateTasks from './CreateTasks/container'
 import CreateMilestone from './CreateMilestone/container'
 import Boards from './Boards'
 import Tasks from './Tasks/container'
+import Teams from './Teams/container'
 
 import { Layout } from 'antd';
 
@@ -41,6 +42,7 @@ const Main = props => {
                         <Route exact path='/tasks/add' component={CreateTasks} />
                         <Route exact path='/milestones/add' component={CreateMilestone} />
                         <Route exact path='/boards' component={Boards} />
+                        <Route exact path='/teams' component={Teams} />
                         <Route exact path='/prtasks' component={Tasks} />
                      </Switch>
                 </Content>

@@ -1,0 +1,21 @@
+@import 'src/components/core/advanced';
+
+.teams-page{
+    .teams{
+        margin-top: 80px;
+        .list-avatar{
+            width: 30px;
+            height: 30px;
+            border-radius: 100%;
+            background-color: $main_light;
+            color: $main_color;
+        }
+        
+    }
+    .teams-row{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

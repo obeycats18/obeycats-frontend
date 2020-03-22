@@ -78,7 +78,6 @@ export let getProject = (id) => {
     return dispatch => {
         dispatch(setFetchingStatus(true))
         return projectAPI.getProject(id).then( (data) => {
-            
             dispatch(setProject(data.project));
             if(data.project.milestones){
                 dispatch(setMilestones(data.project.milestones.milestones));
@@ -96,6 +95,7 @@ export let getProjects = (history) => {
             if(data.status === 200){
                 dispatch(setFetchingStatus(false));
                 dispatch(setProjects (data.project) );
+
             }
             if(data.status === 404){
                 dispatch(setFetchingStatus(false));

@@ -1,0 +1,55 @@
+@import 'src/components/core/advanced';
+
+.form-input, .select.select__control, .select.select__control.select__value-container {
+    width: 100%;
+    padding: 10px 30px;
+    border: 2px solid $main_color;
+    border-radius: 3px;      
+    color: $main_color;
+    font-size: 14px;
+    font-family: $main_font;
+    background-color: transparent;
+    transition: all .25s ease;
+    &::placeholder{
+        color: rgba($main_color, 0.6);
+    }
+    &:active, &:focus{
+        background-color: $main_color;
+        color: #ffffff;
+        font-weight: 600;
+        &::placeholder{
+            color: #ffffff;
+        }
+    }
+}
+
+.error{
+    border-color: $error_color;
+    color: $error_color;
+    &:active, &:focus{
+        background-color: lighten($error_color, 15%);
+        color: #ffffff;
+        &::placeholder{
+            color: #ffffff;
+        }
+    }
+    &::placeholder{
+        color: $error_color;
+    }
+}
+
+.success{
+    border-color: $success_color;
+    color: $success_color;
+    &:active, &:focus{
+        background-color: lighten($success_color, 15%);
+        color: #ffffff;
+        &::placeholder{
+            color: #ffffff;
+        }
+    }
+    &::placeholder{
+        color: $success_color;
+    }
+}
+

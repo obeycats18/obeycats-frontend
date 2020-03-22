@@ -3,11 +3,16 @@ import React from 'react';
 import './style.scss'
 import {
     Form,
-    Item,
+    // Item,
     ErrorMessage,
     Button,
     Content
 } from 'components/common'
+
+import {
+    Input,
+} from 'components'
+
 
 import { DatePicker, Select} from 'antd';
 
@@ -53,7 +58,7 @@ const PopupCreate = props => {
                 <div className="popup-create-left">
                     <span className='description'>Базовая информация о проекте</span>
                     <Form onSubmit={handleSubmit} classname='popup-create-form'>
-                        <Item 
+                        <Input 
                             value={values.name}
                             type='text' 
                             name='name' 
@@ -73,9 +78,9 @@ const PopupCreate = props => {
                                 ? '' 
                                 : errors.name ? <ErrorMessage text={errors.name}/> : ''  
                             } 
-                        </Item>
+                        </Input>
                         
-                        <Item 
+                        <Input 
                             value={values.cost}
                             type='text' 
                             name='cost' 
@@ -95,7 +100,7 @@ const PopupCreate = props => {
                                 ? '' 
                                 : errors.cost ? <ErrorMessage text={errors.cost}/> : ''  
                             } 
-                        </Item>
+                        </Input>
 
                         <DatePicker 
                             allowClear={false}

@@ -8,6 +8,8 @@ import tasksReducer from './reducers/tasks'
 import usersReducer from './reducers/users'
 import globalReducer from './reducers/global'
 import sprintsReducer from './reducers/milestones'
+import teamsReducer from './reducers/teams'
+
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -18,7 +20,8 @@ const reducers = combineReducers({
     tasks: tasksReducer,
     users: usersReducer,
     global: globalReducer,
-    sprints: sprintsReducer
+    sprints: sprintsReducer,
+    teams: teamsReducer
 
 });
 

@@ -18,8 +18,8 @@ const Component = (props) => {
     } = props
 
     useEffect( () => {
-        setCredentials()
-    }, [])
+        if(!credentials) setCredentials()
+    }, [credentials, setCredentials])
 
     let role = ""
 

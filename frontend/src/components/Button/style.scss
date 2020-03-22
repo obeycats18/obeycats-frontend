@@ -1,0 +1,47 @@
+@import 'src/components/core/advanced';
+
+.button{
+    background: $main_color;
+    border-radius: 3px;
+    color: #ffffff;
+    font-family: $main_font;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: all .15s ease;
+    &:hover{
+        background-color: lighten($main_color, 10%);
+    }
+    padding: 7px 20px;
+}
+
+.button:disabled{
+    background-color: darken(#F4F6FC, 30%);
+}
+
+.ok{
+    background: $success_color;
+    transition: all .25s ease;
+    &:hover{
+        background-color: darken($success_color, 5%);
+
+    }
+}
+.cancle{
+    transition: all .25s ease;
+    background: $error_color;
+    &:hover{
+        background-color: darken($error_color, 10%);
+        
+    }
+}
+
+// Sizes
+.button-small{
+    padding: 7px 20px;
+}
+
+.button-large{
+    padding: 10px 40px;
+}

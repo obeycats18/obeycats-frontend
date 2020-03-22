@@ -13,6 +13,9 @@ export const tasksAPI = {
     },
     getBacklog: (idProject) => {
         return axios(window.localStorage.getItem('token')).get(`/backlog?idProject=${idProject}`).then(response => response.data)
+    },
+    getTasksByDeveloper: () => {
+        return axios(window.localStorage.getItem('token')).get(`/devtasks`).then(response => response.data)
     }
 
 }

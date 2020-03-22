@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import { CredentialProvider } from "react-rbac-guard";
 import {Developer} from 'hoc/RBAC/Guards' 
 
-import Tasks from 'components/Main/Tasks/index.jsx'
+import Tasks from 'components/Main/Tasks/container'
 
 import {setCredentials} from 'redux/reducers/users'
 
@@ -17,8 +17,8 @@ const Component = (props) => {
     } = props
 
     useEffect( () => {
-        setCredentials()
-    }, [])
+        if(!credentials) setCredentials()
+    }, [credentials, setCredentials])
 
     let role = ""
 
@@ -30,7 +30,7 @@ const Component = (props) => {
     return (
         <CredentialProvider value={role || {}}>
             <Developer>
-                <Tasks {...props}/>
+                <Tasks {...props} isDeveloper/>
             </Developer>
         </CredentialProvider>
         

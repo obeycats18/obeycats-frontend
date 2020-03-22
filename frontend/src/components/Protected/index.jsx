@@ -1,5 +1,5 @@
 // Project Manager
-export {default as CreateProject} from './ProjectManager/CreateProject'
+export {default as PMCreateProject} from './ProjectManager/PMCreateProject'
 export {default as FinishSprint} from './ProjectManager/FinishSprint'
 export {default as CreateEdit} from './ProjectManager/CreateEdit'
 export {default as ProjectPM} from './ProjectManager/ProjectPM'

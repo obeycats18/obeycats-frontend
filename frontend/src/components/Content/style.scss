@@ -1,0 +1,13 @@
+@import 'src/components/core/advanced';
+
+.fetching-block, .empty-block{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.empty-block{
+    flex-direction: column;
+}
