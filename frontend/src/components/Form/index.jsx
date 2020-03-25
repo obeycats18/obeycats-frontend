@@ -19,29 +19,32 @@ const Form = ( props ) => {
         values
     } = props
 
-    const renderInputs = inputs.map(input => (
-        <Input 
-            key={input.name}
-            value={values[input.name]}
-            type={input.type} 
-            name={input.name} 
-            placeholder={input.placeholder}
-            onChange={onChange}
-            onBlur={onBlur}
-            validateStatus={ 
-                !touched[input.name] 
+    let renderInputs = []
+    if(inputs){
+        renderInputs = inputs.map(input => (
+            <Input 
+                key={input.name}
+                value={values[input.name]}
+                type={input.type} 
+                name={input.name} 
+                placeholder={input.placeholder}
+                onChange={onChange}
+                onBlur={onBlur}
+                validateStatus={ 
+                    !touched[input.name] 
+                        ? '' 
+                        : errors[input.name] ? 'error' : 'success'
+                        
+                }
+            > 
+                {
+                    !touched[input.name] 
                     ? '' 
-                    : errors[input.name] ? 'error' : 'success'
-                    
-            }
-        > 
-            {
-                !touched[input.name] 
-                ? '' 
-                : errors[input.name] ? <ErrorMessage text={errors[input.name]}/> : ''  
-            } 
-        </Input>
-    ))
+                    : errors[input.name] ? <ErrorMessage text={errors[input.name]}/> : ''  
+                } 
+            </Input>
+        ))
+    }
         
     return (
         <form onSubmit={onSubmit} className={classname}>

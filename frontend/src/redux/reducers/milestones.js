@@ -1,7 +1,6 @@
 import {milestoneAPI} from 'api/milestonesAPI'
 
-import {setTasksAction} from './tasks'
-
+import {setBacklog} from './tasks'
 import { openNotification } from 'helpers/openNotifcation';
 
 let initialState = {
@@ -27,6 +26,21 @@ const sprintsReducer = (state = initialState, action = {}) => {
                 ...state,
                 idMilestones: action.idMilestone
             }
+        case 'CHANGE_SPRINT_TASKS' : 
+            return {
+                ...state,
+                sprints: state.sprints.map(sprint => {
+                    if(sprint._id === action.value.idSprint){
+                        return {
+                            ...sprint,
+                            tasks: action.value.tasks
+                        }
+                    }
+                    return {
+                        ...sprint
+                    }
+                })
+            }
         default: 
             return state
     }
@@ -35,26 +49,26 @@ const sprintsReducer = (state = initialState, action = {}) => {
 export const setFetching = (isFetching) => ({ type: "SET_FETCHING", isFetching }) 
 export const setSprints = (sprints) => ({ type: 'SET_SPRINTS', sprints })
 export const setIdMilestones = (idMilestone) => ({ type: 'SET_ID_SPRINTS', idMilestone })
-
+export const changeSprintTasks = (idSprint, tasks) => ({ type: 'CHANGE_SPRINT_TASKS', value: {idSprint, tasks} } )
 
 export const fetchSprints = (idProject) => {
     return dispatch => {
-        // dispatch(setFetching(true))
+        dispatch(setFetching(true))
         return milestoneAPI.getMilestones(idProject).then( data => {   
             if(data.status === 200){
                 dispatch(setSprints( data.milestones ) );
                 dispatch(setIdMilestones(data.idMilestone))
-                // dispatch(setFetching(false))
             }
+            dispatch(setFetching(false))
         })
         .catch( err => {console.log(err);
         } )
     }  
 }
 
-export const changeSprint = (sprint) => {
+export const changeSprint = (idSprint, task) => {
     return dispatch => {
-        dispatch(setSprints(sprint) );
+        dispatch(changeSprintTasks(idSprint, task) );
     }
 }
 
@@ -75,10 +89,9 @@ export const editSprints = value => {
     return dispatch => {
         dispatch(setFetching(true))
         return milestoneAPI.editMilestone(value).then( (data) => {
-            dispatch(setSprints( data.milestones) );
-            // dispatch(setTasksAction( data.tasks.tasks) );
+            dispatch(setSprints( data.milestones.milestones) );
+            dispatch(setBacklog(value.idProject))
             dispatch(setFetching(false))
-
         })
         .catch( err => {console.log(err);
         } )

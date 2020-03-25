@@ -8,7 +8,7 @@ import {logout} from 'redux/reducers/auth'
 
 import './style.scss'
 
-const Header = props => {
+const Header = () => {
 
     return (
         <header className='header'>

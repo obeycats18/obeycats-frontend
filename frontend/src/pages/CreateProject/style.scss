@@ -1,0 +1,51 @@
+
+.create-block{
+    padding: 50px;
+    h3{
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+}
+
+
+.create-page{
+    
+    .description{
+        color: #b2b2b2;
+        font-size: 16px;
+        display: inline-block;
+        margin-bottom: 30px;
+    }
+    .create-page__wrapper{
+        display: flex;
+        justify-content: space-between;
+        
+    }
+    .create-page_left{
+        width: 30%;
+    } 
+    .create-page_right{
+        width: 70%;
+        text-align: center;
+    } 
+
+    .create-form{
+        margin-top: 50px;
+    }
+    
+    .button-group{
+        margin-top: 15px;
+        .create-form__button{ 
+            width: 49%;
+            margin-right: 1.9%;
+            &:nth-child(3){
+                margin-right: 0;
+            }
+        }
+        .create-button{
+            width: 100%;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+    }
+}

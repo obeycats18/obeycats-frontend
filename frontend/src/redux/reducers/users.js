@@ -14,12 +14,7 @@ const usersReducer = (state = initialState, action = {}) => {
         case SET_USERS : 
             return {
                 ...state,
-                users: action.users.map( (item) => {
-                    return {
-                        label: `${item.last_name}  ${item.first_name}`,
-                        value: item._id
-                    }
-                } )
+                users: action.users
             }
         case SET_CREDENTIALS : 
             return {

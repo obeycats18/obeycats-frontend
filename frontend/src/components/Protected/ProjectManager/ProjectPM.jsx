@@ -1,25 +1,19 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import {connect} from 'react-redux'
 
 import { CredentialProvider } from "react-rbac-guard";
 import {ProjectNanager} from 'hoc/RBAC/Guards' 
 
-import {setCredentials} from 'redux/reducers/users'
 
-import Tasks from 'components/Main/Tasks/container'
-// import Project from 'components/Main/Project/containers'
+import {Tasks} from 'pages'
 
 const Component = (props) => {
 
     const {
-        credentials,
-        setCredentials
+        credentials
     } = props
 
-    useEffect( () => {
-        if(!credentials) setCredentials()
-    }, [credentials, setCredentials])
 
     let role = ""
 
@@ -44,4 +38,4 @@ const mapStateToProprs = ({users}) => {
     }
 }
 
-export default connect(mapStateToProprs, {setCredentials})(Component)
+export default connect(mapStateToProprs, {})(Component)

@@ -1,0 +1,23 @@
+@import 'src/components/core/advanced';
+
+.textarea{
+    border: 2px solid $main_color;
+    box-sizing: border-box;
+    border-radius: 3px;      
+    color: $main_color;
+    resize: none;
+    overflow: hidden;
+    transition: all .15s ease;
+    color: $main_color;
+    &::placeholder{
+        color: $main_color;
+    }
+    &:active, &:focus{
+        background-color: $main_color;
+        color: #ffffff;
+        font-weight: 600;
+        &::placeholder{
+            color: #ffffff;
+        }
+    }
+}

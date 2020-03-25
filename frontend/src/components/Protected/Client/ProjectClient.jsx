@@ -1,31 +1,41 @@
 import React, { useEffect } from 'react'
 
 import {connect} from 'react-redux'
+import {compose} from 'redux'
+import {withRouter} from 'react-router-dom'
 
 import { CredentialProvider } from "react-rbac-guard";
 import {Client} from 'hoc/RBAC/Guards' 
 
-import {setCredentials} from 'redux/reducers/users'
+import {getProject} from 'redux/reducers/projects'
 
-import Project from 'components/Main/Project'
+
+import {Project} from 'components'
 
 const Component = (props) => {
 
     const {
-        credentials,
-        setCredentials
+        location,
+        getProject,
+        project,
+        credentials
     } = props
 
+    let id = location.search.split('=')[1]
+    
     useEffect( () => {
-        if(!credentials) setCredentials()
-    }, [credentials, setCredentials])
+        getProject(id)
+    }, [!project])
 
     let role = ""
 
     if(credentials){
         role = credentials.role.name
     }
+
+
     
+    console.log(role)
 
     return (
         <CredentialProvider value={role || {}}>
@@ -37,10 +47,17 @@ const Component = (props) => {
     )
 }
 
-const mapStateToProprs = ({users}) => {
+
+const mapStateToProprs = ({projects, users}) => {
     return {
-        credentials: users.credentials
+        credentials: users.credentials,
+        isFetching: projects.isFetching,
+        project: projects.project,
+        milestones: projects.milestones
     }
 }
 
-export default connect(mapStateToProprs, {setCredentials})(Component)
+export default compose(
+    connect (mapStateToProprs, {getProject}),
+    withRouter
+)(Component)

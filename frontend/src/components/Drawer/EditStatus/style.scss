@@ -1,0 +1,20 @@
+@import 'src/components/core/advanced';
+
+
+.edit-status{
+    margin-top: 40px;
+}
+.ant-select .ant-select-selection{
+    padding: 10px 55px 10px 25px;
+}
+
+.ant-select-dropdown{
+    background-color: $main_color!important;
+    .ant-select-dropdown-menu-item.dropdown-list {
+        color: #ffffff;
+        padding: 10px 20px;
+    }
+    .ant-select-dropdown-menu-item-active:not(.ant-select-dropdown-menu-item-disabled), .ant-select-dropdown-menu-item-selected{
+        background-color: rgba(70, 110, 255, 10)!important;
+    }
+}

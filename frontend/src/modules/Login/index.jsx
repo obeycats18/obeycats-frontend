@@ -2,11 +2,10 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 
 import {
+    Block,
     Button,
     Form
-} from 'components/common';
-
-import {Block} from 'components';
+} from 'components';
 
 import './style.scss'
 

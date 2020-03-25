@@ -3,7 +3,7 @@ import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Empty } from 'antd';
 
-import {Progress, Button} from 'components/common'
+import {Progress} from 'components'
 import {CallDeveloper, FinishSprint, CreateEdit} from 'components/Protected'
 
 import TabsTask from './TabsTasks';
@@ -18,8 +18,6 @@ import 'react-tabs/style/react-tabs.css';
 const CommonTabs = (props) => {
 
     const {milestonesSet} = props
-
-    console.log(milestonesSet)
 
     let tabs = map(milestonesSet, (item) => {
       return {

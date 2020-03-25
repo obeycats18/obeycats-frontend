@@ -1,0 +1,154 @@
+@import 'src/components/core/advanced';
+
+.backlog-task {
+    background-color: $main_color;
+    .task-content{
+        p{
+            color: #ffffff;
+            border-right: 2px solid rgb(89, 125, 255);
+        }
+        .tools-block{
+            a {
+                color: #ffffff;
+            }
+        }
+    }
+}
+
+.sprint-task {
+    background-color: rgba(70, 110, 255, 0.1);
+    .task-content{
+        p{
+            color: $main_color;
+            border-right: 2px solid $main_color;
+        }
+        .tools-block{
+            a {
+                color: $main_color;
+            }
+            .delete{
+                svg{
+                    line{
+                        stroke: $main_color; 
+                    }
+                }
+            }
+        }
+    }
+}
+
+.task-item{
+    max-width: 869px;
+    padding: 10px 35px 10px 46px;
+    .task-content{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        p{
+            margin: 0;
+            font-size: 14px;
+            padding-right: 65px;
+            width: 685px;
+            display: block;
+            word-wrap: break-word;
+
+        }
+        .tools-block{
+            display: flex;
+            justify-content: flex-end;
+            a{
+                margin-left: 20px;
+                
+            }
+            .delete{
+                svg{
+                    line{
+                        transition: all .10s ease;
+                    }
+                }
+                &:hover{
+                    svg{
+                        line{
+                            stroke: $error_color;
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+}
+
+.tasks-wrapper{
+    .tasks{
+        .task-item:first-child{
+            border-top-right-radius: 3px;
+            border-top-left-radius: 3px;
+        }
+        .task-item:last-child{
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+    }
+}
+
+
+
+.prtasks-task{
+    width: 300px;
+    padding: 25px 35px 25px 25px;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    background-color: $main_color;
+    margin-right: 20px;
+    margin-top: 30px;
+    color: #ffffff;
+    border-left: 8px solid;
+    .task-text{
+        font-size: 14px;
+        letter-spacing: 0.05em;
+    }
+    .task-bottom{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        height: 100%;
+        .task-status{
+            text-align: center;
+            border-radius: 3px;
+            padding: 5px;
+            width: 70%;
+            background-color: $success_color;
+        }
+        .task-download{
+            color: #ffffff;
+            margin-top: 10px;
+            transition: all .25s ease;
+            &:hover{
+                svg{
+                    margin-left: 10px;
+                }
+            }
+            svg{
+                transition: all .25s ease;
+                margin-left: 5px;
+            }
+        }
+    }
+}
+
+.border-1{
+    border-color: $success_color;
+}
+
+.border-2{
+    border-color: $accent_color;
+    
+}
+
+.border-3{
+    border-color: $error_color;
+    
+}

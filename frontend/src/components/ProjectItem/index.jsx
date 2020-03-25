@@ -16,12 +16,18 @@ const ProjectItem = props => {
         client,
         procentComplete,
         teams,
-        user
     } = props;
 
-    let currentTeam
-    if(user) [currentTeam] = teams.filter((team, index) => team._id === (user.teams[index]))
-    console.log(currentTeam)
+    let renderTeam = []
+    teams.forEach(team => {
+        if(team.members){
+            renderTeam = team.members.map((member, index) => {
+                if(index < 3) {
+                    return <span key={index} className="avatar">{member.last_name.substring(0, 1)}</span>
+                }
+            })
+        }
+    })
     return (
         <Link to={`/project?id=${_id}`} className="project">
             <div className="project-title">
@@ -43,9 +49,7 @@ const ProjectItem = props => {
             </div>
             <div className="project-bottom">
                 <div className="team-avatars">
-                    <span className="avatar"><img src={Avatar} alt=""/></span>
-                    <span className="avatar"><img src={Avatar} alt=""/></span>
-                    <span className="team-more">+{currentTeam.members.length}</span>
+                    {renderTeam}
                 </div>
                 <div className="project-status">
                     {

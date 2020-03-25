@@ -6,18 +6,16 @@ import {connect} from 'react-redux'
 import {compose} from 'redux'
 import { withRouter } from 'react-router';
 
-import { ProjectDeveloper } from 'components/Protected';
 
 import {getProjects} from 'redux/reducers/projects'
 
 export default compose(
     withRouter,
     connect(  
-        ({ projects, users}) => (
+        ({ projects}) => (
             {
                 isFetching: projects.isFetching,
                 projects: projects.projects,
-                user: users.credentials
             }
         ), {getProjects})
 )( (props) => {
@@ -27,21 +25,17 @@ export default compose(
         history,
         isFetching,
         projects,
-        user
     } = props
 
     useEffect( () => {
-        if(!projects.length) getProjects(history);
-    }, [getProjects, history, projects])
+        getProjects(history);
+    }, [projects.length])
 
     return (
-        <>
-            <ProjectDeveloper />
-            <Projects 
-                isFetching={isFetching} 
-                data={projects} 
-                user={user}
-            />
-        </>
+       
+        <Projects 
+            isFetching={isFetching} 
+            data={projects} 
+        />
     )
 });

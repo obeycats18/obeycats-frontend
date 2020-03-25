@@ -3,14 +3,15 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import {Header, Sidebar} from 'modules';
-import {Home, Project} from 'pages';
-// import Project from './Project/containers'
-// import CreateProject from './CreateProject/container'
-// import CreateTasks from './CreateTasks/container'
-// import CreateMilestone from './CreateMilestone/container'
-// import Boards from './Boards'
-// import Tasks from './Tasks/container'
-// import Teams from './Teams/container'
+import {
+    Home, 
+    Project, 
+    CreateProject, 
+    CreateTasks, 
+    CreateMilestones,
+    Tasks,
+    Teams
+} from 'pages';
 
 import { Layout } from 'antd';
 
@@ -28,7 +29,7 @@ const Main = () => {
                 </Sider>
                 <Content
                     style={{
-                        margin: '24px 16px',
+                        margin: '24px 16px 0 16px',
                         minHeight: "100%",
                         overflowX: "initial"
                     }}
@@ -36,12 +37,12 @@ const Main = () => {
                     <Switch>
                         <Route exact path={["/", "/home"]} component={Home}/>
                         <Route exact path='/project' component={Project} />
-                         {/* <Route exact path='/project/add' component={CreateProject} />
+                        <Route exact path='/project/add' component={CreateProject} />
                         <Route exact path='/tasks/add' component={CreateTasks} />
-                        <Route exact path='/milestones/add' component={CreateMilestone} />
-                        <Route exact path='/boards' component={Boards} />
+                        <Route exact path='/milestones/add' component={CreateMilestones} />
+                        <Route exact path='/prtasks' component={Tasks} />
                         <Route exact path='/teams' component={Teams} />
-                        <Route exact path='/prtasks' component={Tasks} /> */}
+                        
                     </Switch>
                 </Content>
             </Layout>

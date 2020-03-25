@@ -1,26 +1,19 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import {connect} from 'react-redux'
 
 import { CredentialProvider } from "react-rbac-guard";
 import {ProjectNanager} from 'hoc/RBAC/Guards' 
 
-import { Empty } from 'antd';
-
 import {CreateProjectBtn} from 'components'
-import {setCredentials} from 'redux/reducers/users'
 
 const Component = (props) => {
 
     const {
         credentials,
-        setCredentials,
         isEmpty
     } = props
 
-    useEffect( () => {
-        if(!credentials) setCredentials()
-    }, [credentials, setCredentials])
 
     let role = ""
 
@@ -34,12 +27,7 @@ const Component = (props) => {
             <ProjectNanager>
                 {
                     (isEmpty)
-                        ? <div className='empty-block'>
-                            <Empty description='Проектов не существует'/>
-                            <div className="home-button">
-                                <CreateProjectBtn type='empty'/>
-                            </div>
-                        </div>
+                        ? <CreateProjectBtn type='empty'/>
                         : <CreateProjectBtn />
                 }
             </ProjectNanager>
@@ -54,4 +42,4 @@ const mapStateToProprs = ({users}) => {
     }
 }
 
-export default connect(mapStateToProprs, {setCredentials})(Component)
+export default connect(mapStateToProprs, {})(Component)

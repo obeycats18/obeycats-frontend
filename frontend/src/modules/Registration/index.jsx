@@ -6,7 +6,7 @@ import {
     Button,
     Form,
     Select
-} from 'components/common';
+} from 'components';
 
 import './style.scss'
 

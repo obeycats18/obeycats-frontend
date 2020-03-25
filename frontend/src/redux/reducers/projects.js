@@ -11,8 +11,6 @@ const SET_PROJECT_ID = "SET_PROJECT_ID";
 const SET_FETCHING_STATUS = "SET_FETCHING_STATUS";
 const UPDATE_PROJECTS_ARRAY = "UPDATE_PROJECTS_ARRAY";
 
-
-
 let initialState = {
     idProject: window.localStorage.getItem('idProject'),
     projects: [],
@@ -90,16 +88,13 @@ export let getProject = (id) => {
 
 export let getProjects = (history) => {
     return dispatch => {
+        console.log('reducer')
         dispatch(setFetchingStatus(true));
         return projectAPI.getAllProjects().then( (data) => {   
             if(data.status === 200){
-                dispatch(setFetchingStatus(false));
                 dispatch(setProjects (data.project) );
-
             }
-            if(data.status === 404){
-                dispatch(setFetchingStatus(false));
-            }
+            dispatch(setFetchingStatus(false));
             checkToken(data.status, history)
         })
         .catch( err => {console.log(err);

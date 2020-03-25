@@ -34,4 +34,5 @@ const App = () => {
   );
 }
 
-export default Connection(App)
+export default App
+// export default Connection(App)
