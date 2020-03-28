@@ -1,8 +1,9 @@
 import React from 'react';
 
-import Avatar from 'assets/wallpaper.jpg'
+import AvatarImg from 'assets/wallpaper.jpg'
 
 import {Link} from 'react-router-dom'
+import {Avatar} from 'components'
 import classnames from 'classnames'
 
 import './style.scss'
@@ -23,7 +24,7 @@ const ProjectItem = props => {
         if(team.members){
             renderTeam = team.members.map((member, index) => {
                 if(index < 3) {
-                    return <span key={index} className="avatar">{member.last_name.substring(0, 1)}</span>
+                    return <Avatar data={member}/>
                 }
             })
         }

@@ -9,15 +9,18 @@ import {withFormik} from 'formik'
 
 import {fetchUsers} from 'redux/reducers/users'
 import {createProject, deleteProject} from 'redux/reducers/projects'
+import {getAllTeams} from 'redux/reducers/teams'
+
 
 import {projectSchema} from 'validations/project'
 
 
-const mapStateToProps = ({users, projects}) => {
+const mapStateToProps = ({users, projects, teams}) => {
     return {
         users: users.users, 
         idProject: projects.idProject, 
-        statusCreating: projects.statusCreating
+        statusCreating: projects.statusCreating,
+        teams: teams.teams
     }
 }
 
@@ -26,7 +29,8 @@ export default compose(
     connect(mapStateToProps, {
         fetchUsers, 
         createProject, 
-        deleteProject
+        deleteProject,
+        getAllTeams
     }),
     withFormik({
     
@@ -68,7 +72,8 @@ export default compose(
 
     useEffect(() => {
         props.fetchUsers()
-    }, [fetchUsers, props.users.lenght])
+        props.getAllTeams()
+    }, [fetchUsers, props.users.lenght, props.teams.length])
     return (
         <CreateForm {...props}/>
     )

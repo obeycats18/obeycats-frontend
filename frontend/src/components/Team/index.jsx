@@ -4,10 +4,13 @@ import wallpaper from 'assets/wallpaper.jpg'
 import {Icon, Popover} from 'antd'
 import {Scrollbars} from 'react-custom-scrollbars'
 import {Link} from 'react-router-dom'
+import {Avatar} from 'components'
 
 import './style.scss'
 
 const Team = props => {
+
+    const {team} = props
 
     const popoverContent = (
         <div className='popover-content'> 
@@ -19,33 +22,21 @@ const Team = props => {
     return (
         <div className="team">
             <div className="team-top">
-                <span className="team-name">Dream Team</span>
+                <span className="team-name">{team.name}</span>
                 <Popover placement="right" content={popoverContent} trigger="click">
                     <button className="team-kebab"><Icon style={{ fontSize: '24px', color: '#fff' }} type="ellipsis" theme="outlined"/></button>
                 </Popover>
             </div>
             <div className="team-members">
                 <Scrollbars  style={{ height: 100 }} autoHideTimeout={500} autoHide>
-                    <div className="member">
-                        <div className="member-img"><img src={wallpaper} alt=""/></div>
-                        <p>Kapish Dima</p>
-                    </div>
-                    <div className="member">
-                        <div className="member-img"><img src={wallpaper} alt=""/></div>
-                        <p>Kapish Dima</p>
-                    </div>
-                    <div className="member">
-                        <div className="member-img"><img src={wallpaper} alt=""/></div>
-                        <p>Kapish Dima</p>
-                    </div>
-                    <div className="member">
-                        <div className="member-img"><img src={wallpaper} alt=""/></div>
-                        <p>Kapish Dima</p>
-                    </div>
-                    <div className="member">
-                        <div className="member-img"><img src={wallpaper} alt=""/></div>
-                        <p>Kapish Dima</p>
-                    </div>
+                    {
+                        team.members.map(member => (
+                            <div className="member">
+                                <Avatar bgColor="A0B8FF" data={member}/>
+                                <p className="member-name">{member.first_name} {member.last_name}</p>
+                            </div>
+                        ))
+                    }
                 </Scrollbars >
             </div>
         </div>

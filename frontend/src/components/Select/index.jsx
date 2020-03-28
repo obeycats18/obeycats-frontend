@@ -6,15 +6,19 @@ import './style.scss'
 
 const {Option} = Select
 
-const SelectBase = ({ 
-    options,
-    defaultValue,
-    handleChange
-}) => {
+const SelectBase = ( props ) => {
     return (
-        <Select defaultValue={defaultValue} onChange={handleChange} >
+        <Select {...props} >
             {
-                options.map( (item) => <Option key={item.label} className='dropdown-list' value={item.value}>{item.label}</Option>)
+                props.options.map( option => (
+                    <Option key={option.label} className='dropdown-list' value={option.value} label={option.label}>
+                        {
+                            props.mode === 'multiple'
+                                ? option.children
+                                : option.label       
+                        }
+                    </Option>
+                ))
             }
         </Select>
     );

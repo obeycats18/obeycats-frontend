@@ -88,7 +88,6 @@ export let getProject = (id) => {
 
 export let getProjects = (history) => {
     return dispatch => {
-        console.log('reducer')
         dispatch(setFetchingStatus(true));
         return projectAPI.getAllProjects().then( (data) => {   
             if(data.status === 200){

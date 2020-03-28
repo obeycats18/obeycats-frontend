@@ -24,6 +24,8 @@ export {default as Tasks} from './Tasks/container'
 
 // Teams Page Modules
 export {default as Teams} from './Teams/container'
+export {default as CreateTeamForm} from './CreateTeamForm/container'
+
 
 
 

@@ -22,10 +22,10 @@ export default connect(
         (isFetching)
             ? <Content type="fetching"/>
 
-            :<Teams teams={teams} isFetching={isFetching}/> 
-            // (teams.length)
-            //     ? <Teams teams={teams} isFetching={isFetching}/>
-            //     : <Content type="empty" emptyText="Команд еще нет"/>
+            
+            :(teams.length)
+                ? <Teams teams={teams} isFetching={isFetching}/>
+                : <Content type="empty" emptyText="Команд еще нет"/>
     )
 })
 

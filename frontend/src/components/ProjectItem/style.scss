@@ -84,6 +84,9 @@
         }
         .team-avatars{
             display: flex;
+            span{
+                margin-right: 7px;
+            }
             .avatar, .team-more{
                 display: flex;
                 justify-content: center;

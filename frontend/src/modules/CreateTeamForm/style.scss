@@ -1,0 +1,47 @@
+@import 'src/components/core/advanced';
+
+
+.developer-item{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    .developer-name{
+        margin-left: 20px;
+    }
+    .role-label{
+        position: absolute;
+        right: 0;
+        padding: 5px 7px;
+        color: $main_color;
+        border-radius: 3px;
+        background-color: #ffffff;
+
+    }
+    .ant-avatar.ant-avatar-circle{
+        background-color: $main_light!important;
+    }
+}
+
+.developers-block{
+
+    margin-top: 30px;
+    
+}
+
+.team-form{
+    .ant-select-selection--multiple .ant-select-selection__rendered {
+        width: 100%;
+    }
+    .ant-select-selection--multiple .ant-select-selection__placeholder{
+
+        margin-left: 0;
+    }
+    .ant-select-selection__placeholder, .ant-select-search__field__placeholder{
+        color: rgba($main_color, 0.6);
+    }
+    .button-group{
+        display: flex;
+        justify-content: space-between;
+    }
+}

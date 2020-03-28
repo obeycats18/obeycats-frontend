@@ -21,7 +21,7 @@ const Header = () => {
 
             <div className="header-control-bar">
                 
-                <Avatar/>
+                <Avatar type='me'/>
 
                 <div className="header-notify-bar">
                     <div className="header-notification">

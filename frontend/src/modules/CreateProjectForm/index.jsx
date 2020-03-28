@@ -2,14 +2,13 @@ import React from 'react';
 
 import {
     Form,
-    Button
+    Button,
+    Select
 } from 'components'
 
-import { DatePicker, Select} from 'antd';
+import { DatePicker} from 'antd';
 
 import './style.scss'
-
-const {Option} = Select
 
 const PopupCreate = props => {
 
@@ -22,7 +21,8 @@ const PopupCreate = props => {
         handleSubmit,
         isSubmitting,
         users,
-        values
+        values,
+        teams
     } = props;
 
     const inputs = [
@@ -33,11 +33,26 @@ const PopupCreate = props => {
         }
     ]
 
-    const options = users.filter(user => user.role.name === 'client');
-    console.log(users)
+    const clients = users.filter(user => user.role.name === 'client').map(client => (
+        {
+            value: client._id,
+            label: `${client.first_name} ${client.last_name}`
+        }
+    ));
 
-    let handleClientChange = value => {
+    const teamsOptions = teams.map(team => (
+        {
+            value: team._id,
+            label: team.name
+        }
+    ))
+
+    let handleClientChange = (value) => {
         setFieldValue('client', value)
+    }
+
+    let handleTeamsChange = (value) => {
+        setFieldValue('teams', value)
     }
 
     let handleDateChange = (date, dateString) => {
@@ -67,9 +82,9 @@ const PopupCreate = props => {
             />
             
 
-            <Select onChange={handleClientChange} defaultValue='Заказчик'>
-                {options.map(item => <Option key={item._id} className='dropdown-list' value={item._id}>{item.first_name} {item.last_name}</Option>)}
-            </Select>
+            <Select onChange={handleClientChange} style={{marginBottom: 20}} options={clients} defaultValue='Заказчик' />
+
+            <Select onChange={handleTeamsChange} options={teamsOptions} defaultValue='Команда'/>
 
             <div className="button-group">
                 

@@ -3,6 +3,8 @@ export {default as Block} from './Block'
 export {default as ErrorMessage} from './ErrorMessage'
 export {default as Form} from './Form'
 export {default as Button} from './Button'
+export {default as Modal} from './Modal'
+
 
 export {default as Avatar} from './Avatar/containers'
 export {default as ProjectItem} from './ProjectItem'
@@ -20,6 +22,7 @@ export {default as Sprint} from './Sprint'
 export {default as Backlog} from './Backlog'
 export {default as Project} from './Project'
 export {default as Team} from './Team'
+
 
 
 

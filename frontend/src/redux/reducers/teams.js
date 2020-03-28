@@ -27,6 +27,21 @@ const teamsReducer = (state = initialState, action = {}) => {
 export const setTeamsAction = (teams) => ({ type: "SET_TEAMS", teams }) 
 export const setFetchingAction = (isFetching) => ({ type: "SET_FETCHING", isFetching }) 
 
+export const getAllTeams = () => {
+    return dispatch => {
+        
+        dispatch(setFetchingAction(true))
+        return teamsAPI.getAllTeams().then( (data) => {
+            if(data.status === 200) {
+                dispatch(setTeamsAction(data.teams ))
+            }
+            dispatch(setFetchingAction(false))
+        })
+
+
+    }  
+}
+
 export const setTeams = () => {
     return dispatch => {
         
@@ -39,6 +54,16 @@ export const setTeams = () => {
         })
 
 
+    }  
+}
+
+export const createTeam = (values) => {
+    return dispatch => {   
+        return teamsAPI.createTeam(values).then( (data) => {
+            if(data.status === 200) {
+                dispatch(setTeams())
+            }
+        })
     }  
 }
 

@@ -26,8 +26,12 @@
         margin-top: 30px;
         .member{
             display: flex;
+            align-items: center;
             margin-bottom: 10px;
             color: #000000;
+            .member-name{
+                margin-left: 10px;
+            }
             &-img{
                 display: flex;
                 justify-content: center;

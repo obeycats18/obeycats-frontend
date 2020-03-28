@@ -8,19 +8,7 @@ const Teams = props => {
 
     const {teams} = props
 
-    return (
-        <>
-            <Team />
-            <Team />
-            <Team />
-            <Team />
-            <Team />
-            <Team />
-            <Team />
-            <Team />
-        </>
-    )
-    // return teams.map(team => <Team team={team}/>)
+    return teams.map(team => <Team team={team}/>)
 };
 
 export default Teams;
