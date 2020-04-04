@@ -72,7 +72,13 @@ const CommonTabs = (props) => {
                     }
                   </h4>
                   <div className="progress-block">
-                    <Progress percent={item.procentComplete} type='small'/>
+                    <Progress 
+                        percent={item.procentComplete}  
+                        type="circle" 
+                        width={200} 
+                        strokeWidth={4} 
+                        strokeColor={'#10AC84'}
+                        trailColor={"#DFE7FF"}/>
                   </div>
                   <div className="button-group">
                     <CallDeveloper/>

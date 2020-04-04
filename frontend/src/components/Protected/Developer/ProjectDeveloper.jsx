@@ -7,6 +7,11 @@ import {Developer} from 'hoc/RBAC/Guards'
 
 import {Tasks} from 'pages'
 
+import {Boards} from 'modules'
+
+import { Tabs } from 'antd';
+
+const { TabPane } = Tabs
 
 const Component = (props) => {
 
@@ -19,12 +24,18 @@ const Component = (props) => {
     if(credentials){
         role = credentials.role.name
     }
-    
 
     return (
         <CredentialProvider value={role || {}}>
             <Developer>
-                <Tasks {...props} isDeveloper/>
+                <Tabs defaultActiveKey="1" animated={false}>
+                    <TabPane tab="Задачи" key="1">
+                        <Tasks {...props} isDeveloper/>
+                    </TabPane>
+                    <TabPane tab="Доски" key="2">
+                        <Boards />
+                    </TabPane>
+                </Tabs>                
             </Developer>
         </CredentialProvider>
         

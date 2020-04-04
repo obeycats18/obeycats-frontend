@@ -11,7 +11,7 @@ const Input = ( props ) => {
         name, 
         classname, 
         placeholder, 
-        onChange,
+        handleChange,
         onClick,
         onBlur,
         value,
@@ -27,7 +27,7 @@ const Input = ( props ) => {
                 type={type}
                 name={name}
                 placeholder={placeholder}
-                onChange={onChange}
+                onChange={handleChange}
                 onClick={onClick}
                 onBlur={onBlur}
                 value={value}

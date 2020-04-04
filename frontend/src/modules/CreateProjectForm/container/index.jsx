@@ -7,12 +7,12 @@ import {compose} from 'redux'
 import {withRouter} from 'react-router-dom'
 import {withFormik} from 'formik'
 
+import {projectSchema} from 'validations/project'
+
 import {fetchUsers} from 'redux/reducers/users'
 import {createProject, deleteProject} from 'redux/reducers/projects'
 import {getAllTeams} from 'redux/reducers/teams'
-
-
-import {projectSchema} from 'validations/project'
+import {initBoards} from 'redux/reducers/boards'
 
 
 const mapStateToProps = ({users, projects, teams}) => {
@@ -30,7 +30,8 @@ export default compose(
         fetchUsers, 
         createProject, 
         deleteProject,
-        getAllTeams
+        getAllTeams,
+        initBoards
     }),
     withFormik({
     
@@ -42,19 +43,24 @@ export default compose(
 
             switch(buttonName) {
                 case 'next' : 
-                    props.createProject(values).then( (status) => {
+                    props.createProject(values).then( (data) => {
                         setSubmitting(false)
-                        if(status === 200){
+                        if(data.status === 200){
                             props.history.push('/tasks/add')
+                            props.initBoards(data.id)
                         }
                     })
+                    
                 break
 
                 case 'create' : 
                     props.createProject(values).then( (status) => {
                         setSubmitting(false)
                         if(status === 200) {
-                            setInterval( () => props.history.push('/'), 4000)
+                            props.history.push('/')
+                            window.localStorage.removeItem('idProject')
+                            window.localStorage.removeItem('idTeam')
+
                         }
                     })
                 break

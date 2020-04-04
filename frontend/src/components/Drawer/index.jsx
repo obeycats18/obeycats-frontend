@@ -4,11 +4,11 @@ import { Drawer } from 'antd';
 import './style.scss'
 
 import EditText from './EditText';
-import EditStatus from './EditStatus';
+import EditStatus from './EditStatus/container';
 import EditDescription from './EditDescription';
 import EditCost from './EditCost';
 import EditPriority from './EditPriority';
-import EditDeveloper from './EditDeveloper';
+import EditDeveloper from './EditDeveloper/container';
 
 import {Button} from 'components'
 
@@ -22,8 +22,6 @@ const DrawerEdit = props => {
         fetchUsers,
         users
     } = props;
-
-   
 
     let updatedTask = {}
     

@@ -9,6 +9,8 @@ import usersReducer from './reducers/users'
 import globalReducer from './reducers/global'
 import sprintsReducer from './reducers/milestones'
 import teamsReducer from './reducers/teams'
+import boardsReducer from './reducers/boards'
+
 
 
 
@@ -21,7 +23,8 @@ const reducers = combineReducers({
     users: usersReducer,
     global: globalReducer,
     sprints: sprintsReducer,
-    teams: teamsReducer
+    teams: teamsReducer,
+    boards: boardsReducer,
 
 });
 

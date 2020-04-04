@@ -6,7 +6,6 @@ import {connect} from 'react-redux'
 import {compose} from 'redux'
 import { withRouter } from 'react-router';
 
-
 import {getProjects} from 'redux/reducers/projects'
 
 export default compose(
@@ -29,13 +28,13 @@ export default compose(
 
     useEffect( () => {
         getProjects(history);
-    }, [projects.length])
+    }, [])
 
     return (
        
         <Projects 
             isFetching={isFetching} 
-            data={projects} 
+            projects={projects} 
         />
     )
 });

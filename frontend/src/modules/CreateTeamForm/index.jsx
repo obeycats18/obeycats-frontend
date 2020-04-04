@@ -83,7 +83,7 @@ const PopupCreate = props => {
             values={values} 
             errors={errors} 
             touched={touched} 
-            onChange={handleChange} 
+            handleChange={handleChange} 
             onBlur={handleBlur}
             onSubmit={handleSubmit} 
             classname='create-form team-form'>

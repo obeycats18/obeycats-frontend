@@ -27,14 +27,16 @@ const ProjectPage = props => {
                         <div className="project-wrapper__right">
                             <div className="project-wrapper__block progress">
                                 <h4>Выполненная работа</h4>
-                                <Progress percent={project.procentComplete} type='big'/>
+                                <Progress 
+                                    percent={project.procentComplete}  
+                                    type="circle" 
+                                    width={150} 
+                                    strokeWidth={4} 
+                                    strokeColor={'#10AC84'}
+                                    trailColor={"#DFE7FF"}/>
                             </div>
                         </div>
                         <div className="project-wrapper__left">
-                            <div className="project-wrapper__block cost">
-                                <h4>Цена проекта</h4>
-                                <span className='cost-text'>{project.cost}<FontAwesomeIcon className={"hryvnia-icon"} icon={faHryvnia}/> </span>
-                            </div>
                             <Timer project={project}/>
                         </div>
                     </div>

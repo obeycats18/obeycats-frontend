@@ -1,6 +1,6 @@
-import React, {  } from 'react';
+import React from 'react';
 
-import { Menu, Affix } from 'antd';
+import { Menu } from 'antd';
 import {Link} from 'react-router-dom'
 
 import {
@@ -58,16 +58,18 @@ const Sidebar = () => {
             </Link>
         </Menu.Item>
     ))
-
     return (
-      <Affix>
-        <div className='sidebar'>
-
-          <Menu className='sidebar-menu' mode='inline'>
-              {menu}
-          </Menu>
-        </div>
-      </Affix>
+      <div className='sidebar' >
+        <Menu 
+          className='sidebar-menu' 
+          // inlineCollapsed={props.collapsed} 
+          mode='inline'
+          style={{padding: '25px 0 0 10px'}}
+          >
+            {menu}
+        </Menu>
+      </div>
+      
     );
 };
 

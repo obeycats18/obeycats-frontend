@@ -43,7 +43,7 @@ export const Login = props => {
                     values={values} 
                     errors={errors} 
                     touched={touched} 
-                    onChange={handleChange} 
+                    handleChange={handleChange} 
                     onBlur={handleBlur} 
                     onSubmit={handleSubmit} 
                     classname='login-form'>

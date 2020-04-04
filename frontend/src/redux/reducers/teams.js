@@ -2,6 +2,7 @@ import {teamsAPI} from 'api/teamsAPI'
 
 let initialState = {
     teams: [],
+    members: [],
     isFetching: false
 }
 
@@ -19,12 +20,20 @@ const teamsReducer = (state = initialState, action = {}) => {
                 isFetching : action.isFetching    
             }
         }
+        case "SET_MEMBERS": {
+            return {
+                ...state,
+                members : action.members    
+            }
+        }
         default: 
             return state
     }
 }
 
 export const setTeamsAction = (teams) => ({ type: "SET_TEAMS", teams }) 
+export const setMembersAction = (members) => ({ type: "SET_MEMBERS", members }) 
+
 export const setFetchingAction = (isFetching) => ({ type: "SET_FETCHING", isFetching }) 
 
 export const getAllTeams = () => {
@@ -39,6 +48,17 @@ export const getAllTeams = () => {
         })
 
 
+    }  
+}
+
+export const setMembers = () => {
+    const idTeam = window.localStorage.getItem('idTeam')
+    return dispatch => {
+        return teamsAPI.getMembers(idTeam).then( (data) => {
+            if(data.status === 200) {
+                dispatch(setMembersAction(data.members ))
+            }
+        })
     }  
 }
 

@@ -108,6 +108,7 @@ export let createProject = (values) => {
             if(data.status === 200){
                 openNotification('success', 'Успешное создание', 'Проект успешно создан')
                 window.localStorage.setItem('idProject', data.id)
+                window.localStorage.setItem('idTeam', data.idTeams)
                 dispatch(setProjectId(window.localStorage.getItem('idProject')))
 
             }
@@ -115,7 +116,7 @@ export let createProject = (values) => {
                 openNotification('error', 'Такой проект уже существует', 'Введите другое название проекта')
             }
 
-            return data.status
+            return data
         })
         .catch( err => {    
             console.log(err);
@@ -129,6 +130,8 @@ export const editProject = (values) => {
         return projectAPI.editProject(values).then( data => {
             if(data.status === 200) {
                 dispatch(setProject(data.project));
+                window.localStorage.removeItem('idProject')
+                window.localStorage.removeItem('idTeam')
             }
         })
     }

@@ -46,8 +46,8 @@ const Task = props => {
         </svg>
     )
 
-    if(type === 'page'){
-        return (
+    switch(type) {
+        case "page": return (
             <div className={classnames("prtasks-task", `border-${task.priority}`)}>
                 <p className="task-text">
                     {task.text}
@@ -58,20 +58,27 @@ const Task = props => {
                 </div>
             </div>
         )
-    }else{
-        return (
-            <div style={style} className={classnames('task-item', type)}>
-            <div className="task-content">
-                <p ref={pRef}>{task.text}</p>
-                <div className="tools-block">
-                    <Link to='#' onClick={handleOpen} className='edit'><FontAwesomeIcon className={"faPencilAlt-icon"} style={{fontSize: 12}} icon={faPencilAlt}/></Link>
-                    <Link to='#' onClick={deleteTask} className='delete'><FontAwesomeIcon className={"faPencilAlt-icon"} style={{fontSize: 14}} icon={faTimes}/></Link>
-                </div>
+
+        case "board": return (
+            <div className={classnames("board-task", `border-${task.priority}`)}>
+                <p>{task.text}</p>
             </div>
-            <Drawer users={users} fetchUsers={fetchUsers} editTask={editTask} visible={visible} handleClose={handleClose} task={task}/>
-        </div>
+        )
+
+        default: return (
+            <div style={style} className={classnames('task-item', type)}>
+                <div className="task-content">
+                    <p ref={pRef}>{task.text}</p>
+                    <div className="tools-block">
+                        <Link to='#' onClick={handleOpen} className='edit'><FontAwesomeIcon className={"faPencilAlt-icon"} style={{fontSize: 12}} icon={faPencilAlt}/></Link>
+                        <Link to='#' onClick={deleteTask} className='delete'><FontAwesomeIcon className={"faPencilAlt-icon"} style={{fontSize: 14}} icon={faTimes}/></Link>
+                    </div>
+                </div>
+                <Drawer users={users} fetchUsers={fetchUsers} editTask={editTask} visible={visible} handleClose={handleClose} task={task}/>
+            </div>
         )
     }
+
 };
 
 export default Task;

@@ -2,7 +2,7 @@
 
 .fetching-block, .empty-block{
     width: 100%;
-    height: 100%;
+    height: 70%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,11 +10,15 @@
 
 .empty-block{
     flex-direction: column;
+    p{
+        margin-top: 20px;
+        max-width: 500px;
+        line-height: 24px;
+    }
 }
 
 .create-block{
     width: 100%;
-    height: 100vh;
     background-color: #ffffff;
     
 }

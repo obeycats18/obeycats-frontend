@@ -5,11 +5,11 @@ import {
     ErrorMessage
 } from 'components';
 
-const Form = ( props ) => {
+const Form = props => {
 
     const {
         onSubmit, 
-        onChange,
+        handleChange,
         onBlur,
         children, 
         classname,
@@ -20,6 +20,7 @@ const Form = ( props ) => {
     } = props
 
     let renderInputs = []
+    
     if(inputs){
         renderInputs = inputs.map(input => (
             <Input 
@@ -28,7 +29,7 @@ const Form = ( props ) => {
                 type={input.type} 
                 name={input.name} 
                 placeholder={input.placeholder}
-                onChange={onChange}
+                handleChange={handleChange}
                 onBlur={onBlur}
                 validateStatus={ 
                     !touched[input.name] 

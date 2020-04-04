@@ -72,12 +72,12 @@ const RegistrationForm = props => {
                     values={values} 
                     errors={errors} 
                     touched={touched} 
-                    onChange={handleChange} 
+                    handleChange={handleChange} 
                     onBlur={handleBlur} 
                     onSubmit={handleSubmit} 
                     classname='registration-form'
                 >
-                    <Select options={options} defaultValue='Роль' handleChange={handleSelectChange}/>
+                    <Select options={options} defaultValue='Роль' onChange={handleSelectChange}/>
                     <Button type='submit' isSubmitting={isSubmitting} text='Зарегистрироваться' size='large'/>
                     <Link to='/login' className='login-link'>Войти в аккаунт</Link>
                 </Form>

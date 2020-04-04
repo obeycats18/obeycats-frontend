@@ -4,8 +4,6 @@ import {connect} from 'react-redux'
 import { withRouter } from 'react-router-dom';
 import {compose} from 'redux'
 
-import { Spin, Icon, Empty } from 'antd';
-
 import {setTasks} from 'redux/reducers/tasks'
 
 import Tasks from '../index'
@@ -14,6 +12,7 @@ import { Content } from 'components';
 const TaskContainer = props => {
 
     let idProject = props.location.search.split('=')[1]
+    
     useEffect ( () => {
         props.setTasks(idProject, props.isDeveloper)
     }, [props.tasks.length])

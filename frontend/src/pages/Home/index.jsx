@@ -10,7 +10,7 @@ import './style.scss'
 const Home = () => {
     
     return (
-            <Content style={{margin: "50px", height: "100%"}}>
+            <Content>
                 <div className="content-header">
                     <h3>Мои проекты</h3>
                     <div className="home-button">

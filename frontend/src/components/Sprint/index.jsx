@@ -101,7 +101,7 @@ const Sprint = props => {
                         placeholder='Название спринта'
                         // keyAction={handleEnterKey}
                         value={value}
-                        onChange={handleChange}
+                        handleChange={handleChange}
                     />
                     <div className="button-group">
                         <Button classname='confirm-button' type="button" typeButton='ok' text='Создать' handleClick={createSprintButton}/>

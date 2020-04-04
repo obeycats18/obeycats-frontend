@@ -6,8 +6,8 @@ import CheckIcon from 'assets/CheckIconGreen.svg'
 
 import './style.scss'
 
-const ProgresComponent = ( {percent, type} ) => {
-
+const ProgresComponent = ( props ) => {
+    
     let checkStatus = (percent) => {
         let status = '';
         
@@ -18,28 +18,25 @@ const ProgresComponent = ( {percent, type} ) => {
         return status
     }
 
-    let setWidth = () => {
-        if(type === 'big'){
-            return 250
-        }
-        if(type === 'small'){
-            return 200
-        }
-    }
+    // let setWidth = () => {
+        
+    //     if(type === 'big'){
+    //         return 150
+    //     }
+    //     if(type === 'small'){
+    //         return 200
+    //     }
+    // }
 
     return (
         <Progress 
-            type="circle" 
-            percent={percent} 
-            width={setWidth()} 
-            strokeWidth={4} 
-            strokeColor={'#10AC84'}
+           {...props}
             format={ () => {
-                if(checkStatus(percent) === 'success'){
+                if(checkStatus(props.percent) === 'success'){
                     return <img src={CheckIcon} alt={'Icon Success'} width={25}/>
                 }
                 else{
-                    return <p className='progress-text'>{`${percent} %`}</p>
+                    return <p className='progress-text'>{`${props.percent}%`}</p>
                 }
             } }/>
     );

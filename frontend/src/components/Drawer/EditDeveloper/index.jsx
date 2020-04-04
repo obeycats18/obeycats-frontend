@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
 import {Select} from 'components'
 
@@ -8,20 +8,15 @@ const EditStatus = props => {
 
     const {
         developer,
-        users,
-        fetchUsers,
+        members,
         handleUpdate
     } = props;
 
-    useEffect(() => {
-        fetchUsers()
-    }, [fetchUsers, users.lenght])
-
-    console.log(users)
-    const developers =  users.filter(user => user.role.name === "developer")
-    const options = developers.map(developer => ({value: developer._id, label: developer.last_name + developer.first_name}))
-
+    // const developers =  members.filter(user => user.role.name === "developer")
+    const options = members.map(member => ({value: member._id, label: member.last_name + member.first_name}))
+console.log(options)
     const handleChange = value => {
+        console.log(value)
         handleUpdate({developer: value})
     }
 
@@ -36,7 +31,7 @@ const EditStatus = props => {
                     developer 
                         ? options.forEach(option => option._id === developer ? option.last_name + option.first_name  : 'Выберите испольнителя') 
                         : 'Выберите испольнителя'} 
-                handleChange={handleChange}/>
+                onChange={handleChange}/>
         </div>
     );
 };

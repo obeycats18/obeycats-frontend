@@ -33,10 +33,6 @@ const Component = (props) => {
         role = credentials.role.name
     }
 
-
-    
-    console.log(role)
-
     return (
         <CredentialProvider value={role || {}}>
             <Client>

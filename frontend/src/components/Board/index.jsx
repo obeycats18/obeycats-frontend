@@ -3,7 +3,7 @@ import React from 'react';
 import {Scrollbars} from 'react-custom-scrollbars'
 import {Droppable, Draggable} from 'react-beautiful-dnd'
 
-import Task from '../BoardTask'
+import {Task} from 'components'
 
 import './style.scss'
 
@@ -34,7 +34,7 @@ const Boards = props => {
                                 <Draggable key={task._id} index={index} draggableId={`${task._id}`}>
                                     {(provider, snaphot) => (
                                         <div ref={provider.innerRef} {...provider.draggableProps} {...provider.dragHandleProps}>
-                                            <Task key={task._id} task={task}/>
+                                            <Task type="board" key={task._id} task={task}/>
                                         </div>
                                     )}
                                 </Draggable>

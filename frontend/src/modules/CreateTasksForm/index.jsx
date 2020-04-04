@@ -60,7 +60,7 @@ const TaskForm = props => {
             _id: new Date().getUTCMilliseconds().toString(),
             text: '',
             cost: 0,
-            priority: 0,
+            priority: 1,
             status: '',
             description: '',
             developer: ''

@@ -4,11 +4,8 @@
     width: 100%;
     padding: 15px 0;
     background-color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     &-logo{
-        margin-left: 50px;
+        margin-left: 20px;
         a{
             color: #000000;
             letter-spacing: 0.7px;            
@@ -17,10 +14,9 @@
     &-control-bar{
         display: flex;
         align-items: center;
-        margin-right: 80px;
+        justify-content: space-around;
         .header-notification{
             cursor: pointer;
-            padding: 0 20px ;
         }
         .logout{
             cursor: pointer;

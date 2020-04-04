@@ -8,12 +8,7 @@ import {withFormik} from 'formik'
 import {withRouter} from 'react-router-dom'
 
 import {editProject} from 'redux/reducers/projects'
-
-
-const CreateMilestoneContainer = props => {
-    return <CreateMilestone {...props}/>
-}
-
+import {initTasksBoards} from 'redux/reducers/boards'
 
 const mapStateToProps = ({projects, sprints}) => {
     
@@ -26,16 +21,23 @@ const mapStateToProps = ({projects, sprints}) => {
 export default compose(
     withRouter,
     connect(mapStateToProps, {
-        editProject
+        editProject,
+        initTasksBoards
     }),
     withFormik({
         handleSubmit: ( values, {setSubmitting, props}) => {
             setSubmitting(true)
             props.editProject({idProject: props.idProject, idMilestone: props.idMilestone}).then(data => {
-                setSubmitting(false)
-                props.history.push(`/project?id=${props.idProject}`)
+                props.initTasksBoards(props.idProject).then(data => {
+                    if(data.status === 200){
+                        setSubmitting(false)
+                        props.history.push(`/project?id=${props.idProject}`)
+                    }
+                })
             })
         }
     })
     
-)(CreateMilestoneContainer)
+)(props => {
+    return <CreateMilestone {...props}/>
+})

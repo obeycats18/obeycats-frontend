@@ -11,10 +11,15 @@ const EditStatus = props => {
         handleUpdate
     } = props;
 
+    // const options = status.map(item => ({
+    //     label: item.name,
+    //     value: item.name
+    // }))
+
     const options = [
-        {label: 'ToDo', value: 'todo'},
-        {label: 'В разработке', value: 'inDeveloping'},
-        {label: 'Тестирование', value: 'testing'},
+        {label: 'Todo', value: 'Todo'},
+        {label: 'В разработке', value: 'В разработке'},
+        {label: 'Завершенные', value: 'Завершенные'},
     ]
 
     const handleChange = value => {

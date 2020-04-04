@@ -8,7 +8,7 @@ const Tasks = props => {
     
     const {tasks} = props
 
-    return tasks.map(task => <Task type="page" task={task}/>)
+    return tasks.map(task => <Task key={task._id} type="page" task={task}/>)
 };
 
 export default Tasks;

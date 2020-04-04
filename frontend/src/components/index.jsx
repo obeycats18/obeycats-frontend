@@ -22,6 +22,7 @@ export {default as Sprint} from './Sprint'
 export {default as Backlog} from './Backlog'
 export {default as Project} from './Project'
 export {default as Team} from './Team'
+export {default as Board} from './Board'
 
 
 

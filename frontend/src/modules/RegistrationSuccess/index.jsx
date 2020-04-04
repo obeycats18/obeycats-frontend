@@ -19,7 +19,7 @@ const Success = () => {
                     <h3>Регистрация прошла успешно!</h3>
                 </div>
                 <div className="registration-success-button">
-                    <Link to='/login' className='link-login'> Войти в аккаунт</Link>
+                    <Link to='/login' className='button button-small'> Войти в аккаунт</Link>
                 </div>
             </div>
         </Block>
