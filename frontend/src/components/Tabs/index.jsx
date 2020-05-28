@@ -4,7 +4,6 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Empty } from 'antd';
 
 import {Progress} from 'components'
-import {CallDeveloper, FinishSprint, CreateEdit} from 'components/Protected'
 
 import TabsTask from './TabsTasks';
 
@@ -79,12 +78,6 @@ const CommonTabs = (props) => {
                         strokeWidth={4} 
                         strokeColor={'#10AC84'}
                         trailColor={"#DFE7FF"}/>
-                  </div>
-                  <div className="button-group">
-                    <CallDeveloper/>
-                    <CreateEdit/>
-                    <FinishSprint/>
-
                   </div>
                 </div>
                 <div className="tabs-pane__right">

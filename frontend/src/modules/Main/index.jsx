@@ -65,7 +65,7 @@ const Main = () => {
                                 <Route exact path='/project/add' component={CreateProject} />
                                 <Route exact path='/tasks/add' component={CreateTasks} />
                                 <Route exact path='/milestones/add' component={CreateMilestones} />
-                                <Route exact path='/prtasks' component={Tasks} />
+                                <Route exact path='/prtasks' render={() => <Tasks isDeveloper={true}/>} />
                                 <Route exact path='/teams' component={Teams} />
                             </Switch>
                         </Content>

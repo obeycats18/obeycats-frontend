@@ -15,7 +15,7 @@ const TaskContainer = props => {
     
     useEffect ( () => {
         props.setTasks(idProject, props.isDeveloper)
-    }, [props.tasks.length])
+    }, []) //props.tasks.length
 
     return (
         (props.isTasksFetching)

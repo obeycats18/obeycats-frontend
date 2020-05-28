@@ -1,8 +1,5 @@
 import React from 'react';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faHryvnia} from '@fortawesome/free-solid-svg-icons'
-
 import { Spin, Icon } from 'antd';
 
 import {Timer, Tabs, Progress} from 'components'

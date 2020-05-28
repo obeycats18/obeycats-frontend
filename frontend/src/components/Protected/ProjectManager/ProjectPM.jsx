@@ -30,7 +30,7 @@ const Component = (props) => {
             <ProjectNanager>
                 <Tabs defaultActiveKey="1" animated={false}>
                     <TabPane tab="Задачи" key="1">
-                        <Tasks {...props} isDeveloper/>
+                        <Tasks {...props}/>
                     </TabPane>
                     <TabPane tab="Доски" key="2">
                         <Boards />

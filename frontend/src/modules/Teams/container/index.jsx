@@ -15,14 +15,12 @@ export default connect(
 
     useEffect( () => {
         setTeams()
-    }, [setTeams, teams.length])
+    }, [])
 
     return (
 
         (isFetching)
             ? <Content type="fetching"/>
-
-            
             :(teams.length)
                 ? <Teams teams={teams} isFetching={isFetching}/>
                 : <Content type="empty" emptyText="Команд еще нет"/>

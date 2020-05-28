@@ -28,7 +28,7 @@ export default compose(
 
     useEffect( () => {
         getProjects(history);
-    }, [])
+    }, []) //projects.length
 
     return (
        

@@ -17,7 +17,7 @@ export default connect(
 
     useEffect(() => {
         setMembers()
-    }, [members.length])
+    }, []) //members.length
 
     return (
         <EditDeveloper {...props} members={members}/>

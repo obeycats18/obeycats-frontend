@@ -24,30 +24,15 @@ const Sidebar = () => {
         title: "Главная"
       },
       {
-        img_src: Message,
-        link: '',
-        title: "Сообщения"
-      },
-      {
         img_src: Tasks,
         link: '/prtasks',
-        title: "Задачи"
+        title: "Мои задачи"
       },
       {
         img_src: Teams,
         link: '/teams',
         title: "Команды"
-      },
-      {
-        img_src: Boards,
-        link: '/boards',
-        title: "Доски"
-      },
-      {
-        img_src: Settings,
-        link: '',
-        title: "Настройки"
-      },
+      }
     ]
 
     const menu = menu_elements.map((element, index) => (

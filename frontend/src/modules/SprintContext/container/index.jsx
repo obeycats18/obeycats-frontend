@@ -35,7 +35,7 @@ export default connect(
     useEffect ( () => {
         props.fetchSprints(props.idProject)
         props.setBacklog(props.idProject)
-    }, [props.sprints.length, props.backlog.length])
+    }, []) //props.sprints.length, props.backlog.length
 
     return  <SprintContext {...props}/>
 });

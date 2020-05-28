@@ -79,7 +79,7 @@ export default compose(
     useEffect(() => {
         props.fetchUsers()
         props.getAllTeams()
-    }, [fetchUsers, props.users.lenght, props.teams.length])
+    }, []) //fetchUsers, props.users.lenght, props.teams.length
     return (
         <CreateForm {...props}/>
     )
